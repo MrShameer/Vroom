@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_vehicle"
+        android:icon="@drawable/ic_baseline_directions_car_filled_24"
+        android:title="@string/title_vehicle" />
+
+    <item
+        android:id="@+id/navigation_status"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="@string/title_status" />
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="@string/title_chat" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/title_profile" />
+
+</menu>
