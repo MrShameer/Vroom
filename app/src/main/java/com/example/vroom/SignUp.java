@@ -2,11 +2,8 @@ package com.example.vroom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -21,8 +18,10 @@ import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 
 public class SignUp extends AppCompatActivity {
     Random rand = new Random();
-
+    Request request = new Request();
     Button btn_signup;
+    Button btn_login;
+
     ExtendedEditText ETname;
     ExtendedEditText ETemail;
     ExtendedEditText ETpasword;
@@ -38,6 +37,8 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         btn_signup= findViewById(R.id.btn_signup);
+        btn_login=findViewById(R.id.btn_login);
+
         ETname=findViewById(R.id.name);
         ETemail=findViewById(R.id.email);
         ETpasword=findViewById(R.id.password);
@@ -57,7 +58,7 @@ public class SignUp extends AppCompatActivity {
                 } else if (email.isEmpty()) {
                     Toast.makeText(getBaseContext(), "Please put in your email", Toast.LENGTH_SHORT).show();
                 } else if (password.isEmpty() || password.length() <5) {
-                    Toast.makeText(getBaseContext(), "Please put in your password and maku sure it's more than 5 character", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Please put in your password and make sure it's more than 5 character", Toast.LENGTH_LONG).show();
                 }
                 else {
                     new mytask().execute();
@@ -66,9 +67,16 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
-    public class mytask extends AsyncTask<Void,Void,Void>{
+    private class mytask extends AsyncTask<Void,Void,Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -81,7 +89,8 @@ public class SignUp extends AppCompatActivity {
                     .addFormDataPart("password", password)
                     .build();
 
-            new Request(requestBody,"https://vroom.lepak.xyz/insert.php");
+           // new Request(requestBody,"https://vroom.lepak.xyz/insert.php");
+            request.Request(requestBody,"https://vroom.lepak.xyz/insert.php");
             return null;
         }
     }
