@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-            android:id="@+id/extended_edit_text1"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout1">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-            android:id="@+id/extended_edit_text"
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -107,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-            android:id="@+id/extended_edit_text2"
+            android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></studio.carbonylgroup.textfieldboxes.ExtendedEditText>
 
@@ -132,7 +132,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="Or login with social account"
         app:layout_constraintEnd_toEndOf="@+id/google_btn"
         app:layout_constraintStart_toStartOf="@+id/google_btn"
@@ -158,13 +158,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/abel"
         android:text="Sign Up"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
