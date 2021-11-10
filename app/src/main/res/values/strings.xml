@@ -5,9 +5,7 @@
     <string name="title_status">Status</string>
     <string name="title_chat">Chat</string>
     <string name="title_profile">Profile</string>
-
     <string name="title_activity_test_tab">TestTab</string>
-
     <string name="tab_explore">Explore</string>
     <string name="tab_car">Car</string>
     <string name="tab_motorcycle">Motorcycle</string>
