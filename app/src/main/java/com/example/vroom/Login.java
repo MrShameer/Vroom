@@ -70,7 +70,7 @@ public class Login extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-
+        String ok;
         @Override
         protected Void doInBackground(Void... voids) {
             RequestBody requestBody = new MultipartBody.Builder()
@@ -80,13 +80,23 @@ public class Login extends AppCompatActivity {
                     .build();
 
             //new Request(requestBody,"https://vroom.lepak.xyz/login.php");
-            String ok = request.Request(requestBody,"https://vroom.lepak.xyz/login.php");
-            System.out.println(ok);
+            ok = request.Request(requestBody,"https://vroom.lepak.xyz/login.php");
+            //System.out.println(ok);
             if (ok.equals("200")){
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
-            }
+            }/*else{
+                Toast.makeText(getBaseContext(), ok, Toast.LENGTH_LONG).show();
+            }*/
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (!ok.equals("200")){
+                Toast.makeText(getBaseContext(), ok, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
