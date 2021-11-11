@@ -14,6 +14,7 @@ import com.example.vroom.api.Request;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
+import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class Login extends AppCompatActivity {
     Request request = new Request();
@@ -23,6 +24,9 @@ public class Login extends AppCompatActivity {
 
     ExtendedEditText ETemail;
     ExtendedEditText ETpasword;
+
+    TextFieldBoxes TFemail;
+    TextFieldBoxes TFpassword;
 
     String email;
     String password;
@@ -41,6 +45,7 @@ public class Login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 email = ETemail.getEditableText().toString();
                 password = ETpasword.getEditableText().toString();
@@ -81,13 +86,10 @@ public class Login extends AppCompatActivity {
 
             //new Request(requestBody,"https://vroom.lepak.xyz/login.php");
             ok = request.Request(requestBody,"https://vroom.lepak.xyz/login.php");
-            //System.out.println(ok);
             if (ok.equals("200")){
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
-            }/*else{
-                Toast.makeText(getBaseContext(), ok, Toast.LENGTH_LONG).show();
-            }*/
+            }
             return null;
         }
 

@@ -88,15 +88,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
         app:endIcon="@drawable/ic_baseline_error_circle_24"
         app:hasClearButton="true"
         app:helperText="Please Insert your Password"
-        android:layout_marginTop="10dp"
         app:iconSignifier="@drawable/ic_baseline_lock_24"
         app:labelText="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:minCharacters="5">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/password"
