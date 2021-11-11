@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     LatLng now1;
     RecyclerView recycler;
     RecyclerView.Adapter adapter;
+    ScrollView scrollview;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -54,7 +56,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
+        scrollview=(ScrollView)root.findViewById(R.id.scrollview);
+        scrollview.post(new Runnable()
+        {
+            public void run() {
+                scrollview.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
         mapview=(MapView)root.findViewById(R.id.Mapview);
         mapview.getMapAsync(this);
         mapview.onCreate(savedInstanceState);
