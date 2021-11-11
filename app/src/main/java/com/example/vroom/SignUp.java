@@ -1,9 +1,11 @@
 package com.example.vroom;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +33,7 @@ public class SignUp extends AppCompatActivity {
     String password;
     String code;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,13 @@ public class SignUp extends AppCompatActivity {
         btn_signup= findViewById(R.id.btn_signup);
         btn_login=findViewById(R.id.btn_login);
 
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SignUp.this,Login.class);
+                startActivity(intent);
+            }
+        });
         ETname=findViewById(R.id.name);
         ETemail=findViewById(R.id.email);
         ETpasword=findViewById(R.id.password);
