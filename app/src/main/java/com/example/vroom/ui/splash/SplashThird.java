@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.vroom.Login;
+import com.example.vroom.MainActivity;
 import com.example.vroom.R;
 import com.example.vroom.SplashScreen;
 
@@ -36,7 +37,7 @@ public class SplashThird extends Fragment {
         tv_last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), Login.class);
+                Intent intent=new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

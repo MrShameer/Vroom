@@ -17,6 +17,7 @@
         app:endIcon="@drawable/ic_baseline_error_circle_24"
         app:helperText="Please Insert your full name"
         app:iconSignifier="@drawable/ic_baseline_person_24"
+        app:hasClearButton="true"
         app:labelText="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.583"
@@ -35,24 +36,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/abel"
         android:text="Sign Up"
         android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
-
-    <ImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--    <com.google.android.material.textfield.TextInputLayout-->
     <!--        android:id="@+id/textInputLayout"-->
@@ -77,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="10dp"
+        app:hasClearButton="true"
         app:endIcon="@drawable/ic_baseline_error_circle_24"
         app:helperText="Please Insert your Email"
         app:iconSignifier="@drawable/ic_baseline_email_24"
@@ -98,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         app:endIcon="@drawable/ic_baseline_error_circle_24"
+        app:hasClearButton="true"
         app:helperText="Please Insert your Password"
         android:layout_marginTop="10dp"
         app:iconSignifier="@drawable/ic_baseline_lock_24"
