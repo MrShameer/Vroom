@@ -44,10 +44,10 @@
             app:layout_constraintTop_toTopOf="@+id/user_image" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mohamad Anwar"
+            android:text="Nama"
             android:textColor="@color/white"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="@+id/user_image"
