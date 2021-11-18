@@ -88,7 +88,7 @@
 
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/passenger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -103,7 +103,7 @@
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
-                app:layout_constraintEnd_toStartOf="@+id/button5"
+                app:layout_constraintEnd_toStartOf="@+id/door"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
@@ -115,12 +115,12 @@
                 android:textColor="@color/black"
                 android:textSize="8sp"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="@+id/button3"
-                app:layout_constraintStart_toStartOf="@+id/button3"
-                app:layout_constraintTop_toBottomOf="@+id/button3"></TextView>
+                app:layout_constraintEnd_toEndOf="@+id/passenger"
+                app:layout_constraintStart_toStartOf="@+id/passenger"
+                app:layout_constraintTop_toBottomOf="@+id/passenger"></TextView>
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/door"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:insetTop="0dp"
@@ -134,10 +134,10 @@
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/button3"
-                app:layout_constraintEnd_toStartOf="@+id/button6"
-                app:layout_constraintStart_toEndOf="@+id/button3"
-                app:layout_constraintTop_toTopOf="@+id/button3" />
+                app:layout_constraintBottom_toBottomOf="@+id/passenger"
+                app:layout_constraintEnd_toStartOf="@+id/luggage"
+                app:layout_constraintStart_toEndOf="@+id/passenger"
+                app:layout_constraintTop_toTopOf="@+id/passenger" />
 
             <TextView
                 android:id="@+id/textViewdoor"
@@ -148,12 +148,12 @@
                 android:textSize="8sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="@+id/textView14"
-                app:layout_constraintEnd_toEndOf="@+id/button5"
-                app:layout_constraintStart_toStartOf="@+id/button5"
+                app:layout_constraintEnd_toEndOf="@+id/door"
+                app:layout_constraintStart_toStartOf="@+id/door"
                 app:layout_constraintTop_toTopOf="@+id/textView14"></TextView>
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/luggage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:insetTop="0dp"
@@ -167,10 +167,10 @@
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/button5"
-                app:layout_constraintEnd_toStartOf="@+id/button7"
-                app:layout_constraintStart_toEndOf="@+id/button5"
-                app:layout_constraintTop_toTopOf="@+id/button5" />
+                app:layout_constraintBottom_toBottomOf="@+id/door"
+                app:layout_constraintEnd_toStartOf="@+id/gas"
+                app:layout_constraintStart_toEndOf="@+id/door"
+                app:layout_constraintTop_toTopOf="@+id/door" />
 
             <TextView
                 android:id="@+id/textViewluggage"
@@ -181,12 +181,12 @@
                 android:textSize="8sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewdoor"
-                app:layout_constraintEnd_toEndOf="@+id/button6"
-                app:layout_constraintStart_toStartOf="@+id/button6"
+                app:layout_constraintEnd_toEndOf="@+id/luggage"
+                app:layout_constraintStart_toStartOf="@+id/luggage"
                 app:layout_constraintTop_toTopOf="@+id/textViewdoor"></TextView>
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/gas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:insetTop="0dp"
@@ -200,10 +200,10 @@
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/button6"
+                app:layout_constraintBottom_toBottomOf="@+id/luggage"
                 app:layout_constraintEnd_toStartOf="@+id/tv_title2"
-                app:layout_constraintStart_toEndOf="@+id/button6"
-                app:layout_constraintTop_toTopOf="@+id/button6" />
+                app:layout_constraintStart_toEndOf="@+id/luggage"
+                app:layout_constraintTop_toTopOf="@+id/luggage" />
 
             <TextView
                 android:id="@+id/textViewgas2"
@@ -214,8 +214,8 @@
                 android:textSize="8sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewluggage"
-                app:layout_constraintEnd_toEndOf="@+id/button7"
-                app:layout_constraintStart_toStartOf="@+id/button7"
+                app:layout_constraintEnd_toEndOf="@+id/gas"
+                app:layout_constraintStart_toStartOf="@+id/gas"
                 app:layout_constraintTop_toTopOf="@+id/textViewluggage"></TextView>
 
             <TextView
@@ -231,10 +231,10 @@
                 android:textAlignment="center"
                 android:textSize="10sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/button7"
+                app:layout_constraintBottom_toBottomOf="@+id/gas"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button7"
-                app:layout_constraintTop_toTopOf="@+id/button7">
+                app:layout_constraintStart_toEndOf="@+id/gas"
+                app:layout_constraintTop_toTopOf="@+id/gas">
 
             </TextView>
 
