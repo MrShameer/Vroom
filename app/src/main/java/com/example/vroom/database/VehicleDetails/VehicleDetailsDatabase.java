@@ -48,9 +48,9 @@ public abstract class VehicleDetailsDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             //table user (username, full name, email, current address, phone number, password)
-            vehicleDetailsDAO.insert(new VehicleDetails("BND 3834","Mohamad Anwar","No.19 Jalan Surada 2","4.9","5","4","5","Perodua","Bezza","Silver","3","Alliance","39","4.1","60"));
-            vehicleDetailsDAO.insert(new VehicleDetails("BND 1991","Mohamad Shameer","No.19 Jalan Surada 2","4.9","4","4","5","Perodua","Myvi","Silver","3","Alliance","39","4.1","90"));
-            vehicleDetailsDAO.insert(new VehicleDetails("BND 3111","Mohamad Chong","No.19 Jalan Surada 2","4.9","5","4","5","Perodua","Saga","Silver","3","Alliance","39","4.1","100"));
+            vehicleDetailsDAO.insert(new VehicleDetails("BND 3834","Mohamad Anwar","No.19 Jalan Surada 2","4.9","5","5","5","Perodua","Bezza","Silver","3","Alliance","50","4.1","60"));
+            vehicleDetailsDAO.insert(new VehicleDetails("BND 1991","Mohamad Shameer","No.19 Jalan Surada 2","4.9","4","4","4","Perodua","Myvi","Silver","3","Alliance","40","4.1","90"));
+            vehicleDetailsDAO.insert(new VehicleDetails("BND 3111","Mohamad Chong","No.19 Jalan Surada 2","4.9","6","6","6","Perodua","Saga","Silver","3","Alliance","60","4.1","100"));
 
 
             return null;

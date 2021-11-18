@@ -11,7 +11,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,8 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vroom.R;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
+import com.example.vroom.database.VehicleDetails.VehicleDetails;
+import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
-import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_data;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -30,11 +30,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.vroom.database.User.UserViewModel;
 
-import java.util.ArrayList;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
-import java.util.Map;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
@@ -47,9 +46,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     LinearLayout ll_map;
     LatLng now1;
     RecyclerView recycler;
-    RecyclerView.Adapter adapter;
     ScrollView scrollview;
     private UserViewModel userViewModel;
+    private VehicleViewModel vehicleViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -66,6 +65,23 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 tv_name.setText(currentUser.getUsername());
             }
         });
+
+        recycler=(RecyclerView) root.findViewById(R.id.rc_top);
+        recycler.setHasFixedSize(true);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+
+        final topvehicle_adapter adapter=new topvehicle_adapter();
+        recycler.setAdapter(adapter);
+
+        vehicleViewModel=new ViewModelProvider(this).get(VehicleViewModel.class);
+            vehicleViewModel.getGetAllVehicleDetails().observe(getViewLifecycleOwner(), new Observer<List<VehicleDetails>>() {
+            @Override
+            public void onChanged(@Nullable List<VehicleDetails>vehicleDetails) {
+                adapter.setVehicleDetails(vehicleDetails);
+            }
+        });
+
+
         scrollview=(ScrollView)root.findViewById(R.id.scrollview);
         scrollview.post(new Runnable()
         {
@@ -90,22 +106,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-        recycler=(RecyclerView) root.findViewById(R.id.rc_top);
-        top();
+
         return root;
     }
-    public void top() {
-        recycler.setHasFixedSize(true);
-        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
-        ArrayList<topvehicle_data> card=new ArrayList<topvehicle_data>();
-        card.add(new topvehicle_data("Top Week","Perodua Bezza","4","4","3","36",R.drawable.perodua_bezza));
-        card.add(new topvehicle_data("Top Month","Perodua Bezza","4","4","3","36",R.drawable.perodua_bezza));
-        card.add(new topvehicle_data("Top Year","Perodua Bezza","4","4","3","36",R.drawable.perodua_bezza));
-
-        adapter=new topvehicle_adapter(card);
-        recycler.setAdapter(adapter);
-    }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

@@ -11,59 +11,64 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.database.VehicleDetails.VehicleDetails;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class topvehicle_adapter extends RecyclerView.Adapter<topvehicle_adapter.DesignViewHolder> {
-    ArrayList<topvehicle_data> CardviewDatas;
+    private List<VehicleDetails>vehicleDetails=new ArrayList<>();
 
-    //this will hold the Data
-    public topvehicle_adapter(ArrayList<topvehicle_data> CardviewDatas) {
-        this.CardviewDatas = CardviewDatas;
-    }
     @NonNull
     @Override
     public DesignViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_topvehicle,parent,false);
         DesignViewHolder DesignViewHolder=new DesignViewHolder(view);
-
         return DesignViewHolder;
     }
     @Override
     public void onBindViewHolder(@NonNull DesignViewHolder holder, int position) {
         //main function to bind the design
         //pass down the position
-        topvehicle_data topvehicle_data= CardviewDatas.get(position);
+        VehicleDetails currentVehicle= vehicleDetails.get(position);
         //set the image
-        holder.iv_vehicle.setImageResource(topvehicle_data.getPhoto());
-        holder.tv_brand.setText(topvehicle_data.getBrand());
-        holder.tv_passanger.setText(topvehicle_data.getPassanger());
-        holder.tv_door.setText(topvehicle_data.getDoor());
-        holder.tv_luggage.setText(topvehicle_data.getLuggage());
-        holder.tv_gas.setText(topvehicle_data.getGas());
-        holder.tv_title.setText(topvehicle_data.getTitle());
+        holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+        holder.tv_names.setText(currentVehicle.getLessorname());
+        holder.tv_brand.setText(currentVehicle.getVehiclebrand());
+        holder.btn_passenger.setText(currentVehicle.getVehiclepassanger());
+        holder.btn_door.setText(currentVehicle.getVehicledoor());
+        holder.btn_luggage.setText(currentVehicle.getVehicleluggage());
+        holder.btn_gas.setText(currentVehicle.getVehicletank());
+//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {
-        return CardviewDatas.size();
+        return vehicleDetails.size();
+    }
+
+    public void setVehicleDetails(List<VehicleDetails>vehicleDetails){
+        this.vehicleDetails=vehicleDetails;
+        notifyDataSetChanged();
+
     }
 
     //this will hold the View Design
     public static class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
-        TextView tv_title, tv_brand;
-        Button tv_passanger,tv_door,tv_luggage,tv_gas;
+        TextView tv_title, tv_brand,tv_names;
+        Button btn_passenger,btn_door,btn_luggage,btn_gas;
 
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //Hooks
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);
-            tv_passanger=itemView.findViewById(R.id.passenger);
-            tv_door=itemView.findViewById(R.id.door);
-            tv_luggage=itemView.findViewById(R.id.luggage);
-            tv_gas=itemView.findViewById(R.id.gas);
-            tv_brand=itemView.findViewById(R.id.brand);
+            btn_passenger=itemView.findViewById(R.id.btn_passenger);
+            btn_door=itemView.findViewById(R.id.btn_door);
+            btn_luggage=itemView.findViewById(R.id.btn_luggage);
+            btn_gas=itemView.findViewById(R.id.btn_gas);
+            tv_names=itemView.findViewById(R.id.tv_names);
+            tv_brand=itemView.findViewById(R.id.tv_brand);
             tv_title=itemView.findViewById(R.id.tv_title);
 
 
