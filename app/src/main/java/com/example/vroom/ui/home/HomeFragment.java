@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.database.User.User;
+import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_data;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,32 +30,40 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.vroom.database.User.UserViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
-    private HomeViewModel homeViewModel;
+//    private HomeViewModel homeViewModel;
     private GoogleMap mMap;
     MapView mapview;
     MarkerOptions now,destination;
     Double distance;
-    TextView tv_gonow;
+    TextView tv_gonow,tv_name;
     LinearLayout ll_map;
     LatLng now1;
     RecyclerView recycler;
     RecyclerView.Adapter adapter;
     ScrollView scrollview;
+    private UserViewModel userViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
 
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //Room & userViewModel
+        tv_name=(TextView) root.findViewById(R.id.tv_name);
+        userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.getGetAllUser().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                User currentUser=users.get(0);
+                tv_name.setText(currentUser.getUsername());
             }
         });
         scrollview=(ScrollView)root.findViewById(R.id.scrollview);
@@ -80,7 +90,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
         recycler=(RecyclerView) root.findViewById(R.id.rc_top);
         top();
         return root;
