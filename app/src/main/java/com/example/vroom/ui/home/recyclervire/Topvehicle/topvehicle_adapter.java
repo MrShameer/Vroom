@@ -34,7 +34,7 @@ public class topvehicle_adapter extends RecyclerView.Adapter<topvehicle_adapter.
         //set the image
         holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
         holder.tv_names.setText(currentVehicle.getLessorname());
-        holder.tv_brand.setText(currentVehicle.getVehiclebrand());
+        holder.tv_brand.setText(currentVehicle.getVehiclebrand()+" "+currentVehicle.getVehiclemodel());
         holder.btn_passenger.setText(currentVehicle.getVehiclepassanger());
         holder.btn_door.setText(currentVehicle.getVehicledoor());
         holder.btn_luggage.setText(currentVehicle.getVehicleluggage());
