@@ -3,6 +3,7 @@ package com.example.vroom.ui.home.recyclervire.Topvehicle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,18 +51,19 @@ public class topvehicle_adapter extends RecyclerView.Adapter<topvehicle_adapter.
     //this will hold the View Design
     public static class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
-        TextView tv_title,tv_brand,tv_passanger,tv_door,tv_luggage,tv_gas;
+        TextView tv_title, tv_brand;
+        Button tv_passanger,tv_door,tv_luggage,tv_gas;
 
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //Hooks
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);
-            tv_passanger=itemView.findViewById(R.id.tv_passanger);
-            tv_door=itemView.findViewById(R.id.tv_door);
-            tv_luggage=itemView.findViewById(R.id.tv_luggage);
-            tv_gas=itemView.findViewById(R.id.tv_gas);
-            tv_brand=itemView.findViewById(R.id.tv_brand);
+            tv_passanger=itemView.findViewById(R.id.passenger);
+            tv_door=itemView.findViewById(R.id.door);
+            tv_luggage=itemView.findViewById(R.id.luggage);
+            tv_gas=itemView.findViewById(R.id.gas);
+            tv_brand=itemView.findViewById(R.id.brand);
             tv_title=itemView.findViewById(R.id.tv_title);
 
 
