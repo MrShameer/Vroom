@@ -90,6 +90,10 @@ public class Login extends AppCompatActivity {
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
             }
+//            else
+//            {
+//                ETemail.set("Account Doesn't Exist");
+//            }
             return null;
         }
 

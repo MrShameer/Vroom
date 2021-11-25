@@ -23,6 +23,7 @@ import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
+import com.example.vroom.ui.profile.ProfileFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -34,6 +35,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
@@ -49,6 +52,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     ScrollView scrollview;
     private UserViewModel userViewModel;
     private VehicleViewModel vehicleViewModel;
+    CircleImageView user_image;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -106,7 +110,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
         return root;
     }
 
