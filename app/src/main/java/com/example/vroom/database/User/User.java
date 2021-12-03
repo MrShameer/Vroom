@@ -1,5 +1,7 @@
 package com.example.vroom.database.User;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -18,7 +20,7 @@ public class User {
     private String phone;
 //    @ColumnInfo(name="userpassword")
     private String password;
-
+    private Bitmap images;
     public User(String userID, String username, String name, String email, String address, String phone, String password) {
         this.userID = userID;
         this.username = username;
@@ -27,6 +29,11 @@ public class User {
         this.address = address;
         this.phone = phone;
         this.password = password;
+//        this.images=images;
+    }
+
+    public void setUserID(@NonNull String userID) {
+        this.userID = userID;
     }
 
     public String getUserID() {
@@ -55,5 +62,9 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public Bitmap getImages() {
+        return images;
     }
 }

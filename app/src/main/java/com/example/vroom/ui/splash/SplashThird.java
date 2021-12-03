@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vroom.Login;
@@ -17,7 +18,7 @@ import com.example.vroom.R;
 import com.example.vroom.SplashScreen;
 
 public class SplashThird extends Fragment {
-    TextView tv_last;
+    ImageView imageView5;
     public SplashThird() {
                // Required empty public constructor
     }
@@ -33,11 +34,11 @@ public class SplashThird extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_splash_third, container, false);
         // Inflate the layout for this fragment
-        tv_last=(TextView) view.findViewById(R.id.tv_last);
-        tv_last.setOnClickListener(new View.OnClickListener() {
+        imageView5=(ImageView) view.findViewById(R.id.imageView5);
+        imageView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), Login.class);
+                Intent intent=new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

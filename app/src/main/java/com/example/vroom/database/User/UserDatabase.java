@@ -2,6 +2,11 @@ package com.example.vroom.database.User;
 
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
@@ -9,6 +14,10 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
+import com.example.vroom.R;
+
+import java.io.ByteArrayOutputStream;
 
 @Database(entities = {User.class},version = 1)
 public abstract class UserDatabase extends RoomDatabase {
@@ -48,7 +57,8 @@ public abstract class UserDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             //table user (username, full name, email, current address, phone number, password)
-            userDAO.insert(new User("U01","Anwar Chong","Mohamad Anwar","anwarbinbujang@gmail.com","No.19 Jalan Surada 2","+60113735411","anwarb"));
+            userDAO.insert(new User("U01","Anwar Chong","Mohamad Anwar","anwarbinbujang@gmail.com",
+                    "No.19 Jalan Surada 2","+60113735411","anwarb"));
             return null;
         }
     }

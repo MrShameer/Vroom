@@ -57,7 +57,7 @@
             <Button
                 android:id="@+id/btn_eimage"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:backgroundTint="@color/white"
                 android:text="edit profile"
                 android:textStyle="bold"

@@ -23,7 +23,6 @@ import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
-import com.example.vroom.ui.profile.ProfileFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -58,7 +57,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
         //Room & userViewModel
         tv_name=(TextView) root.findViewById(R.id.tv_name);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
@@ -86,13 +84,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         });
 
 
-        scrollview=(ScrollView)root.findViewById(R.id.scrollview);
-        scrollview.post(new Runnable()
-        {
-            public void run() {
-                scrollview.fullScroll(ScrollView.FOCUS_UP);
-            }
-        });
         mapview=(MapView)root.findViewById(R.id.Mapview);
         mapview.getMapAsync(this);
         mapview.onCreate(savedInstanceState);

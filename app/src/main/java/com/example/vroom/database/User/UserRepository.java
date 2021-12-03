@@ -89,10 +89,4 @@ public class UserRepository {
         return getAllUser;
     }
 
-
-
-
-
-
-
 }
