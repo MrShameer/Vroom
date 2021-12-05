@@ -1,8 +1,11 @@
 package com.example.vroom.ui.home;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -83,7 +87,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-
         mapview=(MapView)root.findViewById(R.id.Mapview);
         mapview.getMapAsync(this);
         mapview.onCreate(savedInstanceState);
@@ -101,8 +104,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
+
+        //Setting Up Image
+         user_image=(CircleImageView)root.findViewById(R.id.user_image);
+            File dir = new File(Environment.getExternalStorageDirectory()
+                + "/Android/data/"
+                + getActivity().getApplicationContext().getPackageName()
+                + "/Files");
+        String mImageName="profile_image.jpg";
+
+        File file = new File(dir, mImageName);
+        if(file.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            user_image.setImageBitmap(myBitmap);
+
+        }else{
+            user_image.setImageResource(R.drawable.profile_image);
+        }
+
         return root;
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

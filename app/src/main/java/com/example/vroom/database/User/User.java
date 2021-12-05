@@ -20,7 +20,7 @@ public class User {
     private String phone;
 //    @ColumnInfo(name="userpassword")
     private String password;
-    private Bitmap images;
+
     public User(String userID, String username, String name, String email, String address, String phone, String password) {
         this.userID = userID;
         this.username = username;
@@ -64,7 +64,4 @@ public class User {
         return password;
     }
 
-    public Bitmap getImages() {
-        return images;
-    }
 }
