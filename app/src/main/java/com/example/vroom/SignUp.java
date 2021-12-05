@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vroom.api.Request;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Random;
 
 import okhttp3.MultipartBody;
@@ -19,7 +22,6 @@ import okhttp3.RequestBody;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 
 public class SignUp extends AppCompatActivity {
-    Random rand = new Random();
     Request request = new Request();
     Button btn_signup;
     Button btn_login;
@@ -31,8 +33,6 @@ public class SignUp extends AppCompatActivity {
     String name;
     String email;
     String password;
-    String code;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +52,9 @@ public class SignUp extends AppCompatActivity {
         ETname=findViewById(R.id.name);
         ETemail=findViewById(R.id.email);
         ETpasword=findViewById(R.id.password);
-        //name.getEditableText().toString()
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//              Intent intent = new Intent(Login.this, MainActivity.class);
-//              startActivity(intent);
 
                  name = ETname.getEditableText().toString();
                  email = ETemail.getEditableText().toString();
@@ -87,22 +84,32 @@ public class SignUp extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void>{
-
+        String respond;
+        JSONObject jsonObject = null;
         @Override
         protected Void doInBackground(Void... voids) {
-            code = String.valueOf(rand.nextLong());
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
-                    .addFormDataPart("code",code)
                     .addFormDataPart("email", email)
                     .addFormDataPart("name", name)
                     .addFormDataPart("password", password)
                     .build();
 
-           // new Request(requestBody,"https://vroom.lepak.xyz/insert.php");
-            request.Request(requestBody,"https://vroom.lepak.xyz/insert.php");
+            respond = request.RequestPost(requestBody,getString(R.string.register));
+
+            try {
+                jsonObject = new JSONObject(respond);
+                if (jsonObject.has("access_token")){
+                    System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             return null;
         }
+
     }
 
 }
