@@ -100,7 +100,7 @@ public class SignUp extends AppCompatActivity {
                     .build();
 
            // new Request(requestBody,"https://vroom.lepak.xyz/insert.php");
-            request.Request(requestBody,"https://vroom.lepak.xyz/insert.php");
+            request.RequestPost(requestBody,"https://vroom.lepak.xyz/insert.php");
             return null;
         }
     }

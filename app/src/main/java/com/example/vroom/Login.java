@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
                     .build();
 
             //new Request(requestBody,"https://vroom.lepak.xyz/login.php");
-            ok = request.Request(requestBody,"https://vroom.lepak.xyz/login.php");
+            ok = request.RequestPost(requestBody,"https://vroom.lepak.xyz/login.php");
             if (ok.equals("200")){
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
