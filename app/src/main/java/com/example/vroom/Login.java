@@ -82,7 +82,6 @@ public class Login extends AppCompatActivity {
                     .build();
 
             respond = request.RequestPost(requestBody,getString(R.string.login));
-           // ok = request.RequestPost(requestBody,"http://192.168.1.112//:8000/api/login");
 
             try {
                 jsonObject = new JSONObject(respond);
