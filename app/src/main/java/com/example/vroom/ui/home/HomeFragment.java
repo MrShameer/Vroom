@@ -1,9 +1,13 @@
 package com.example.vroom.ui.home;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -12,8 +16,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,6 +33,7 @@ import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
+import com.example.vroom.ui.profile.MyDetails;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -55,8 +63,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     ScrollView scrollview;
     private UserViewModel userViewModel;
     private VehicleViewModel vehicleViewModel;
+    NotificationManagerCompat notificationManagerCompat;
+    Notification notification;
     CircleImageView user_image;
-
+    String statusIC;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -69,6 +79,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             public void onChanged(List<User> users) {
                 User currentUser=users.get(0);
                 tv_name.setText(currentUser.getUsername());
+                statusIC=currentUser.getIcstatus();
             }
         });
 
@@ -122,10 +133,29 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             user_image.setImageResource(R.drawable.profile_image);
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("myCh", "My Channel", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("Your IC Has been Reviewed");
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(root.getContext(),"myCh")
+                .setSmallIcon(R.drawable.icon)
+                .setContentTitle("Your IC Is Done")
+                .setContentText("Your IC Has been Reviewed")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        notification=builder.build();
+        notificationManagerCompat= NotificationManagerCompat.from(root.getContext());
+        if(statusIC=="IC is Under Review"){
+            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
+            notificationManagerCompat.notify(1,notification);}
+        else {Toast.makeText(root.getContext(), "Notification Off", Toast.LENGTH_SHORT).show();
+            notificationManagerCompat.notify(1,notification);}
         return root;
     }
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

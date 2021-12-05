@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -80,31 +81,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         tv_adddriving=findViewById(R.id.tv_adddriving);
         user_image=findViewById(R.id.user_image);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.getGetAllUser().observe(this, new Observer<List<User>>() {
-            @Override
-            public void onChanged(List<User> users) {
-                User currentUser=users.get(0);
-                tv_username.setText(currentUser.getUsername());
-                tv_fullname.setText(currentUser.getName());
-                tv_email.setText(currentUser.getEmail());
-                tv_address.setText(currentUser.getAddress());
-                tv_phone.setText(currentUser.getPhone());
-                tv_password.setText(currentUser.getPassword());
-                tv_addic.setText("No Documents Added");
-                tv_adddriving.setText("No Documents Added");
-//                tv_addic.setText(currentUser.getEmail());
-//                tv_adddriving.setText(currentUser.getAddress());
-                userdetails.add(currentUser.getUserID());
-                userdetails.add(currentUser.getUsername());
-                userdetails.add(currentUser.getName());
-                userdetails.add(currentUser.getEmail());
-                userdetails.add(currentUser.getAddress());
-                userdetails.add(currentUser.getPhone());
-                userdetails.add(currentUser.getPassword());
-
-            }
-        });
-
+        getData();
         btn_eusername=findViewById(R.id.btn_eusername);
         btn_eusername.setOnClickListener(this);
 
@@ -128,8 +105,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
 
         btn_eadddriving=findViewById(R.id.btn_eadddriving);
         btn_eadddriving.setOnClickListener(this);
-
-
 
         btn_eimage=findViewById(R.id.btn_eimage);
         btn_eimage.setOnClickListener(new View.OnClickListener() {
@@ -161,56 +136,99 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-          finish();
+                finishAndRemoveTask();
             }
         });
     }
     @Override
     public void onBackPressed() {
-        finish();
+        finishAndRemoveTask();
     }
+    public void getData(){
+        userViewModel.getGetAllUser().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                User currentUser=users.get(0);
+                tv_username.setText(currentUser.getUsername());
+                tv_fullname.setText(currentUser.getName());
+                tv_email.setText(currentUser.getEmail());
+                tv_address.setText(currentUser.getAddress());
+                tv_phone.setText(currentUser.getPhone());
+                tv_password.setText(currentUser.getPassword());
+                tv_addic.setText(currentUser.getIcstatus());
+                tv_adddriving.setText(currentUser.getDlstatus());
+//                tv_addic.setText(currentUser.getEmail());
+//                tv_adddriving.setText(currentUser.getAddress());
+                userdetails.add(currentUser.getUserID());
+                userdetails.add(currentUser.getUsername());
+                userdetails.add(currentUser.getName());
+                userdetails.add(currentUser.getEmail());
+                userdetails.add(currentUser.getAddress());
+                userdetails.add(currentUser.getPhone());
+                userdetails.add(currentUser.getPassword());
+                userdetails.add(currentUser.getIcstatus());
+                userdetails.add(currentUser.getDlstatus());
+
+                if(userdetails.get(7).equals("IC is Under Review")){
+                    tv_addic.setTextColor(Color.YELLOW);
+                    btn_eic.setVisibility(View.INVISIBLE);
+                }
+                if(userdetails.get(8).equals("Driver's License is Under Review")){
+                    tv_adddriving.setTextColor(Color.YELLOW);
+                    btn_eadddriving.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+    }
+
     @Override
     public void onClick(View view) {
         Intent intent=new Intent(this,EditMyDetails.class);
+        Intent intent2=new Intent(this,CaptureIC.class);
+        Intent intent3=new Intent(this,CaptureDL.class);
+        intent2.putExtra("userdetails",userdetails);
         intent.putExtra("userdetails",userdetails);
+        intent3.putExtra("userdetails",userdetails);
         switch (view.getId()) {
             case R.id.btn_eusername:
                 intent.putExtra("current","username");
                 startActivity(intent);
+                finishAndRemoveTask();
                 break;
 
             case R.id.btn_efullname:
                 intent.putExtra("current","fullname");
                 startActivity(intent);
-
+                finishAndRemoveTask();
                 break;
             case R.id.btn_eemail:
                 intent.putExtra("current","email");
                 startActivity(intent);
-
+                finishAndRemoveTask();
                 break;
             case R.id.btn_eaddress:
                 intent.putExtra("current","address");
                 startActivity(intent);
-
+                finishAndRemoveTask();
                 break;
             case R.id.btn_ephone:
                 intent.putExtra("current","phone");
                 startActivity(intent);
-
+                finishAndRemoveTask();
                 break;
             case R.id.btn_epassword:
                 intent.putExtra("current","password");
                 startActivity(intent);
-
+                finishAndRemoveTask();
                 break;
             case R.id.btn_eic:
-
-
+                startActivity(intent2);
+                finishAndRemoveTask();
                 break;
             case R.id.btn_eadddriving:
-
-
+                startActivity(intent3);
+                finishAndRemoveTask();
                 break;
 
         }

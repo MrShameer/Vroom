@@ -12,16 +12,29 @@ public class User {
     //table user (username, full name, email, current address, phone number, password)
     @PrimaryKey
     @NonNull
+    @ColumnInfo
     private String userID;
+    @ColumnInfo
     private String username;
+    @ColumnInfo
     private String name;
+    @ColumnInfo
     private String email;
+    @ColumnInfo
     private String address;
+    @ColumnInfo
     private String phone;
 //    @ColumnInfo(name="userpassword")
+    @ColumnInfo
     private String password;
+    @ColumnInfo
+    private String icstatus;
+    @ColumnInfo
+    private String dlstatus;
+//
+//    public User(String userID, String username, String name, String email, String address, String phone, String password) {
+  public User(String userID, String username, String name, String email, String address, String phone, String password,String icstatus,String dlstatus) {
 
-    public User(String userID, String username, String name, String email, String address, String phone, String password) {
         this.userID = userID;
         this.username = username;
         this.name = name;
@@ -29,7 +42,8 @@ public class User {
         this.address = address;
         this.phone = phone;
         this.password = password;
-//        this.images=images;
+        this.icstatus = icstatus;
+        this.dlstatus = dlstatus;
     }
 
     public void setUserID(@NonNull String userID) {
@@ -63,5 +77,17 @@ public class User {
     public String getPassword() {
         return password;
     }
+//
 
+    public void setIcstatus(String icstatus) {
+        this.icstatus = icstatus;
+    }
+
+    public void setDlstatus(String dlstatus) {
+        this.dlstatus = dlstatus;
+    }
+
+    public String getIcstatus() {return icstatus;}
+
+    public String getDlstatus() {return dlstatus;}
 }

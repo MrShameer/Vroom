@@ -1,10 +1,13 @@
 package com.example.vroom.ui.profile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.vroom.MainActivity;
 import com.example.vroom.R;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
@@ -33,8 +37,7 @@ public class EditMyDetails extends AppCompatActivity {
     EditText et_newdetails;
     TextView tv_details,tv_titles;
     Button btn_done,btn_cancel;
-    CircleImageView user_image;
-    private String userID,username,name, email,address,phone,password,current;
+    private String userID,username,name, email,address,phone,password,icstatus,dlstatus;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editdetails);
@@ -45,8 +48,7 @@ public class EditMyDetails extends AppCompatActivity {
         btn_done=findViewById(R.id.btn_done);
         btn_cancel=findViewById(R.id.btn_cancel);
         intent=getIntent();
-        ArrayList<String> userdetails =
-                (ArrayList<String>) intent.getSerializableExtra("userdetails");
+        ArrayList<String> userdetails =(ArrayList<String>) intent.getSerializableExtra("userdetails");
         userID=userdetails.get(0);
         username=userdetails.get(1);
         name=userdetails.get(2);
@@ -54,7 +56,18 @@ public class EditMyDetails extends AppCompatActivity {
         address=userdetails.get(4);
         phone=userdetails.get(5);
         password=userdetails.get(6);
-
+        icstatus=userdetails.get(7);
+        dlstatus=userdetails.get(8);
+        AlertDialog.Builder builder= new AlertDialog.Builder(EditMyDetails.this);
+        builder.setMessage("Empty");
+        builder.setTitle("Please Fill in Details !");
+        builder.setPositiveButton("Okay",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog,int which)
+            {
+                dialog.cancel();
+            }
+        });
         eventsetup();
 //        tv_titles.setText(intent.hasExtra("username"));
 
@@ -62,16 +75,23 @@ public class EditMyDetails extends AppCompatActivity {
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eventsetup();
-                user=new User(userID,username,name,email,address,phone,password);
-                user.setUserID(userID);
-                userViewModel.update(user);
-                String str="hello and hai";
-                String output = str.substring(0, 1).toUpperCase() + str.substring(1);
-//                Toast.makeText(EditMyDetails.this,"Updated Succesfully",Toast.LENGTH_SHORT).show();
-                Toast.makeText(EditMyDetails.this,output,Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(et_newdetails.getText().toString())){
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    }
+                else{
+                    eventsetup();
+//                    user=new User(userID,username,name,email,address,phone,password);
+                    user=new User(userID,username,name,email,address,phone,password,icstatus,dlstatus);
+                    user.setUserID(userID);
+                    userViewModel.update(user);
+                    Intent intent=new Intent(EditMyDetails.this,MyDetails.class);
+                    startActivity(intent);
+                    finishAndRemoveTask();
 
-                finish();
+                }
+
+
             }
         });
         btn_cancel.setOnClickListener (new View.OnClickListener() {
