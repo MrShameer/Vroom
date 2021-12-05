@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4036458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_account_balance_wallet_24.xml" value="0.4036458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.4036458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.4036458333333333" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.4036458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_personal_sit_24.xml" value="0.4036458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_sensor_door_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4036458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/navbar_neumorphism.xml" value="0.2911458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/rounded_button.xml" value="0.4036458333333333" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/rounded_corner.xml" value="0.4036458333333333" />
@@ -37,6 +39,8 @@
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_splash_third.xml" value="0.3875" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_status.xml" value="0.3875" />
         <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4036458333333333" />
       </map>
     </option>
   </component>
