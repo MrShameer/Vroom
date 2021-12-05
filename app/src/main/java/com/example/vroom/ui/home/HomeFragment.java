@@ -35,6 +35,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
 //    private HomeViewModel homeViewModel;
@@ -49,12 +51,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     ScrollView scrollview;
     private UserViewModel userViewModel;
     private VehicleViewModel vehicleViewModel;
+    CircleImageView user_image;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
         //Room & userViewModel
         tv_name=(TextView) root.findViewById(R.id.tv_name);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
@@ -82,13 +84,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         });
 
 
-        scrollview=(ScrollView)root.findViewById(R.id.scrollview);
-        scrollview.post(new Runnable()
-        {
-            public void run() {
-                scrollview.fullScroll(ScrollView.FOCUS_UP);
-            }
-        });
         mapview=(MapView)root.findViewById(R.id.Mapview);
         mapview.getMapAsync(this);
         mapview.onCreate(savedInstanceState);
@@ -106,7 +101,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
         return root;
     }
 

@@ -64,8 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="10dp"
-        app:hasClearButton="true"
+        android:visibility="visible"
         app:endIcon="@drawable/ic_baseline_error_circle_24"
+        app:hasClearButton="true"
         app:helperText="Please Insert your Password"
         app:iconSignifier="@drawable/ic_baseline_lock_24"
         app:labelText="Password"
@@ -76,6 +77,7 @@
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/password"
+            android:inputType="textPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></studio.carbonylgroup.textfieldboxes.ExtendedEditText>
 
