@@ -19,7 +19,7 @@ import com.example.vroom.R;
 
 import java.io.ByteArrayOutputStream;
 
-@Database(entities = {User.class},version = 1)
+@Database(entities = {User.class},version = 1,exportSchema = false)
 public abstract class UserDatabase extends RoomDatabase {
 
     //singleton class

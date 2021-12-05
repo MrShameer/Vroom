@@ -1,7 +1,10 @@
 package com.example.vroom.ui.profile;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +20,11 @@ import com.example.vroom.R;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditMyDetails extends AppCompatActivity {
     Intent intent;
@@ -27,6 +33,7 @@ public class EditMyDetails extends AppCompatActivity {
     EditText et_newdetails;
     TextView tv_details,tv_titles;
     Button btn_done,btn_cancel;
+    CircleImageView user_image;
     private String userID,username,name, email,address,phone,password,current;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +80,8 @@ public class EditMyDetails extends AppCompatActivity {
                 finish();
             }
         });
-        }
+
+    }
     public void eventsetup(){
         switch(intent.getStringExtra("current")){
             case "username":
