@@ -38,7 +38,7 @@ public class SplashThird extends Fragment {
         imageView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), MainActivity.class);
+                Intent intent=new Intent(getContext(), Login.class);
                 startActivity(intent);
             }
         });

@@ -19,7 +19,8 @@ public class Request {
                 .post(requestBody)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+//            if (!response.isSuccessful())
+//                throw new IOException("Unexpected code " + response);
             Headers responseHeaders = response.headers();
             return response.body().string();
         } catch (IOException e) {
@@ -34,7 +35,7 @@ public class Request {
                 .get()
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+//            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             Headers responseHeaders = response.headers();
             return response.body().string();
         } catch (IOException e) {

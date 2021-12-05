@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.example.vroom.api.Request;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
@@ -24,9 +27,6 @@ public class Login extends AppCompatActivity {
 
     ExtendedEditText ETemail;
     ExtendedEditText ETpasword;
-
-    TextFieldBoxes TFemail;
-    TextFieldBoxes TFpassword;
 
     String email;
     String password;
@@ -46,7 +46,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 email = ETemail.getEditableText().toString();
                 password = ETpasword.getEditableText().toString();
 
@@ -56,10 +55,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Please put in your password", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    //new SignUp.mytask().execute();
                     new mytask().execute();
-//                    Toast.makeText(getBaseContext(), "Check your email and verify your account", Toast.LENGTH_LONG).show();
-//                    finish();
                 }
 
             }
@@ -75,7 +71,8 @@ public class Login extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-        String ok;
+        String respond;
+        JSONObject jsonObject = null;
         @Override
         protected Void doInBackground(Void... voids) {
             RequestBody requestBody = new MultipartBody.Builder()
@@ -84,25 +81,32 @@ public class Login extends AppCompatActivity {
                     .addFormDataPart("password", password)
                     .build();
 
-            //new Request(requestBody,"https://vroom.lepak.xyz/login.php");
-            ok = request.RequestPost(requestBody,"https://vroom.lepak.xyz/login.php");
-            if (ok.equals("200")){
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
+            respond = request.RequestPost(requestBody,getString(R.string.login));
+           // ok = request.RequestPost(requestBody,"http://192.168.1.112//:8000/api/login");
+
+            try {
+                jsonObject = new JSONObject(respond);
+                if (jsonObject.has("access_token")){
+                    System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
+                    System.out.println(jsonObject.getString("role"));//NI ROLE EHH
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-//            else
-//            {
-//                ETemail.set("Account Doesn't Exist");
-//            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-
             super.onPostExecute(aVoid);
-            if (!ok.equals("200")){
-                Toast.makeText(getBaseContext(), ok, Toast.LENGTH_LONG).show();
+            if (jsonObject.has("message")){
+                try {
+                    Toast.makeText(getBaseContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
