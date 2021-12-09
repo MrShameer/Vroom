@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_account_balance_wallet_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_error_circle_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_local_gas_station_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_luggage_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_personal_sit_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_baseline_sensor_door_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/navbar_neumorphism.xml" value="0.2911458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/rounded_button.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/rounded_corner.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/rounded_corner_search.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/drawable/rounded_layout.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_capture_dl.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_capture_document.xml" value="0.358695652173913" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_capture_ic.xml" value="0.27901234567901234" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_editdetails.xml" value="0.3648148148148148" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_login.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_main.xml" value="0.19382022471910113" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_map_layout.xml" value="0.22" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_mydetails.xml" value="0.2851851851851852" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_sign_up.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/activity_splash_screen.xml" value="0.12314814814814815" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/cardview_topvehicle.xml" value="0.5" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_chat.xml" value="0.24909420289855072" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_splash_first.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_splash_second.xml" value="0.2857789855072464" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_splash_third.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/layout/fragment_status.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3875" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4036458333333333" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/mipmap-anydpi-v26/ic_launcher_foreground.xml" value="0.2359375" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/mipmap-anydpi-v26/ic_launcher_foreground_round.xml" value="0.2359375" />
+        <entry key="..\:/Me,MyselfAndI/Projects/Lepak&amp;Leap/Vroom/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4036458333333333" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
