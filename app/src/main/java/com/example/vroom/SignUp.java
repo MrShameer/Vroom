@@ -70,7 +70,7 @@ public class SignUp extends AppCompatActivity {
                 else {
                     new mytask().execute();
                     Toast.makeText(getBaseContext(), "Check your email and verify your account", Toast.LENGTH_LONG).show();
-                    finish();
+                    //finish();
                 }
             }
         });
@@ -96,7 +96,7 @@ public class SignUp extends AppCompatActivity {
                     .build();
 
             respond = request.RequestPost(requestBody,getString(R.string.register));
-
+            System.out.println(respond);
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
