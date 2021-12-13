@@ -17,14 +17,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_appbar"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="57dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_image"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:src="@drawable/profile_image"
             android:padding="4dp"
@@ -37,11 +37,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:text="Hello,"
             android:textColor="@color/white"
             android:textSize="12dp"
-            android:textStyle="italic"
+            android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/user_image"
             app:layout_constraintTop_toTopOf="@+id/user_image" />
 
@@ -51,7 +51,8 @@
             android:layout_height="wrap_content"
             android:text="Nama"
             android:textColor="@color/white"
-            android:textSize="12dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/user_image"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -154,10 +155,10 @@
                 android:id="@+id/Mapview"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
+                app:cameraZoom="11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:cameraZoom="11"
                 app:mapType="normal"
                 app:uiCompass="false"
                 app:uiRotateGestures="false"
@@ -165,7 +166,7 @@
                 app:uiTiltGestures="false"
                 app:uiZoomControls="false"
                 app:uiZoomGestures="false"
-                />
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/tv_gonow"

@@ -9,7 +9,7 @@
     <string name="title_activity_test_tab">TestTab</string>
     <string name="tab_explore">Explore</string>
     <string name="tab_car">Car</string>
-    <string name="tab_motorcycle">Motorcycle</string>
+    <string name="tab_motorcycle">Bike</string>
     <string name="tab_van">Van</string>
     <string name="tab_bicycle">Bicycle</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -18,6 +18,6 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
-    <string name="login">http://192.168.1.112:8000/api/login</string>
+    <string name="login">http://192.168.1.11:8000/api/login</string>
     <string name="register">https://127.0.0.1:8000/api/register</string>
 </resources>

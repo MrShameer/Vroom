@@ -16,12 +16,9 @@ import com.example.vroom.R;
 
 public class StatusFragment extends Fragment {
 
-    private StatusViewModel statusViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        statusViewModel =
-                new ViewModelProvider(this).get(StatusViewModel.class);
+        StatusViewModel statusViewModel = new ViewModelProvider(this).get(StatusViewModel.class);
         View root = inflater.inflate(R.layout.fragment_status, container, false);
         final TextView textView = root.findViewById(R.id.text_status);
         statusViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

@@ -24,7 +24,6 @@ public class User {
     private String address;
     @ColumnInfo
     private String phone;
-//    @ColumnInfo(name="userpassword")
     @ColumnInfo
     private String password;
     @ColumnInfo
@@ -45,11 +44,10 @@ public class User {
         this.icstatus = icstatus;
         this.dlstatus = dlstatus;
     }
-
     public void setUserID(@NonNull String userID) {
         this.userID = userID;
     }
-
+    @NonNull
     public String getUserID() {
         return userID;
     }
@@ -76,15 +74,6 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-//
-
-    public void setIcstatus(String icstatus) {
-        this.icstatus = icstatus;
-    }
-
-    public void setDlstatus(String dlstatus) {
-        this.dlstatus = dlstatus;
     }
 
     public String getIcstatus() {return icstatus;}

@@ -99,7 +99,7 @@
                 android:padding="4dp"
                 android:text="1"
                 android:textSize="10sp"
-                app:icon="@drawable/ic_baseline_chat_24"
+                app:icon="@drawable/ic_baseline_person_24"
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
@@ -108,7 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Person"
@@ -147,10 +147,10 @@
                 android:textColor="@color/black"
                 android:textSize="8sp"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_price"
                 app:layout_constraintEnd_toEndOf="@+id/btn_door"
                 app:layout_constraintStart_toStartOf="@+id/btn_door"
-                app:layout_constraintTop_toTopOf="@+id/textView14"></TextView>
+                app:layout_constraintTop_toTopOf="@+id/tv_price"></TextView>
 
             <Button
                 android:id="@+id/btn_luggage"

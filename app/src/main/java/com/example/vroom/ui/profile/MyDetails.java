@@ -196,7 +196,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent);
                 finishAndRemoveTask();
                 break;
-
             case R.id.btn_efullname:
                 intent.putExtra("current","fullname");
                 startActivity(intent);
@@ -230,7 +229,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent3);
                 finishAndRemoveTask();
                 break;
-
         }
     }
     private ActivityResultLauncher<Intent>galleryActivityResultLauncher=registerForActivityResult(

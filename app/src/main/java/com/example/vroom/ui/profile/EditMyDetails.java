@@ -90,8 +90,6 @@ public class EditMyDetails extends AppCompatActivity {
                     finishAndRemoveTask();
 
                 }
-
-
             }
         });
         btn_cancel.setOnClickListener (new View.OnClickListener() {

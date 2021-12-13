@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#1E2028</color>
+    <color name="backgroundtab">#131419</color>
+    <color name="cardbackground">#2A2C36</color>
+    <color name="textcolour">#AE1AC8</color>
+    <color name="fontcolor">#40048F</color>
+    <color name="gold">#E99719</color>
+
+
+
 </resources>
