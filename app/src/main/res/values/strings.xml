@@ -20,4 +20,7 @@
 
     <string name="login">https://vroom.lepak.xyz/api/login</string>
     <string name="register">https://vroom.lepak.xyz/api/register</string>
+
+    <string name="validate">http://192.168.1.112/vroom-api/public/api/validate</string>
+    <string name="status">http://192.168.1.112/vroom-api/public/api/status</string>
 </resources>

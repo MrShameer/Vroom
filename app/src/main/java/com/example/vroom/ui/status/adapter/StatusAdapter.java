@@ -1,5 +1,7 @@
 package com.example.vroom.ui.status.adapter;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
     private final List<Object> list;
 
     private final int StatusName = 0, StatusCard = 1;
-
+    String title="";
     public StatusAdapter(List<Object> list) {
         this.list = list;
     }
@@ -41,7 +43,11 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
     public static class StatusViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameTextView;
-        TextView cardTextView;
+        TextView lessorTextView;
+        TextView modelTextView;
+
+        View glowbar;
+
         final int StatusName=0, StatusCard=1;
 
         public StatusViewHolder(@NonNull View itemView , int viewType) {
@@ -49,9 +55,13 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
             switch (viewType) {
                 case StatusName:
                     nameTextView=itemView.findViewById(R.id.status);
-                    return;
+                    break;
+                default:
+                    lessorTextView=itemView.findViewById(R.id.lessorname);
+                    modelTextView=itemView.findViewById(R.id.model);
+                    glowbar=itemView.findViewById(R.id.glowbar);
             }
-            cardTextView=itemView.findViewById(R.id.lessorname);
+
         }
     }
 
@@ -65,22 +75,38 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
             case StatusName:
                 View v1 = inflater.inflate(R.layout.layout_requeststatus, parent, false);
                 return new StatusAdapter.StatusViewHolder(v1,viewType);
+            default:
+                View v2 = inflater.inflate(R.layout.cardview_status, parent, false);
+                return new StatusAdapter.StatusViewHolder(v2,viewType);
         }
 
-        View v2 = inflater.inflate(R.layout.cardview_status, parent, false);
-        return new StatusAdapter.StatusViewHolder(v2,viewType);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull StatusViewHolder holder, int position) {
+
         switch (holder.getItemViewType()) {
             case StatusName:
                 StatusName name = (StatusName) list.get(position);
-                holder.nameTextView.setText(name.getName());
-                return;
+                title=name.getName();
+                holder.nameTextView.setText(title+" request");
+                break;
+            default:
+                StatusCard card = (StatusCard) list.get(position);
+                holder.lessorTextView.setText(card.getlessorName());
+                holder.modelTextView.setText(card.getModel());
+
+                if (title.equals("accepted")){
+                    holder.glowbar.setBackgroundResource(R.color.accepted);
+                }
+                else if (title.equals("rejected")){
+                    holder.glowbar.setBackgroundResource(R.color.rejected);
+                }
+                else {
+                    holder.glowbar.setBackgroundResource(R.color.pending);
+                }
         }
-        StatusCard card = (StatusCard) list.get(position);
-        holder.cardTextView.setText(card.getlessorName());
     }
 
 }

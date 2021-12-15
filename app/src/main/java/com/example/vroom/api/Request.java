@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Credentials;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -34,6 +35,24 @@ public class Request {
                 .url(url)
                 .get()
                 .build();
+        try (Response response = client.newCall(request).execute()) {
+//            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+            Headers responseHeaders = response.headers();
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "500";
+    }
+
+    public String PostHeader(RequestBody requestBody, String url, String auth){
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(url)
+                .addHeader("Authorization", auth)
+                .addHeader("Accept", "application/json")
+                .post(requestBody)
+                .build();
+
         try (Response response = client.newCall(request).execute()) {
 //            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             Headers responseHeaders = response.headers();

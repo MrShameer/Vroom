@@ -2,9 +2,11 @@ package com.example.vroom.ui.status.model;
 
 public class StatusCard {
     String lessorname;
+    String model;
 
-    public StatusCard(String lessorname){
+    public StatusCard(String lessorname, String model){
         this.lessorname=lessorname;
+        this.model=model;
     }
 
     public String getlessorName() {
@@ -15,5 +17,11 @@ public class StatusCard {
         this.lessorname = lessorname;
     }
 
+    public String getModel() {
+        return model;
+    }
 
+    public void setModel(String model) {
+        this.model = model;
+    }
 }

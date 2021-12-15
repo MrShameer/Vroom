@@ -6,10 +6,10 @@
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/view4"
+        android:id="@+id/glowbar"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@color/backgroundtab"
         app:layout_constraintBottom_toBottomOf="@+id/status"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/status"
@@ -24,9 +24,8 @@
         android:layout_marginTop="8dp"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4">
+        app:layout_constraintTop_toBottomOf="@+id/glowbar">
 
         <ImageView
             android:id="@+id/imageView8"
@@ -36,11 +35,10 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/cardView6"
         app:layout_constraintTop_toTopOf="@+id/cardView6" />
@@ -51,8 +49,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/profile_image"
-        app:layout_constraintStart_toStartOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/textView17">
+        app:layout_constraintStart_toStartOf="@+id/model"
+        app:layout_constraintTop_toBottomOf="@+id/model">
 
     </de.hdodenhof.circleimageview.CircleImageView>
 
@@ -75,6 +73,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="true"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
