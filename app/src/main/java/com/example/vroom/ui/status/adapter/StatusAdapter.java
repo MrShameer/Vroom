@@ -1,10 +1,9 @@
 package com.example.vroom.ui.status.adapter;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +45,10 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
         TextView lessorTextView;
         TextView modelTextView;
 
+        TextView requestTextView;
+        Button btnstatusgreen;
+        Button btnstatusred;
+
         View glowbar;
 
         final int StatusName=0, StatusCard=1;
@@ -57,9 +60,12 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                     nameTextView=itemView.findViewById(R.id.status);
                     break;
                 default:
-                    lessorTextView=itemView.findViewById(R.id.lessorname);
-                    modelTextView=itemView.findViewById(R.id.model);
+                    lessorTextView=itemView.findViewById(R.id.LessorName);
+                    modelTextView=itemView.findViewById(R.id.ModelBrand);
+                    requestTextView=itemView.findViewById(R.id.RequestText);
                     glowbar=itemView.findViewById(R.id.glowbar);
+                    btnstatusgreen=itemView.findViewById(R.id.BtnStatus1);
+                    btnstatusred=itemView.findViewById(R.id.BtsnStatus2);
             }
 
         }
@@ -98,12 +104,24 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 holder.modelTextView.setText(card.getModel());
 
                 if (title.equals("accepted")){
+                    holder.requestTextView.setText(R.string.AcceptedText);
+                    //holder.requestTextView.setHighlightColor(R.color.accepted);
+                    holder.btnstatusgreen.setText(R.string.PaymentButton);
+                    holder.btnstatusred.setText(R.string.CancleButton);
                     holder.glowbar.setBackgroundResource(R.color.accepted);
                 }
                 else if (title.equals("rejected")){
+                    holder.requestTextView.setText(R.string.RejectedText);
+                   // holder.requestTextView.getResources().getColor(R.color.rejected);
+                    holder.btnstatusgreen.setText(R.string.ViewMessageButton);
+                    holder.btnstatusred.setVisibility(View.GONE);
                     holder.glowbar.setBackgroundResource(R.color.rejected);
                 }
                 else {
+                    holder.requestTextView.setText(R.string.PendingText);
+                    //holder.requestTextView.getResources().getColor(R.color.pending);
+                    holder.btnstatusgreen.setVisibility(View.GONE);
+                    holder.btnstatusred.setText(R.string.CancleButton);
                     holder.glowbar.setBackgroundResource(R.color.pending);
                 }
         }

@@ -48,7 +48,7 @@ public class Request {
     public String PostHeader(RequestBody requestBody, String url, String auth){
         okhttp3.Request request = new okhttp3.Request.Builder()
                 .url(url)
-                .addHeader("Authorization", auth)
+                .addHeader("Authorization", "Bearer "+auth)
                 .addHeader("Accept", "application/json")
                 .post(requestBody)
                 .build();

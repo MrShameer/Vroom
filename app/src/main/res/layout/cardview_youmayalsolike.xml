@@ -47,14 +47,14 @@
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="italic"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_lessor"
-                        app:layout_constraintStart_toStartOf="@+id/iv_lessor"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_lessor"></TextView>
+                        app:layout_constraintEnd_toEndOf="@+id/lessorPic"
+                        app:layout_constraintStart_toStartOf="@+id/lessorPic"
+                        app:layout_constraintTop_toBottomOf="@+id/lessorPic"></TextView>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="40dp"
                         android:layout_height="15dp"
-                        app:cardCornerRadius="5dp"
+                        app:cardCornerRadius="10dp"
                         android:layout_marginTop="5dp"
                         android:backgroundTint="@color/white"
                         app:layout_constraintEnd_toEndOf="@+id/tv_lessorname"
@@ -95,9 +95,8 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
-
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/iv_lessor"
+                        android:id="@+id/lessorPic"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="15dp"
@@ -293,7 +292,7 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Per Day"
                 android:textColor="@color/textcolour"
                 android:textSize="10dp"
