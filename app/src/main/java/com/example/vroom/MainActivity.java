@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             String token = "marhCW1SodbIZ5nAvigQo2BKM1Wymvpa5np2R0LH"; //BAGI TOKEN KT SINI
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
 
-            respond = request.PostHeader(requestBody,getString(R.string.validate),"Bearer "+token);
+            respond = request.PostHeader(requestBody,getString(R.string.validate),token);
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("id")){

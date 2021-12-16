@@ -21,21 +21,24 @@
         android:id="@+id/cardView6"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/glowbar">
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/vehiclePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:srcCompat="@drawable/profile_image" />
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/model"
+        android:id="@+id/ModelBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,53 +47,66 @@
         app:layout_constraintTop_toTopOf="@+id/cardView6" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
+        android:id="@+id/lessorPic"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/profile_image"
-        app:layout_constraintStart_toStartOf="@+id/model"
-        app:layout_constraintTop_toBottomOf="@+id/model">
+        app:layout_constraintStart_toStartOf="@+id/ModelBrand"
+        app:layout_constraintTop_toBottomOf="@+id/ModelBrand">
 
     </de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
-        android:id="@+id/lessorname"
+        android:id="@+id/LessorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView"
-        app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+        app:layout_constraintStart_toEndOf="@+id/lessorPic"
+        app:layout_constraintTop_toTopOf="@+id/lessorPic" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/RequestText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/lessorname"
-        app:layout_constraintTop_toBottomOf="@+id/lessorname" />
+        app:layout_constraintStart_toStartOf="@+id/LessorName"
+        app:layout_constraintTop_toBottomOf="@+id/LessorName" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:clipToPadding="true"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/circleImageView"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView">
+        app:layout_constraintStart_toEndOf="@+id/cardView6"
+        app:layout_constraintTop_toBottomOf="@+id/lessorPic">
 
-        <Button
-            android:id="@+id/button2"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/BtnStatus1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_layout"
+            android:backgroundTint="@color/acceptedButton"
+            android:text="Button"
+            android:textSize="10sp" />
 
-        <Button
-            android:id="@+id/button"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/BtsnStatus2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_layout"
+            android:backgroundTint="@color/rejectedButton"
+            android:text="Button"
+            android:textSize="10sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

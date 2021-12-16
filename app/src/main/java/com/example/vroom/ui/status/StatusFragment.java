@@ -63,14 +63,15 @@ public class StatusFragment extends Fragment {
         JSONObject jsonObject = null;
         @Override
         protected Void doInBackground(Void... voids) {
-            String id = "3"; //AMIK TOKEN KT SINI
-            RequestBody requestBody = new MultipartBody.Builder()
-                    .setType(MultipartBody.FORM)
-                    .addFormDataPart("id", id)
-                    .build();
+            String token = "marhCW1SodbIZ5nAvigQo2BKM1Wymvpa5np2R0LH"; //LETAK TOKEN KT SINI,SEPATUTNYA MASUKKAN TOKEN KT SINI, JGN ID
+//            RequestBody requestBody = new MultipartBody.Builder()
+//                    .setType(MultipartBody.FORM)
+//                    .addFormDataPart("id", id)
+//                    .build();
+            RequestBody requestBody = RequestBody.create(null, new byte[0]);
 
-            respond = request.RequestPost(requestBody,getString(R.string.status));
-
+            respond = request.PostHeader(requestBody,getString(R.string.status),token);
+            //System.out.println("ddddddddd"+respond);
             try {
                 jsonObject=new JSONObject(respond);
                 Iterator<String> keys = jsonObject.keys();
