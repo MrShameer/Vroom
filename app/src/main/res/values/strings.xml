@@ -17,11 +17,11 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-    
+
     <string name="PaymentButton">Proceed to Payment</string>
     <string name="ViewMessageButton">View Message Sent</string>
     <string name="CancleButton">Cancle Request</string>
-    
+
     <string name="AcceptedText">Your Request has Been Accepted</string>
     <string name="RejectedText">Your Request has Been Rejected</string>
     <string name="PendingText">The Lessor have not responded yet</string>
@@ -30,6 +30,7 @@
     <string name="register">https://vroom.lepak.xyz/api/register</string>
 
     <string name="validate">https://vroom.lepak.xyz/api/validate</string>
+    <string name="carlist">https://vroom.lepak.xyz/api/carlist</string>
 <!--    <string name="status">http://192.168.1.112/vroom-api/public/api/status</string>-->
-    <string name="status">https://vroom.lepak.xyz/api/status</string>
+        <string name="status">https://vroom.lepak.xyz/api/status</string>
 </resources>

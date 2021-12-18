@@ -41,7 +41,6 @@ import okhttp3.RequestBody;
 
 public class MainActivity extends AppCompatActivity {
     //public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
-    Request request = new Request();
     private GoogleMap mMap;
     MapView mapview;
     MarkerOptions now, destination;
@@ -63,39 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
-        new mytask().execute();
+
     }
 
-    private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond;
-        JSONObject jsonObject = null;
-        @Override
-        protected Void doInBackground(Void... voids) {
-            String token = "marhCW1SodbIZ5nAvigQo2BKM1Wymvpa5np2R0LH"; //BAGI TOKEN KT SINI
-            RequestBody requestBody = RequestBody.create(null, new byte[0]);
 
-            respond = request.PostHeader(requestBody,getString(R.string.validate),token);
-            try {
-                jsonObject = new JSONObject(respond);
-                if (jsonObject.has("id")){
-                    System.out.println(jsonObject.getString("id"));//NI ID EHH SO STORE MANE2
-                    jsonObject.getString("name");
-                    jsonObject.getString("email");
-                    jsonObject.getString("role");
-                    jsonObject.getString("phone");
-                    //SEMUA NI STORE SEKALI EH
-                }
-                else {
-                    Intent intent = new Intent(MainActivity.this, Login.class);
-                    startActivity(intent);
-                    finish();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
 }
 
 
