@@ -23,6 +23,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 
@@ -41,15 +42,6 @@ import okhttp3.RequestBody;
 
 public class MainActivity extends AppCompatActivity {
     //public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
-    private GoogleMap mMap;
-    MapView mapview;
-    MarkerOptions now, destination;
-    Double distance;
-    TextView tv_gonow;
-    LinearLayout ll_map;
-    LatLng now1;
-    RecyclerView recycler;
-    RecyclerView.Adapter adapter;
     private static final String TAG = "Permission Status";
 
     @Override
@@ -62,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
+        String Token = TokenHandler.read(TokenHandler.Usertoken, null);
+        Toast.makeText(this,Token,Toast.LENGTH_SHORT).show();
 
     }
 

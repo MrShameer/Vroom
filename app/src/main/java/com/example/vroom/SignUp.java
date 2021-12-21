@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,6 +82,9 @@ public class SignUp extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        TokenHandler.init(getApplicationContext());
     }
 
     private class mytask extends AsyncTask<Void,Void,Void>{
@@ -101,6 +105,7 @@ public class SignUp extends AppCompatActivity {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
                     System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
+                    TokenHandler.write("Usertoken","access_token");
                     Intent intent = new Intent(SignUp.this, MainActivity.class);
                     startActivity(intent);
                 }

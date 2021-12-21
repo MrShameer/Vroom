@@ -119,7 +119,7 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="150dp"
+            android:layout_marginEnd="170dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:minWidth="0dip"
@@ -179,7 +179,7 @@
 
         <Button
             android:id="@+id/btn_gas4"
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:insetTop="0dp"
@@ -201,7 +201,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:background="@color/background">
 
         <TextView

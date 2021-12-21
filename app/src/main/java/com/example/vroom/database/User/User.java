@@ -43,6 +43,7 @@ public class User {
         this.password = password;
         this.icstatus = icstatus;
         this.dlstatus = dlstatus;
+
     }
     public void setUserID(@NonNull String userID) {
         this.userID = userID;
@@ -79,4 +80,6 @@ public class User {
     public String getIcstatus() {return icstatus;}
 
     public String getDlstatus() {return dlstatus;}
+
+
 }
