@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_baseline_arrow_back_black_ios_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+        <TextView
+            android:id="@+id/tv_carbrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abel"
+            android:text="Perodua Bezza"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back"></TextView>
+
+        <ImageView
+            android:id="@+id/iv_vehicle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/perodua_bezza" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/cardbackground">
+
+
+        <TextView
+            android:id="@+id/tv_price2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Person"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/btn_passenger4"
+            app:layout_constraintStart_toStartOf="@+id/btn_passenger4"
+            app:layout_constraintTop_toBottomOf="@+id/btn_passenger4"></TextView>
+
+        <TextView
+            android:id="@+id/textViewdoor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Door"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_price2"
+            app:layout_constraintEnd_toEndOf="@+id/btn_door4"
+            app:layout_constraintStart_toStartOf="@+id/btn_door4"
+            app:layout_constraintTop_toTopOf="@+id/tv_price2"></TextView>
+
+        <TextView
+            android:id="@+id/textViewluggage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Luggage"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewdoor2"
+            app:layout_constraintEnd_toEndOf="@+id/btn_luggage4"
+            app:layout_constraintStart_toStartOf="@+id/btn_luggage4"
+            app:layout_constraintTop_toTopOf="@+id/textViewdoor2"></TextView>
+
+        <TextView
+            android:id="@+id/textViewgas3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gas"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewluggage2"
+            app:layout_constraintEnd_toEndOf="@+id/btn_gas4"
+            app:layout_constraintStart_toStartOf="@+id/btn_gas4"
+            app:layout_constraintTop_toTopOf="@+id/textViewluggage2"></TextView>
+
+        <Button
+            android:id="@+id/btn_passenger4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="150dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dip"
+            android:minHeight="0dip"
+            android:padding="4dp"
+            android:text="1"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_baseline_person_24"
+            app:iconGravity="textEnd"
+            app:iconPadding="4dp"
+            app:iconSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_door4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dip"
+            android:minHeight="0dip"
+            android:padding="4dp"
+            android:text="1"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_baseline_sensor_door_24"
+            app:iconGravity="textEnd"
+            app:iconPadding="4dp"
+            app:iconSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_passenger4"
+            app:layout_constraintStart_toEndOf="@+id/btn_passenger4"
+            app:layout_constraintTop_toTopOf="@+id/btn_passenger4"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btn_luggage4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dip"
+            android:minHeight="0dip"
+            android:padding="4dp"
+            android:text="1"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_baseline_luggage_24"
+            app:iconGravity="textEnd"
+            app:iconPadding="4dp"
+            app:iconSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_door4"
+            app:layout_constraintStart_toEndOf="@+id/btn_door4"
+            app:layout_constraintTop_toTopOf="@+id/btn_door4"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btn_gas4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dip"
+            android:minHeight="0dip"
+            android:padding="4dp"
+            android:text="10"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_baseline_local_gas_station_24"
+            app:iconGravity="textEnd"
+            app:iconPadding="4dp"
+            app:iconSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_luggage4"
+            app:layout_constraintStart_toEndOf="@+id/btn_luggage4"
+            app:layout_constraintTop_toTopOf="@+id/btn_luggage4"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/background">
+
+        <TextView
+            android:id="@+id/tv_lessorname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mohamad Vice"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:layout_marginStart="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/lessorPic2"
+            app:layout_constraintTop_toTopOf="@+id/lessorPic2"></TextView>
+
+        <TextView
+            android:id="@+id/tv_lessorname3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chat with Lessor"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            android:layout_marginStart="4dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintTop_toTopOf="@+id/imageButton2"></TextView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/lessorPic2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/profile_image"
+            app:layout_constraintStart_toStartOf="@+id/cardView7"
+            app:layout_constraintTop_toBottomOf="@+id/cardView7">
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView7"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:paddingHorizontal="10dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.9"
+                    android:textColor="@color/gold"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </androidx.appcompat.widget.AppCompatTextView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="Rating"
+                    android:textColor="@color/gold"
+                    android:textSize="12dp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_rating"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </androidx.appcompat.widget.AppCompatTextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:text="RM"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_lessorname3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_price4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView20"
+            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Per Day"
+            android:textColor="@color/ligther_purple"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView20"
+            app:layout_constraintEnd_toStartOf="@+id/textView20" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="@+id/tv_lessorname2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_lessorname2"
+            app:srcCompat="@drawable/ic_baseline_chat_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:backgroundTint="@color/background"
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="450dp" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

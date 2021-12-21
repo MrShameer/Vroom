@@ -22,12 +22,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vroom"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.splash.SplashLoading">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.splash.SplashLoading"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".SignUp">
 
@@ -67,6 +68,18 @@
         <activity android:name=".ui.profile.MyDetails" />
         <activity android:name=".ui.profile.CaptureIC" />
         <activity android:name=".ui.profile.CaptureDL" />
+
+        <activity android:name=".ui.createrequest.CreateReq"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+
+
         <activity
             android:name=".ui.profile.EditMyDetails"
             android:excludeFromRecents="true" />
