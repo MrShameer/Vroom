@@ -109,7 +109,7 @@ public class SignUp extends AppCompatActivity {
                     .build();
 
             respond = request.RequestPost(requestBody,getString(R.string.register));
-            System.out.println(respond);
+           // System.out.println(respond);
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
