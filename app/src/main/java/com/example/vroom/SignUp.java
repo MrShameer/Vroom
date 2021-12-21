@@ -16,6 +16,7 @@ import com.example.vroom.ui.chat.ChatFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.example.vroom.database.TokenHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,6 +93,9 @@ public class SignUp extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        TokenHandler.init(getApplicationContext());
     }
 
     private class mytask extends AsyncTask<Void,Void,Void>{
@@ -114,6 +118,8 @@ public class SignUp extends AppCompatActivity {
                 if (jsonObject.has("access_token")){
                     System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
                     Intent intent = new Intent(SignUp.this, Login.class);
+                    TokenHandler.write("Usertoken","access_token");
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
