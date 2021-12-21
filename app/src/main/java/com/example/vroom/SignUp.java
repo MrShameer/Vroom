@@ -44,7 +44,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        TokenHandler.init(getApplicationContext());
         btn_signup= findViewById(R.id.btn_signup);
         btn_login=findViewById(R.id.btn_login);
 
@@ -93,9 +93,6 @@ public class SignUp extends AppCompatActivity {
                 finish();
             }
         });
-
-
-        TokenHandler.init(getApplicationContext());
     }
 
     private class mytask extends AsyncTask<Void,Void,Void>{
@@ -116,10 +113,9 @@ public class SignUp extends AppCompatActivity {
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
-                    System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
+                    //System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
                     Intent intent = new Intent(SignUp.this, Login.class);
-                    TokenHandler.write("Usertoken","access_token");
-                    Intent intent = new Intent(SignUp.this, MainActivity.class);
+                    //TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));
                     startActivity(intent);
                     finish();
                 }

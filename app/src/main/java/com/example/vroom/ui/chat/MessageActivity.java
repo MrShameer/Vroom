@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 import com.example.vroom.ui.chat.adapter.MessageAdapter;
 import com.example.vroom.ui.chat.modal.ChatCard;
 import com.example.vroom.ui.chat.modal.MessageCard;
@@ -51,7 +52,7 @@ public class MessageActivity extends AppCompatActivity {
 
         messageAdapter = new MessageAdapter(messageCards);
         recyclerView.setAdapter(messageAdapter);
-        new mytask().execute();
+        //new mytask().execute();
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
@@ -59,11 +60,11 @@ public class MessageActivity extends AppCompatActivity {
         JSONObject jsonObject = null;
         @Override
         protected Void doInBackground(Void... voids) {
-            String token = getString(R.string.tokentemporary);//LETAK TOKEN KT SINI,SEPATUTNYA MASUKKAN TOKEN KT SINI, JGN ID
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
             respond = request.PostHeader(requestBody,getString(R.string.status),token);
             try {
-//                jsonObject=new JSONObject(respond);
+                jsonObject=new JSONObject(respond);
 //                Iterator<String> keys = jsonObject.keys();
 //                while(keys.hasNext()) {
 //                    String key = keys.next();

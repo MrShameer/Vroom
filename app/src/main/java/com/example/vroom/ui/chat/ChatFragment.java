@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 import com.example.vroom.ui.chat.adapter.ChatAdapter;
 import com.example.vroom.ui.chat.modal.ChatCard;
 import com.example.vroom.ui.status.model.StatusCard;
@@ -54,11 +55,10 @@ public class ChatFragment extends Fragment {
     private class mytask extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONArray jsonArray = null;
-        Intent intent;
 
         @Override
         protected Void doInBackground(Void... voids) {
-            String token = getString(R.string.tokentemporary);//BAGI TOKEN KT SINI. TOKEN NI TUK TEST JE EHH
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
             respond = request.PostHeader(requestBody,getString(R.string.chatroom),token);
             try {

@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 
 public class TokenHandler{
     private static SharedPreferences mSharedPref;
-    public static final String Usertoken = "user token";
+    public static final String USER_TOKEN = "USER_TOKEN";
+    public static final String USER_ID = "USER_ID";
+    public static final String USER_ROLE = "USER_ROLE";
 
 
     private TokenHandler()
