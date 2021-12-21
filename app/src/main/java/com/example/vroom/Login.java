@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,13 +22,10 @@ import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class Login extends AppCompatActivity {
     Request request = new Request();
-
     Button btn_login;
     Button btn_signup;
-
     ExtendedEditText ETemail;
     ExtendedEditText ETpasword;
-
     String email;
     String password;
 
@@ -35,20 +33,16 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         btn_login = findViewById(R.id.btn_login);
         btn_signup = findViewById(R.id.btn_signup);
-
         ETemail=findViewById(R.id.email);
         ETpasword=findViewById(R.id.password);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 email = ETemail.getEditableText().toString();
                 password = ETpasword.getEditableText().toString();
-
                 if (email.isEmpty()) {
                     Toast.makeText(getBaseContext(), "Please put in your email", Toast.LENGTH_SHORT).show();
                 } else if (password.isEmpty()) {
@@ -57,7 +51,6 @@ public class Login extends AppCompatActivity {
                 else {
                     new mytask().execute();
                 }
-
             }
         });
 
@@ -86,8 +79,9 @@ public class Login extends AppCompatActivity {
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
-                    System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
-                    System.out.println(jsonObject.getString("role"));//NI ROLE EHH
+                    TokenHandler.write("USER_ID",jsonObject.getString("id"));
+                    TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));
+                    TokenHandler.write("USER_ROLE",jsonObject.getString("role"));
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -109,5 +103,4 @@ public class Login extends AppCompatActivity {
             }
         }
     }
-
 }

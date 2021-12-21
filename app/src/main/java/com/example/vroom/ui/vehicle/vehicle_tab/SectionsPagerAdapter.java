@@ -2,22 +2,21 @@ package com.example.vroom.ui.vehicle.vehicle_tab;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.vroom.R;
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_explore, R.string.tab_car, R.string.tab_motorcycle, R.string.tab_van, R.string.tab_bicycle};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_explore, R.string.tab_car, R.string.tab_motorcycle, R.string.tab_van};
+//    private static final int[] TAB_TITLES = new int[]{R.string.tab_explore, R.string.tab_car, R.string.tab_motorcycle, R.string.tab_van, R.string.tab_bicycle};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -25,6 +24,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         mContext = context;
     }
 
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
@@ -39,6 +39,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         else if (position == 2){
             return new VehicleMotorcycle();
         }
+//        else
+//            return new VehicleVan();
         else if (position == 3){
             return new VehicleVan();
         }
@@ -54,7 +56,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 5;
+        return 4;
+//        return 5;
     }
 }

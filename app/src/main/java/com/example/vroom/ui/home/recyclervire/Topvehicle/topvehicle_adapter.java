@@ -1,5 +1,6 @@
 package com.example.vroom.ui.home.recyclervire.Topvehicle;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,7 @@ public class topvehicle_adapter extends RecyclerView.Adapter<topvehicle_adapter.
     @Override
     public DesignViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_topvehicle,parent,false);
-        DesignViewHolder DesignViewHolder=new DesignViewHolder(view);
-        return DesignViewHolder;
+        return new DesignViewHolder(view);
     }
     @Override
     public void onBindViewHolder(@NonNull DesignViewHolder holder, int position) {
@@ -47,6 +47,7 @@ public class topvehicle_adapter extends RecyclerView.Adapter<topvehicle_adapter.
         return vehicleDetails.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setVehicleDetails(List<VehicleDetails>vehicleDetails){
         this.vehicleDetails=vehicleDetails;
         notifyDataSetChanged();

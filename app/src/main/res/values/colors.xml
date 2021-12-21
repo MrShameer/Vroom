@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="dark_purple">#9B51E0</color>
+    <color name="ligther_purple">#D5A9FF</color>
     <color name="light_purple">#4D7C4EB8</color>
     <color name="black">#15161C</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#1E2028</color>
+    <color name="background">#1E1F28</color>
+    <color name="backgroundtab">#131419</color>
+    <color name="cardbackground">#2A2C36</color>
+    <color name="textcolour">#AE1AC8</color>
+    <color name="fontcolor">#40048F</color>
+    <color name="gold">#E99719</color>
+    <color name="accepted">#67E405</color>
+    <color name="rejected">#E40505</color>
+    <color name="pending">#FFDC5D</color>
+
+    <color name="acceptedButton">#275800</color>
+    <color name="rejectedButton">#720000</color>
+
+
+
+
 </resources>

@@ -1,35 +1,92 @@
 package com.example.vroom.ui.status;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vroom.Login;
+import com.example.vroom.MainActivity;
 import com.example.vroom.R;
+import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
+import com.example.vroom.ui.status.adapter.StatusAdapter;
+import com.example.vroom.ui.status.model.StatusCard;
+import com.example.vroom.ui.status.model.StatusName;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class StatusFragment extends Fragment {
 
-    private StatusViewModel statusViewModel;
+    Request request = new Request();
+    ArrayList<Object> items = new ArrayList<>();
+    RecyclerView recyclerView;
+    StatusAdapter statusAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        statusViewModel =
-                new ViewModelProvider(this).get(StatusViewModel.class);
         View root = inflater.inflate(R.layout.fragment_status, container, false);
-        final TextView textView = root.findViewById(R.id.text_status);
-        statusViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        recyclerView = root.findViewById(R.id.status_recv);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+
+        statusAdapter = new StatusAdapter(items);
+        recyclerView.setAdapter(statusAdapter);
+        new mytask().execute();
         return root;
+    }
+
+
+    private class mytask extends AsyncTask<Void,Void,Void> {
+        String respond;
+        JSONObject jsonObject = null;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+            RequestBody requestBody = RequestBody.create(null, new byte[0]);
+            respond = request.PostHeader(requestBody,getString(R.string.status),token);
+            try {
+                jsonObject=new JSONObject(respond);
+                Iterator<String> keys = jsonObject.keys();
+                while(keys.hasNext()) {
+                    String key = keys.next();
+                    JSONArray arrlist = (JSONArray) jsonObject.get(key);
+                    items.add(new StatusName(key));
+                    for (int i = 0; i< arrlist.length(); i++){
+                        JSONObject list = (JSONObject) arrlist.get(i);
+                        JSONObject vehicle = list.getJSONObject("vehicle");
+                        items.add(new StatusCard(vehicle.getJSONObject("owner").getString("name"),vehicle.getString("model")+", "+vehicle.getString("brand")));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            statusAdapter.notifyDataSetChanged();
+        }
     }
 }

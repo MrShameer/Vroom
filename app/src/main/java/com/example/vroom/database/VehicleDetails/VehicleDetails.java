@@ -24,7 +24,11 @@ public class VehicleDetails {
     private String vehiclerating;
     private String vehicleprice;
 
-    public VehicleDetails(@NonNull String vehicleplat, String lessorname, String lessorlocation, String lessorrating, String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehiclebrand, String vehiclemodel, String vehiclecolor, String vehicleage, String vehicleinsurance, String vehicletank, String vehiclerating, String vehicleprice) {
+    public VehicleDetails(@NonNull String vehicleplat, String lessorname, String lessorlocation, String lessorrating,
+                          String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehiclebrand,
+                          String vehiclemodel, String vehiclecolor, String vehicleage,
+                          String vehicleinsurance, String vehicletank,
+                          String vehiclerating, String vehicleprice) {
         this.vehicleplat = vehicleplat;
         this.lessorname = lessorname;
         this.lessorlocation = lessorlocation;

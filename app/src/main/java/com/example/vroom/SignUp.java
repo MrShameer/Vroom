@@ -8,9 +8,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vroom.api.Request;
+import com.example.vroom.ui.chat.ChatFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.example.vroom.database.TokenHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,12 +39,12 @@ public class SignUp extends AppCompatActivity {
     String name;
     String email;
     String password;
-
+    String fcmtoken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        TokenHandler.init(getApplicationContext());
         btn_signup= findViewById(R.id.btn_signup);
         btn_login=findViewById(R.id.btn_login);
 
@@ -55,7 +61,6 @@ public class SignUp extends AppCompatActivity {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                  name = ETname.getEditableText().toString();
                  email = ETemail.getEditableText().toString();
                  password = ETpasword.getEditableText().toString();
@@ -68,9 +73,16 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Please put in your password and make sure it's more than 5 character", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    new mytask().execute();
-                    Toast.makeText(getBaseContext(), "Check your email and verify your account", Toast.LENGTH_LONG).show();
-                    finish();
+                    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                                @Override
+                                public void onComplete(@NonNull Task<String> task) {
+                                    if (!task.isSuccessful()) {
+                                        return;
+                                    }
+                                    fcmtoken=task.getResult();
+                                    new mytask().execute();
+                                }
+                            });
                 }
             }
         });
@@ -93,16 +105,16 @@ public class SignUp extends AppCompatActivity {
                     .addFormDataPart("email", email)
                     .addFormDataPart("name", name)
                     .addFormDataPart("password", password)
+                    .addFormDataPart("fcm",fcmtoken)
                     .build();
 
             respond = request.RequestPost(requestBody,getString(R.string.register));
-
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
-                    System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
-                    Intent intent = new Intent(SignUp.this, MainActivity.class);
+                    Intent intent = new Intent(SignUp.this, Login.class);
                     startActivity(intent);
+                    finish();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -110,6 +122,11 @@ public class SignUp extends AppCompatActivity {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getBaseContext(), "Check your email and verify your account", Toast.LENGTH_LONG).show();
+        }
     }
 
 }
