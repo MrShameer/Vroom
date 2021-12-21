@@ -23,7 +23,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public int getItemViewType(int position) {
-        if (messageCards.get(position).getSender().equals(TokenHandler.read(TokenHandler.USER_TOKEN, null))) {
+        if (messageCards.get(position).getSender().equals(TokenHandler.read(TokenHandler.USER_ID, null))) {
             return RIGHT;
         } else{
             return LEFT;

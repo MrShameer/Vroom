@@ -17,6 +17,7 @@ import com.example.vroom.Login;
 import com.example.vroom.MainActivity;
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 import com.example.vroom.ui.status.adapter.StatusAdapter;
 import com.example.vroom.ui.status.model.StatusCard;
 import com.example.vroom.ui.status.model.StatusName;
@@ -60,7 +61,7 @@ public class StatusFragment extends Fragment {
         JSONObject jsonObject = null;
         @Override
         protected Void doInBackground(Void... voids) {
-            String token = getString(R.string.tokentemporary);//LETAK TOKEN KT SINI,SEPATUTNYA MASUKKAN TOKEN KT SINI, JGN ID
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
             respond = request.PostHeader(requestBody,getString(R.string.status),token);
             try {
