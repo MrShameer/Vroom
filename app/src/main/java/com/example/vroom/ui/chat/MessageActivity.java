@@ -6,31 +6,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.ui.chat.adapter.MessageAdapter;
-import com.example.vroom.ui.chat.modal.ChatCard;
 import com.example.vroom.ui.chat.modal.MessageCard;
-import com.example.vroom.ui.status.StatusFragment;
-import com.example.vroom.ui.status.adapter.StatusAdapter;
-import com.example.vroom.ui.status.model.StatusCard;
-import com.example.vroom.ui.status.model.StatusName;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class MessageActivity extends AppCompatActivity {
-    String id;
-    TextView name;
+    String chatid,to;
+    TextView name, send_message;
+    Button send_btn;
 
     Request request = new Request();
     ArrayList<MessageCard> messageCards = new ArrayList<>();
@@ -39,49 +37,80 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-        id = getIntent().getStringExtra("CHAT_ID");
+        setContentView(R.layout.activity_message);
+        chatid = getIntent().getStringExtra("CHAT_ID");
         name = findViewById(R.id.chatName);
         name.setText(getIntent().getStringExtra("CHAT_NAME"));
+        send_message = findViewById(R.id.send_message);
+        send_btn = findViewById(R.id.send_btn);
 
-        recyclerView = findViewById(R.id.status_recv);
-
+        recyclerView = findViewById(R.id.message_recv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
 
         messageAdapter = new MessageAdapter(messageCards);
         recyclerView.setAdapter(messageAdapter);
-        //new mytask().execute();
+        new fetch().execute();
+
+        send_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new send().execute();
+            }
+        });
     }
 
-    private class mytask extends AsyncTask<Void,Void,Void> {
+    private class fetch extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONObject jsonObject = null;
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
-            RequestBody requestBody = RequestBody.create(null, new byte[0]);
-            respond = request.PostHeader(requestBody,getString(R.string.status),token);
+            RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("id", chatid)
+                    .build();
+            respond = request.PostHeader(requestBody,getString(R.string.message),token);
             try {
-                jsonObject=new JSONObject(respond);
-//                Iterator<String> keys = jsonObject.keys();
-//                while(keys.hasNext()) {
-//                    String key = keys.next();
-//                    JSONArray arrlist = (JSONArray) jsonObject.get(key);
-//                    items.add(new StatusName(key));
-//                    for (int i = 0; i< arrlist.length(); i++){
-//                        JSONObject list = (JSONObject) arrlist.get(i);
-//                        JSONObject vehicle = list.getJSONObject("vehicle");
-//                        items.add(new StatusCard(vehicle.getJSONObject("owner").getString("name"),vehicle.getString("model")+", "+vehicle.getString("brand")));
-//                    }
-//                }
+                JSONArray jsonArray = new JSONArray(respond);
+                for (int i=0; i<jsonArray.length(); i++){
+                    jsonObject = jsonArray.getJSONObject(i);
+                    to=jsonObject.getString("sender");
+                    messageCards.add(new MessageCard(jsonObject.getString("id"),jsonObject.getString("message"),jsonObject.getString("sender"),jsonObject.getString("created_at")));
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
         }
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            messageAdapter.notifyDataSetChanged();
+        }
+    }
+
+
+    private class send extends AsyncTask<Void,Void,Void> {
+        String respond;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+            String id = TokenHandler.read(TokenHandler.USER_ID, null);
+            RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("to", to)
+                    .addFormDataPart("message",send_message.getText().toString())
+                    .addFormDataPart("chatid",chatid)
+                    .build();
+            send_message.setText("");
+            respond = request.PostHeader(requestBody,getString(R.string.send),token);
+            messageCards.add(new MessageCard(null,send_message.getText().toString(),id,null));
+           // System.out.println(respond);
+            return null;
+        }
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);

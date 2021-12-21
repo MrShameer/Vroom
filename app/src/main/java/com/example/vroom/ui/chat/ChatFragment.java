@@ -35,7 +35,6 @@ import okhttp3.RequestBody;
 
 public class ChatFragment extends Fragment {
     Request request = new Request();
-    String fcmtoken;
     RecyclerView recyclerView;
     ChatAdapter chatAdapter;
     ArrayList<ChatCard> chatCards = new ArrayList<>();
@@ -62,7 +61,6 @@ public class ChatFragment extends Fragment {
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
             respond = request.PostHeader(requestBody,getString(R.string.chatroom),token);
             try {
-                JSONObject chat;
                 jsonArray=new JSONArray(respond);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
