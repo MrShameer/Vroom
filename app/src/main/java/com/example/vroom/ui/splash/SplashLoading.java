@@ -34,9 +34,8 @@ public class SplashLoading extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            String token = "marhCW1SodbIZ5nAvigQo2BKM1Wymvpa5np2R0LH"; //BAGI TOKEN KT SINI. TOKEN NI TUK TEST JE EHH
+            String token = getString(R.string.tokentemporary);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
-
             respond = request.PostHeader(requestBody,getString(R.string.validate),token);
             try {
                 jsonObject = new JSONObject(respond);
@@ -62,7 +61,5 @@ public class SplashLoading extends AppCompatActivity {
             }
             return null;
         }
-
-
     }
 }

@@ -48,13 +48,13 @@ public class VehicleCar extends Fragment {
         final Vehicle_adapter vehicle_adapter=new Vehicle_adapter();
         recyclerviewexplore.setAdapter(vehicle_adapter);
 
-        vehicleViewModel=new ViewModelProvider(this).get(VehicleViewModel.class);
-        vehicleViewModel.getGetAllVehicleDetails().observe(getViewLifecycleOwner(), new Observer<List<VehicleDetails>>() {
-            @Override
-            public void onChanged(@Nullable List<VehicleDetails>vehicleDetails) {
-                vehicle_adapter.setVehicleDetails(vehicleDetails);
-            }
-        });
+//        vehicleViewModel=new ViewModelProvider(this).get(VehicleViewModel.class);
+//        vehicleViewModel.getGetAllVehicleDetails().observe(getViewLifecycleOwner(), new Observer<List<VehicleDetails>>() {
+//            @Override
+//            public void onChanged(@Nullable List<VehicleDetails>vehicleDetails) {
+//                vehicle_adapter.setVehicleDetails(vehicleDetails);
+//            }
+//        });
         return root;
     }
 }

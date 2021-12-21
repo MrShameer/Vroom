@@ -67,26 +67,23 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                     btnstatusgreen=itemView.findViewById(R.id.BtnStatus1);
                     btnstatusred=itemView.findViewById(R.id.BtsnStatus2);
             }
-
         }
     }
 
     @NonNull
     @Override
-    public StatusAdapter.StatusViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public StatusViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         switch (viewType) {
             case StatusName:
                 View v1 = inflater.inflate(R.layout.layout_requeststatus, parent, false);
-                return new StatusAdapter.StatusViewHolder(v1,viewType);
+                return new StatusViewHolder(v1,viewType);
             default:
                 View v2 = inflater.inflate(R.layout.cardview_status, parent, false);
-                return new StatusAdapter.StatusViewHolder(v2,viewType);
+                return new StatusViewHolder(v2,viewType);
         }
-
-
     }
 
     @Override

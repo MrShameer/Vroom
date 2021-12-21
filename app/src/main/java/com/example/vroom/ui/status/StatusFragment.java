@@ -39,9 +39,6 @@ public class StatusFragment extends Fragment {
     RecyclerView recyclerView;
     StatusAdapter statusAdapter;
 
-    private List<StatusName> nameList=new ArrayList<>();;
-    private List<StatusCard> cardList=new ArrayList<>();;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_status, container, false);
@@ -63,15 +60,9 @@ public class StatusFragment extends Fragment {
         JSONObject jsonObject = null;
         @Override
         protected Void doInBackground(Void... voids) {
-            String token = "marhCW1SodbIZ5nAvigQo2BKM1Wymvpa5np2R0LH"; //LETAK TOKEN KT SINI,SEPATUTNYA MASUKKAN TOKEN KT SINI, JGN ID
-//            RequestBody requestBody = new MultipartBody.Builder()
-//                    .setType(MultipartBody.FORM)
-//                    .addFormDataPart("id", id)
-//                    .build();
+            String token = getString(R.string.tokentemporary);//LETAK TOKEN KT SINI,SEPATUTNYA MASUKKAN TOKEN KT SINI, JGN ID
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
-
             respond = request.PostHeader(requestBody,getString(R.string.status),token);
-            //System.out.println("ddddddddd"+respond);
             try {
                 jsonObject=new JSONObject(respond);
                 Iterator<String> keys = jsonObject.keys();
