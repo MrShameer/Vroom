@@ -55,13 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
-
         TokenHandler.init(getApplicationContext());
-        String hello="Hello";
-        TokenHandler.write(TokenHandler.Usertoken,hello);
-        String Token = TokenHandler.read(TokenHandler.Usertoken, null);
-        Toast.makeText(this,Token+"Trial",Toast.LENGTH_SHORT).show();
-
     }
 
 

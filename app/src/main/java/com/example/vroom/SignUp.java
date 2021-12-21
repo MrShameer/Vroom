@@ -103,7 +103,7 @@ public class SignUp extends AppCompatActivity {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
                     System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
-//                    TokenHandler.write("Usertoken",jsonObject.getString("access_token"));
+                    TokenHandler.write(TokenHandler.Usertoken,jsonObject.getString("access_token"));
                     Intent intent = new Intent(SignUp.this, MainActivity.class);
                     startActivity(intent);
                 }
