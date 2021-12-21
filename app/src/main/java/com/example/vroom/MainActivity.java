@@ -3,6 +3,7 @@ package com.example.vroom;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -54,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
+
+        TokenHandler.init(getApplicationContext());
+        String hello="Hello";
+        TokenHandler.write(TokenHandler.Usertoken,hello);
         String Token = TokenHandler.read(TokenHandler.Usertoken, null);
-        Toast.makeText(this,Token,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,Token+"Trial",Toast.LENGTH_SHORT).show();
 
     }
 

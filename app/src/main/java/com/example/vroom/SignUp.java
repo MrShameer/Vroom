@@ -83,8 +83,6 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-
-        TokenHandler.init(getApplicationContext());
     }
 
     private class mytask extends AsyncTask<Void,Void,Void>{
@@ -105,7 +103,7 @@ public class SignUp extends AppCompatActivity {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
                     System.out.println(jsonObject.getString("access_token"));//NI TOKEN EHH SO STORE MANE2
-                    TokenHandler.write("Usertoken","access_token");
+//                    TokenHandler.write("Usertoken",jsonObject.getString("access_token"));
                     Intent intent = new Intent(SignUp.this, MainActivity.class);
                     startActivity(intent);
                 }
