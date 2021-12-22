@@ -5,19 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
-import com.example.vroom.ui.chat.adapter.ChatAdapter;
 import com.example.vroom.ui.createrequest.adapter.ReviewAdapter;
 import com.example.vroom.ui.createrequest.model.ReviewCard;
-import com.example.vroom.ui.vehicle.adapter.Explore_adapter;
-import com.example.vroom.ui.vehicle.adapter.Vehicle_adapter;
 
 import java.util.ArrayList;
 
@@ -40,7 +35,7 @@ public class Rating extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root =inflater.inflate(R.layout.layout_req_rating, container, false);
+        View root =inflater.inflate(R.layout.fragment_request_rating, container, false);
 
         rc_rating=(RecyclerView) root.findViewById(R.id.rc_rating);
         rc_rating.setHasFixedSize(true);

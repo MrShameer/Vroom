@@ -27,7 +27,7 @@ public class VehicleDetails extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root =inflater.inflate(R.layout.layout_req_details, container, false);
+        View root =inflater.inflate(R.layout.fragment_request_details, container, false);
 
         return root;
     }
