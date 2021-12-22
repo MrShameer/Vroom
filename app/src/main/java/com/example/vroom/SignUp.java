@@ -39,7 +39,6 @@ public class SignUp extends AppCompatActivity {
     String name;
     String email;
     String password;
-    String fcmtoken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,16 +72,7 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Please put in your password and make sure it's more than 5 character", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-                                @Override
-                                public void onComplete(@NonNull Task<String> task) {
-                                    if (!task.isSuccessful()) {
-                                        return;
-                                    }
-                                    fcmtoken=task.getResult();
-                                    new mytask().execute();
-                                }
-                            });
+                    new mytask().execute();
                 }
             }
         });
@@ -105,7 +95,6 @@ public class SignUp extends AppCompatActivity {
                     .addFormDataPart("email", email)
                     .addFormDataPart("name", name)
                     .addFormDataPart("password", password)
-                    .addFormDataPart("fcm",fcmtoken)
                     .build();
 
             respond = request.RequestPost(requestBody,getString(R.string.register));

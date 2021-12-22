@@ -1,5 +1,6 @@
 package com.example.vroom;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +12,9 @@ import android.widget.Toast;
 
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +32,7 @@ public class Login extends AppCompatActivity {
     ExtendedEditText ETpasword;
     String email;
     String password;
+    String fcmtoken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,18 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Please put in your password", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    new mytask().execute();
+                    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                        @Override
+                        public void onComplete(@NonNull Task<String> task) {
+                            if (!task.isSuccessful()) {
+                                return;
+                            }
+                            fcmtoken=task.getResult();
+                            new mytask().execute();
+                        }
+                    });
+
+
                 }
             }
         });
@@ -72,6 +88,7 @@ public class Login extends AppCompatActivity {
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("email", email)
                     .addFormDataPart("password", password)
+                    .addFormDataPart("fcm",fcmtoken)
                     .build();
 
             respond = request.RequestPost(requestBody,getString(R.string.login));
