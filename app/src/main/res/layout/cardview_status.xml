@@ -2,28 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
     <View
         android:id="@+id/glowbar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/backgroundtab"
-        app:layout_constraintBottom_toBottomOf="@+id/status"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/status"
-        app:layout_constraintTop_toTopOf="@+id/status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView6"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,15 +35,19 @@
             android:id="@+id/vehiclePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/profile_image" />
+            tools:srcCompat="@drawable/perodua_bezza" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/ModelBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
+        android:fontFamily="@font/abel"
+        android:text="Brand"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/cardView6"
         app:layout_constraintTop_toTopOf="@+id/cardView6" />
 
@@ -62,7 +67,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/abel"
         android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="14dp"
         app:layout_constraintStart_toEndOf="@+id/lessorPic"
         app:layout_constraintTop_toTopOf="@+id/lessorPic" />
 
@@ -71,6 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/LessorName"
         app:layout_constraintTop_toBottomOf="@+id/LessorName" />
 
@@ -78,9 +88,9 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="13dp"
         android:clipToPadding="true"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +101,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/BtnStatus1"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="38dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_layout"
             android:backgroundTint="@color/acceptedButton"
@@ -101,12 +111,14 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/BtsnStatus2"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="38dp"
             android:layout_weight="1"
+            android:layout_marginStart="5dp"
             android:background="@drawable/rounded_layout"
             android:backgroundTint="@color/rejectedButton"
             android:text="Button"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

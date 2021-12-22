@@ -55,7 +55,7 @@ public abstract class VehicleDetailsDatabase extends RoomDatabase {
         private VehicleDetailsDAO vehicleDetailsDAO;
         Request request = new Request();
         private PopulateDbAsyncTask(VehicleDetailsDatabase db){
-            System.out.println("HJSDASASDASDASDASDASDASDASD");
+            //System.out.println("HJSDASASDASDASDASDASDASDASD");
             vehicleDetailsDAO=db.vehicleDetailsDAO();
         }
 
@@ -63,10 +63,10 @@ public abstract class VehicleDetailsDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
                 String respond;
                 JSONObject jsonObject = null;
-                RequestBody requestBody = RequestBody.create(null, new byte[0]);
+               // RequestBody requestBody = RequestBody.create(null, new byte[0]);
 
-                respond = request.RequestPost(requestBody, String.valueOf(R.string.carlist));
-                System.out.println(respond);
+              //  respond = request.RequestPost(requestBody, String.valueOf(R.string.carlist));
+               // System.out.println(respond);
 //                    try {
 //                        jsonObject = new JSONObject(respond);
 //                        if (jsonObject.has("access_token")){

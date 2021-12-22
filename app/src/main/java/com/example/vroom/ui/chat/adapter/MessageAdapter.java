@@ -28,7 +28,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         } else{
             return LEFT;
         }
-        //return -1;
     }
 
     @NonNull
@@ -43,7 +42,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 View v2 = inflater.inflate(R.layout.layout_chat_left, parent, false);
                 return new MessageViewHolder(v2);
         }
-        //return null;
     }
 
     @Override

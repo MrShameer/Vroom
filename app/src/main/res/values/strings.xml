@@ -34,5 +34,6 @@
     <string name="send">https://vroom.lepak.xyz/api/send</string>
     <string name="status">https://vroom.lepak.xyz/api/status</string>
     <string name="chatroom">https://vroom.lepak.xyz/api/chatroom</string>
+    <string name="message">https://vroom.lepak.xyz/api/message</string>
 <!--    <string name="tokentemporary">2KEzU8QwUycdAjWpVFcqjTE9ImABLwhU6IoC0y2r</string>-->
 </resources>
