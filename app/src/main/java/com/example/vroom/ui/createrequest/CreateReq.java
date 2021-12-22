@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.vroom.R;
@@ -19,19 +21,28 @@ import com.example.vroom.ui.vehicle.vehicle_tab.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class CreateReq extends AppCompatActivity {
+    ImageButton btn_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_request);
-        SectionsPagerAdapter reqPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
+        SectionsPagerAdapter reqPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(reqPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        btn_back=findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAndRemoveTask();
+            }
+        });
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+        private final String[] tabTitles = new String[]{"Details","Rating"};
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -49,7 +60,11 @@ public class CreateReq extends AppCompatActivity {
             }
             return fragment;
         }
-
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles[position];
+        }
         @Override
         public int getCount() {
             return 2;
