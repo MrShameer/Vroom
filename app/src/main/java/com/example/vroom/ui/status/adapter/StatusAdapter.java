@@ -1,5 +1,7 @@
 package com.example.vroom.ui.status.adapter;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
@@ -44,7 +48,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
         TextView nameTextView;
         TextView lessorTextView;
         TextView modelTextView;
-
         TextView requestTextView;
         Button btnstatusgreen;
         Button btnstatusred;
@@ -102,6 +105,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
 
                 if (title.equals("accepted")){
                     holder.requestTextView.setText(R.string.AcceptedText);
+                    holder.requestTextView.setTextColor(Color.parseColor("#67E405"));
                     //holder.requestTextView.setHighlightColor(R.color.accepted);
                     holder.btnstatusgreen.setText(R.string.PaymentButton);
                     holder.btnstatusred.setText(R.string.CancleButton);
@@ -109,13 +113,16 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 }
                 else if (title.equals("rejected")){
                     holder.requestTextView.setText(R.string.RejectedText);
-                   // holder.requestTextView.getResources().getColor(R.color.rejected);
+                    holder.requestTextView.setTextColor(Color.parseColor("#E40505"));
+                    // holder.requestTextView.getResources().getColor(R.color.rejected);
                     holder.btnstatusgreen.setText(R.string.ViewMessageButton);
                     holder.btnstatusred.setVisibility(View.GONE);
                     holder.glowbar.setBackgroundResource(R.color.rejected);
                 }
                 else {
                     holder.requestTextView.setText(R.string.PendingText);
+                    holder.requestTextView.setTextColor(Color.parseColor("#FFDC5D"));
+
                     //holder.requestTextView.getResources().getColor(R.color.pending);
                     holder.btnstatusgreen.setVisibility(View.GONE);
                     holder.btnstatusred.setText(R.string.CancleButton);
