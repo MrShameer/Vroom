@@ -108,7 +108,7 @@ public class MessageActivity extends AppCompatActivity {
             send_message.setText("");
             respond = request.PostHeader(requestBody,getString(R.string.send),token);
             messageCards.add(new MessageCard(null,send_message.getText().toString(),id,null));
-           // System.out.println(respond);
+            System.out.println(respond);
             return null;
         }
         @Override
