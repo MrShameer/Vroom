@@ -101,6 +101,7 @@ public class Login extends AppCompatActivity {
                     TokenHandler.write("USER_ROLE",jsonObject.getString("role"));
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

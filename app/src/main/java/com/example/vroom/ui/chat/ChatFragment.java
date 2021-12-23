@@ -47,7 +47,7 @@ public class ChatFragment extends Fragment {
         chatAdapter = new ChatAdapter(chatCards);
         recyclerView.setAdapter(chatAdapter);
         new mytask().execute();
-        //token untuk fcm ade kt signup
+        //token untuk fcm ade kt login
         return root;
     }
 
