@@ -37,6 +37,7 @@
         <activity android:name=".ui.profile.MyDetails" />
         <activity android:name=".ui.profile.CaptureIC" />
         <activity android:name=".ui.profile.CaptureDL" />
+        <activity android:name=".ui.createrequest.ReqFinish" />
         <activity android:name=".ui.profile.EditMyDetails" android:excludeFromRecents="true" />
         <activity android:name=".MainActivity" android:exported="true" android:label="@string/app_name"></activity>
         <activity android:name=".SignUp"></activity>

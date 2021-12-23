@@ -360,13 +360,15 @@
             android:id="@+id/textView31"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/abel"
-            android:textAlignment="center"
             android:text="Cost: "
+            android:textStyle="bold"
+            android:textAlignment="center"
             android:textColor="@color/dark_purple"
             android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView32"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -377,13 +379,12 @@
             android:text="RM 150 X 22 Days= RM 3140"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:layout_marginStart="35dp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_book"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_req"
+            app:layout_constraintStart_toEndOf="@+id/textView31"
             app:layout_constraintTop_toTopOf="@+id/textView31" />
 
         <TextView
-            android:id="@+id/btn_book"
+            android:id="@+id/btn_req"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:background="@color/dark_purple"
