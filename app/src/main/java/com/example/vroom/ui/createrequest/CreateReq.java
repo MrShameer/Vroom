@@ -20,6 +20,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.vroom.R;
 import com.example.vroom.ui.vehicle.vehicle_tab.SectionsPagerAdapter;
+import com.example.vroom.ui.wishlist.Wishlist;
 import com.google.android.material.tabs.TabLayout;
 
 public class CreateReq extends AppCompatActivity {
@@ -58,6 +59,13 @@ public class CreateReq extends AppCompatActivity {
 
         //setup Wishlist Button
         btn_wishlist=findViewById(R.id.btn_wishlist);
+        btn_wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CreateReq.this, Wishlist.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public class SectionsPagerAdapter extends FragmentStatePagerAdapter {

@@ -42,12 +42,12 @@
         android:id="@+id/ModelBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/abel"
         android:text="Brand"
-        android:layout_marginStart="10dp"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/cardView6"
         app:layout_constraintTop_toTopOf="@+id/cardView6" />
 
