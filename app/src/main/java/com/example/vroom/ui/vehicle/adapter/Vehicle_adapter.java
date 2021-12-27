@@ -1,6 +1,7 @@
 package com.example.vroom.ui.vehicle.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
+import com.example.vroom.ui.createrequest.CreateReq;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Vehicle_adapter extends RecyclerView.Adapter<Explore_adapter.DesignViewHolder> {
+public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.DesignViewHolder> {
     private List<VehicleDetails> vehicleDetails=new ArrayList<>();
 
     @NonNull
     @Override
-    public Explore_adapter.DesignViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Vehicle_adapter.DesignViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_explore,parent,false);
-        return new Explore_adapter.DesignViewHolder(view);
+        return new Vehicle_adapter.DesignViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(@NonNull Explore_adapter.DesignViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Vehicle_adapter.DesignViewHolder holder, int position) {
         //main function to bind the design
         //pass down the position
         VehicleDetails currentVehicle= vehicleDetails.get(position);
@@ -38,6 +40,22 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         holder.tv_price.setText(currentVehicle.getVehicleprice());
         holder.tv_brand.setText(currentVehicle.getVehiclebrand()+" "+currentVehicle.getVehiclemodel());
         holder.tv_rating.setText(currentVehicle.getVehiclerating());
+
+        holder.btn_wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), CreateReq.class);
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), CreateReq.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
 
 //        holder.tv_title.setText(VehicleDetails.getVehiclebrand());

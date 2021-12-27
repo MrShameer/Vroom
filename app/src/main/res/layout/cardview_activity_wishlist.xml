@@ -28,7 +28,9 @@
                 android:outlineSpotShadowColor="@color/ligther_purple"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></ImageView>
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView5"
                 android:layout_width="50dp"
@@ -127,7 +129,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
             <TextView
-                android:id="@+id/tv_lessorname"
+                android:id="@+id/tv_totaldays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lessorname"
@@ -145,7 +147,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/lessorPic3"
-                app:layout_constraintTop_toBottomOf="@+id/tv_lessorname">
+                app:layout_constraintTop_toBottomOf="@+id/tv_totaldays">
 
 
                 <androidx.appcompat.widget.AppCompatButton

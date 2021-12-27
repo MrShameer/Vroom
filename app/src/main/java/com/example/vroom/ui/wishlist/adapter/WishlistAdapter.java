@@ -11,9 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
-import com.example.vroom.ui.createrequest.adapter.ReviewAdapter;
-import com.example.vroom.ui.createrequest.model.ReviewCard;
-import com.example.vroom.ui.wishlist.Wishlist;
 import com.example.vroom.ui.wishlist.model.WishlistData;
 
 import java.util.ArrayList;
@@ -70,7 +67,7 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
             vehiclePic=itemView.findViewById(R.id.vehiclePic);
             tv_car=itemView.findViewById(R.id.tv_car);
             lessorPic3=itemView.findViewById(R.id.lessorPic3);
-            tv_lessorname=itemView.findViewById(R.id.tv_lessorname);
+            tv_lessorname=itemView.findViewById(R.id.tv_totaldays);
             tv_rating=itemView.findViewById(R.id.tv_rating);
         }
     }

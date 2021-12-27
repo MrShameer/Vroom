@@ -85,7 +85,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_lessorname"
+                        android:id="@+id/tv_totaldays"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -104,9 +104,9 @@
                         android:layout_marginTop="5dp"
                         android:backgroundTint="@color/white"
                         app:cardCornerRadius="5dp"
-                        app:layout_constraintEnd_toEndOf="@+id/tv_lessorname"
-                        app:layout_constraintStart_toStartOf="@+id/tv_lessorname"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_lessorname">
+                        app:layout_constraintEnd_toEndOf="@+id/tv_totaldays"
+                        app:layout_constraintStart_toStartOf="@+id/tv_totaldays"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_totaldays">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"

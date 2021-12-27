@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vroom.R;
+import com.example.vroom.ui.vehicle.vehicle_tab.VehicleExplore;
 import com.sanojpunchihewa.glowbutton.GlowButton;
 
 public class ReqFinish extends AppCompatActivity {
@@ -18,7 +19,7 @@ public class ReqFinish extends AppCompatActivity {
     btn_ok.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent=new Intent(ReqFinish.this,VehicleDetails.class);
+            Intent intent=new Intent(ReqFinish.this, VehicleExplore.class);
             startActivity(intent);
         }
     });
