@@ -112,9 +112,6 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
                     view.getContext().startActivity(intent);
                 }
             });
-
-
-
         }
     }
 }
