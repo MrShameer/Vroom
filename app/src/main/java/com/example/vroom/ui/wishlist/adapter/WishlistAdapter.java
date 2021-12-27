@@ -50,7 +50,7 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setVehicleDetails(List<WishlistData>wishlistData){
+    public void setWishlistDetails(List<WishlistData>wishlistData){
         this.wishlistData=wishlistData;
         notifyDataSetChanged();
 
