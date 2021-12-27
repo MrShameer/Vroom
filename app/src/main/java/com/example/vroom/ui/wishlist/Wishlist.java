@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
-import com.example.vroom.ui.createrequest.adapter.ReviewAdapter;
-import com.example.vroom.ui.createrequest.model.ReviewCard;
 import com.example.vroom.ui.wishlist.adapter.WishlistAdapter;
 import com.example.vroom.ui.wishlist.model.WishlistData;
 

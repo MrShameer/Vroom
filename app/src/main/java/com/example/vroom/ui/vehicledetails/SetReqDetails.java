@@ -1,4 +1,4 @@
-package com.example.vroom.ui.createrequest;
+package com.example.vroom.ui.vehicledetails;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ public class SetReqDetails extends AppCompatActivity {
     TextView btn_req;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_req_details);
+        setContentView(R.layout.activity_request_details);
 
         //setup Back Button
         btn_back=findViewById(R.id.btn_back);
@@ -30,7 +30,7 @@ public class SetReqDetails extends AppCompatActivity {
         btn_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(SetReqDetails.this,ReqFinish.class);
+                Intent intent=new Intent(SetReqDetails.this, VehicleSucessfull.class);
                 startActivity(intent);
             }
         });

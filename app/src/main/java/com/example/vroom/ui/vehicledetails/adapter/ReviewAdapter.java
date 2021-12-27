@@ -1,4 +1,4 @@
-package com.example.vroom.ui.createrequest.adapter;
+package com.example.vroom.ui.vehicledetails.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
-import com.example.vroom.ui.createrequest.model.ReviewCard;
+import com.example.vroom.ui.vehicledetails.model.ReviewCard;
 
 import java.util.ArrayList;
 import java.util.List;

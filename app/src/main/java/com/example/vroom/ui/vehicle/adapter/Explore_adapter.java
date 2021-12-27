@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.example.vroom.ui.createrequest.CreateReq;
+import com.example.vroom.ui.vehicledetails.VehicleInfo;
 import com.example.vroom.ui.wishlist.Wishlist;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), CreateReq.class);
+                Intent intent=new Intent(v.getContext(), VehicleInfo.class);
                 v.getContext().startActivity(intent);
             }
         });

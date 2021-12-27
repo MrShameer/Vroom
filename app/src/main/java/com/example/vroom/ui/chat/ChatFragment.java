@@ -34,7 +34,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ChatFragment extends Fragment implements LifecycleOwner {
-    Request request = new Request();
     RecyclerView recyclerView;
     ChatViewModel viewModel;
     ChatAdapter chatAdapter;
@@ -45,18 +44,11 @@ public class ChatFragment extends Fragment implements LifecycleOwner {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-       // chatAdapter = new ChatAdapter(chatCards);
         chatAdapter = new ChatAdapter();
         recyclerView.setAdapter(chatAdapter);
 
         viewModel = ViewModelProviders.of(requireActivity()).get(ChatViewModel.class);
-//        viewModel =new ViewModelProvider(this).get(ChatViewModel.class);
-
-        //viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
         viewModel.getUserMutableLiveData().observe(getViewLifecycleOwner(), chatListUpdateObserver);
-
-        //new mytask().execute();
-        //token untuk fcm ade kt login
         return root;
     }
 
@@ -67,32 +59,5 @@ public class ChatFragment extends Fragment implements LifecycleOwner {
         }
     };
 
-/*    private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond;
-        JSONArray jsonArray = null;
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
-            RequestBody requestBody = RequestBody.create(null, new byte[0]);
-            respond = request.PostHeader(requestBody,getString(R.string.chatroom),token);
-            try {
-                jsonArray=new JSONArray(respond);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    chatCards.add(new ChatCard(jsonObject.getString("name"),jsonObject.getString("message"),jsonObject.getString("chatid")));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            chatAdapter.notifyDataSetChanged();
-        }
-    }*/
 
 }

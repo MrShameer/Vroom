@@ -2,6 +2,7 @@ package com.example.vroom.ui.vehicle.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.example.vroom.ui.createrequest.CreateReq;
+import com.example.vroom.ui.vehicledetails.VehicleInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +42,15 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         holder.tv_brand.setText(currentVehicle.getVehiclebrand()+" "+currentVehicle.getVehiclemodel());
         holder.tv_rating.setText(currentVehicle.getVehiclerating());
 
+        holder.btn_passanger.setText(currentVehicle.getVehiclepassanger());
+        holder.btn_door.setText(currentVehicle.getVehicledoor());
+        holder.btn_luggage.setText(currentVehicle.getVehicleluggage());
+        holder.btn_tank.setText(currentVehicle.getVehicletank());
         holder.btn_wishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), CreateReq.class);
+                Intent intent=new Intent(v.getContext(), VehicleInfo.class);
+                intent.putExtra("VEHICLE_INFO",  currentVehicle);
                 v.getContext().startActivity(intent);
             }
         });
@@ -52,7 +58,8 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), CreateReq.class);
+                Intent intent=new Intent(v.getContext(), VehicleInfo.class);
+                intent.putExtra("VEHICLE_INFO",  currentVehicle);
                 v.getContext().startActivity(intent);
             }
         });
@@ -69,7 +76,6 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
     public void setVehicleDetails(List<VehicleDetails>vehicleDetails){
         this.vehicleDetails=vehicleDetails;
         notifyDataSetChanged();
-
     }
 
     //this will hold the View Design
@@ -77,7 +83,7 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         ImageView iv_vehicle;
         CircleImageView iv_lessor;
         TextView tv_brand,tv_price,tv_rating;
-        Button btn_booknow,btn_wishlist;
+        Button btn_booknow,btn_wishlist, btn_passanger, btn_door, btn_luggage, btn_tank;
 
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +96,10 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
             iv_lessor=itemView.findViewById(R.id.iv_lessor);
             btn_booknow=itemView.findViewById(R.id.btn_booknow);
             btn_wishlist=itemView.findViewById(R.id.btn_wishlist);
+            btn_passanger=itemView.findViewById(R.id.btn_passenger3);
+            btn_door=itemView.findViewById(R.id.btn_door3);
+            btn_luggage=itemView.findViewById(R.id.btn_luggage3);
+            btn_tank=itemView.findViewById(R.id.btn_gas3);
 
 
 

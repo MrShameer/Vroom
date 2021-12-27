@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FirebaseMessage extends FirebaseMessagingService implements ViewModelStoreOwner {
+public class FirebaseMessage extends FirebaseMessagingService {
     private static final String TAG = "";
     ChatAdapter chatAdapter;
     ChatViewModel viewModel;
@@ -45,7 +45,7 @@ public class FirebaseMessage extends FirebaseMessagingService implements ViewMod
         JSONObject message = new JSONObject(remoteMessage.getData());
         //chatAdapter.chatmap.containsKey()
         chatArrayList.add(new ChatCard("anwar","ollaa","88"));
-        viewModel.getUserMutableLiveData().postValue(chatArrayList);
+        //viewModel.getUserMutableLiveData().postValue(chatArrayList);
 //        try {
 //            if (chatAdapter.chatmap.containsKey(message.getString("title")));
 //                System.out.println(message);
