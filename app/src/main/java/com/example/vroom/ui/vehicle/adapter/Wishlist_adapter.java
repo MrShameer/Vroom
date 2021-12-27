@@ -47,7 +47,6 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
             }
         });
 
-//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {

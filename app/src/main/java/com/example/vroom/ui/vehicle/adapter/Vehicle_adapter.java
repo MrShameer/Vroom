@@ -1,6 +1,7 @@
 package com.example.vroom.ui.vehicle.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -15,7 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
+import com.example.vroom.ui.chat.MessageActivity;
+import com.example.vroom.ui.chat.modal.ChatCard;
+import com.example.vroom.ui.vehicledetails.SetReqDetails;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
+import com.example.vroom.ui.wishlist.Wishlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +54,8 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         holder.btn_wishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), VehicleInfo.class);
-                intent.putExtra("VEHICLE_INFO",  currentVehicle);
+                Intent intent=new Intent(v.getContext(), Wishlist.class);
+                intent.putExtra("ADD",currentVehicle.getVehicleplat());
                 v.getContext().startActivity(intent);
             }
         });
@@ -58,14 +63,11 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), VehicleInfo.class);
-                intent.putExtra("VEHICLE_INFO",  currentVehicle);
+                Intent intent=new Intent(v.getContext(), SetReqDetails.class);
                 v.getContext().startActivity(intent);
             }
         });
 
-
-//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {
@@ -79,7 +81,7 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
     }
 
     //this will hold the View Design
-    public static class DesignViewHolder extends RecyclerView.ViewHolder{
+    public class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
         CircleImageView iv_lessor;
         TextView tv_brand,tv_price,tv_rating;
@@ -100,6 +102,16 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
             btn_door=itemView.findViewById(R.id.btn_door3);
             btn_luggage=itemView.findViewById(R.id.btn_luggage3);
             btn_tank=itemView.findViewById(R.id.btn_gas3);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    VehicleDetails currentVehicle= vehicleDetails.get(getAdapterPosition());
+                    Intent intent=new Intent(view.getContext(), VehicleInfo.class);
+                    intent.putExtra("VEHICLE_INFO",  currentVehicle);
+                    view.getContext().startActivity(intent);
+                }
+            });
 
 
 
