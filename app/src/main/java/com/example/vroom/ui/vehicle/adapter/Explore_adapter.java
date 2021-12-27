@@ -1,6 +1,7 @@
 package com.example.vroom.ui.vehicle.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
+import com.example.vroom.ui.createrequest.CreateReq;
+import com.example.vroom.ui.wishlist.Wishlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,20 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         holder.tv_price.setText(currentVehicle.getVehicleprice());
         holder.tv_brand.setText(currentVehicle.getVehiclebrand()+" "+currentVehicle.getVehiclemodel());
         holder.tv_rating.setText(currentVehicle.getVehiclerating());
+        holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), CreateReq.class);
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.btn_wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), Wishlist.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
 
 //        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
@@ -62,20 +78,22 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
     public static class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
         TextView tv_title, tv_brand,tv_names,tv_price,tv_rating;
-        Button btn_passenger,btn_door,btn_luggage,btn_gas;
+        Button btn_passenger,btn_door,btn_luggage,btn_gas,btn_booknow,btn_wishlist;
 
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //Hooks
             tv_rating=itemView.findViewById(R.id.tv_rating);
+            btn_booknow=itemView.findViewById(R.id.btn_booknow);
+            btn_wishlist=itemView.findViewById(R.id.btn_wishlist);
             tv_price=itemView.findViewById(R.id.tv_price);
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);
             btn_passenger=itemView.findViewById(R.id.btn_passenger);
             btn_door=itemView.findViewById(R.id.btn_door);
             btn_luggage=itemView.findViewById(R.id.btn_luggage);
             btn_gas=itemView.findViewById(R.id.btn_gas);
-            tv_names=itemView.findViewById(R.id.tv_lessorname);
+            tv_names=itemView.findViewById(R.id.tv_totaldays);
             tv_brand=itemView.findViewById(R.id.tv_brand);
             tv_title=itemView.findViewById(R.id.tv_title);
 

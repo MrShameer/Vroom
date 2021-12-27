@@ -1,9 +1,11 @@
 package com.example.vroom.ui.createrequest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -18,10 +20,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.vroom.R;
 import com.example.vroom.ui.vehicle.vehicle_tab.SectionsPagerAdapter;
+import com.example.vroom.ui.wishlist.Wishlist;
 import com.google.android.material.tabs.TabLayout;
 
 public class CreateReq extends AppCompatActivity {
     ImageButton btn_back;
+    Button btn_book,btn_wishlist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +36,34 @@ public class CreateReq extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
+        //setup Back Button
         btn_back=findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finishAndRemoveTask();
+            }
+        });
+
+
+        //setup Book Button
+        btn_book=findViewById(R.id.btn_book);
+        btn_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CreateReq.this,SetReqDetails.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //setup Wishlist Button
+        btn_wishlist=findViewById(R.id.btn_wishlist);
+        btn_wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CreateReq.this, Wishlist.class);
+                startActivity(intent);
             }
         });
     }
