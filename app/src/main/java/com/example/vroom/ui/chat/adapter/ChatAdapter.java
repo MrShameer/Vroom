@@ -14,12 +14,19 @@ import com.example.vroom.R;
 import com.example.vroom.ui.chat.MessageActivity;
 import com.example.vroom.ui.chat.modal.ChatCard;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
-    public List<ChatCard> chatCards;
-    public ChatAdapter(List<ChatCard> chatCards) {
-        this.chatCards = chatCards;
+    //public HashMap<String, Integer> chatmap =new HashMap<>();
+    public ArrayList<ChatCard> chatCards;
+//    public ChatAdapter(List<ChatCard> chatCards) {
+//        this.chatCards = chatCards;
+//    }
+
+    public ChatAdapter() {
+        this.chatCards = new ArrayList<ChatCard>();
     }
 
     @NonNull
@@ -31,6 +38,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         ChatCard chatCard= chatCards.get(position);
+        //chatmap.put(chatCard.getChatid(),position);
         holder.name.setText(chatCard.getName());
         holder.message.setText(chatCard.getMessage());
     }
@@ -39,6 +47,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return chatCards.size();
     }
 
+    public void updateChatList(final ArrayList<ChatCard> chatArrayList) {
+        this.chatCards.clear();
+        this.chatCards = chatArrayList;
+        notifyDataSetChanged();
+    }
 
     public class ChatViewHolder extends RecyclerView.ViewHolder{
         TextView name;
@@ -61,4 +74,5 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             });
         }
     }
+
 }

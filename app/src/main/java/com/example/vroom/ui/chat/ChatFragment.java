@@ -9,20 +9,20 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
-import com.example.vroom.database.TokenHandler;
+
+import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.chat.adapter.ChatAdapter;
 import com.example.vroom.ui.chat.modal.ChatCard;
-import com.example.vroom.ui.status.model.StatusCard;
-import com.example.vroom.ui.status.model.StatusName;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceIdReceiver;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
+import com.example.vroom.ui.chat.viewModal.ChatViewModel;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,9 +33,10 @@ import java.util.Iterator;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment implements LifecycleOwner {
     Request request = new Request();
     RecyclerView recyclerView;
+    ChatViewModel viewModel;
     ChatAdapter chatAdapter;
     ArrayList<ChatCard> chatCards = new ArrayList<>();
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,14 +45,29 @@ public class ChatFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        chatAdapter = new ChatAdapter(chatCards);
+       // chatAdapter = new ChatAdapter(chatCards);
+        chatAdapter = new ChatAdapter();
         recyclerView.setAdapter(chatAdapter);
-        new mytask().execute();
+
+        viewModel = ViewModelProviders.of(requireActivity()).get(ChatViewModel.class);
+//        viewModel =new ViewModelProvider(this).get(ChatViewModel.class);
+
+        //viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+        viewModel.getUserMutableLiveData().observe(getViewLifecycleOwner(), chatListUpdateObserver);
+
+        //new mytask().execute();
         //token untuk fcm ade kt login
         return root;
     }
 
-    private class mytask extends AsyncTask<Void,Void,Void> {
+    Observer<ArrayList<ChatCard>> chatListUpdateObserver = new Observer<ArrayList<ChatCard>>() {
+        @Override
+        public void onChanged(ArrayList<ChatCard> userArrayList) {
+            chatAdapter.updateChatList(userArrayList);
+        }
+    };
+
+/*    private class mytask extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONArray jsonArray = null;
 
@@ -77,6 +93,6 @@ public class ChatFragment extends Fragment {
             super.onPostExecute(aVoid);
             chatAdapter.notifyDataSetChanged();
         }
-    }
+    }*/
 
 }
