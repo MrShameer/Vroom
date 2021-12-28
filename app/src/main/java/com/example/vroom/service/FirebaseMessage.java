@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FirebaseMessage extends FirebaseMessagingService implements ViewModelStoreOwner {
+public class FirebaseMessage extends FirebaseMessagingService {
     private static final String TAG = "";
     ChatAdapter chatAdapter;
     ChatViewModel viewModel;
