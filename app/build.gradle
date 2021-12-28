@@ -53,7 +53,13 @@ dependencies {
     implementation 'com.github.HITGIF:TextFieldBoxes:1.4.5'
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.1.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+//  api
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+//    implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
     implementation 'com.github.SanojPunchihewa:GlowButton:1.0.1'
     //Implementation for Room
