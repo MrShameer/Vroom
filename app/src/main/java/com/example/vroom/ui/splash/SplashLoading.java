@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.Toast;
 
 import com.example.vroom.Login;
 import com.example.vroom.MainActivity;
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +29,7 @@ public class SplashLoading extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond;
+        String respond,id,pic;
         JSONObject jsonObject = null;
         Intent intent;
 
@@ -42,6 +41,9 @@ public class SplashLoading extends AppCompatActivity {
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("id")){
+                    id=jsonObject.getString("id");
+                    pic=jsonObject.getString("picture");
+                    TokenHandler.write("USER_PIC",pic);
                     jsonObject.getString("name");
                     jsonObject.getString("email");
                     jsonObject.getString("role");
@@ -54,12 +56,19 @@ public class SplashLoading extends AppCompatActivity {
                     Thread.sleep(2000);
                     intent = new Intent(SplashLoading.this, Login.class);
                 }
-                startActivity(intent);
-                finish();
+
             } catch (JSONException | InterruptedException e) {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Picasso.get().load(getString(R.string.profilepic)+id+"."+pic).into(request.SaveImage(getApplicationContext().getPackageName()+"/Picture/",id+"."+pic));
+            startActivity(intent);
+            finish();
         }
     }
 }

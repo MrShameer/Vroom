@@ -1,4 +1,4 @@
-package com.example.vroom.ui.createrequest;
+package com.example.vroom.ui.vehicledetails;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
-import com.example.vroom.ui.createrequest.adapter.ReviewAdapter;
-import com.example.vroom.ui.createrequest.model.ReviewCard;
+import com.example.vroom.ui.vehicledetails.adapter.ReviewAdapter;
+import com.example.vroom.ui.vehicledetails.model.ReviewCard;
 
 import java.util.ArrayList;
 
-public class Rating extends Fragment  {
+public class TabRating extends Fragment  {
     RecyclerView rc_rating;
     ReviewAdapter reviewAdapter;
 
     private VehicleViewModel vehicleViewModel;
-    public Rating() {
+    public TabRating() {
         // Required empty public constructor
     }
 
@@ -35,7 +35,7 @@ public class Rating extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root =inflater.inflate(R.layout.fragment_request_rating, container, false);
+        View root =inflater.inflate(R.layout.fragment_vehicle_rating, container, false);
 
         rc_rating=(RecyclerView) root.findViewById(R.id.rc_rating);
         rc_rating.setHasFixedSize(true);

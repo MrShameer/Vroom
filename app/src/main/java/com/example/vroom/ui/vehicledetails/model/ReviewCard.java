@@ -1,4 +1,4 @@
-package com.example.vroom.ui.createrequest.model;
+package com.example.vroom.ui.vehicledetails.model;
 
 public class ReviewCard {
     String lessorname;

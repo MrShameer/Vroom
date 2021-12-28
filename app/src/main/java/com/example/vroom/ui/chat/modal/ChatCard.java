@@ -1,6 +1,8 @@
 package com.example.vroom.ui.chat.modal;
 
-public class ChatCard {
+import java.io.Serializable;
+
+public class ChatCard implements Serializable {
     String name;
     String message;
     String id;

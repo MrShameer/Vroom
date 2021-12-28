@@ -1,10 +1,9 @@
-package com.example.vroom.ui.createrequest.adapter;
+package com.example.vroom.ui.vehicledetails.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,10 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
-import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.example.vroom.ui.chat.modal.ChatCard;
-import com.example.vroom.ui.createrequest.model.ReviewCard;
-import com.example.vroom.ui.vehicle.adapter.Explore_adapter;
+import com.example.vroom.ui.vehicledetails.model.ReviewCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +59,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.DesignView
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
             lessorPic2=itemView.findViewById(R.id.lessorPic2);
-            tv_lessorname=itemView.findViewById(R.id.tv_lessorname);
+            tv_lessorname=itemView.findViewById(R.id.tv_totaldays);
             tv_review=itemView.findViewById(R.id.tv_review);
             tv_date=itemView.findViewById(R.id.tv_date);
 

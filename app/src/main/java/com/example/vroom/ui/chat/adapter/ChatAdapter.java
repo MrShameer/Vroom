@@ -1,5 +1,6 @@
 package com.example.vroom.ui.chat.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,17 +12,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.ui.chat.MessageActivity;
 import com.example.vroom.ui.chat.modal.ChatCard;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
-    public List<ChatCard> chatCards;
-    public ChatAdapter(List<ChatCard> chatCards) {
-        this.chatCards = chatCards;
-    }
+    public ArrayList<ChatCard> chatCards= new ArrayList<ChatCard>();
 
+
+//    public ChatAdapter(ArrayList<ChatCard> chatArrayList) {
+//        this.chatCards = new ArrayList<ChatCard>();
+//    }
+    @SuppressLint("NotifyDataSetChanged")
+    public void setChatCards(ArrayList<ChatCard> chatArrayList){
+        this.chatCards=chatArrayList;
+        notifyDataSetChanged();
+
+    }
     @NonNull
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,6 +50,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return chatCards.size();
     }
 
+    public void updateChatList(ArrayList<ChatCard> chatArrayList) {
+        this.chatCards.clear();
+        this.chatCards = chatArrayList;
+        System.out.println("RECYCLER VIEW ER ADAPERTER"+ chatCards.size());
+        notifyDataSetChanged();
+    }
 
     public class ChatViewHolder extends RecyclerView.ViewHolder{
         TextView name;
@@ -61,4 +78,5 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             });
         }
     }
+
 }

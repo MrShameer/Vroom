@@ -9,6 +9,7 @@ public class TokenHandler{
     public static final String USER_TOKEN = "USER_TOKEN";
     public static final String USER_ID = "USER_ID";
     public static final String USER_ROLE = "USER_ROLE";
+    public static final String USER_PIC = "USER_PIC";
 
 
     private TokenHandler()

@@ -15,6 +15,7 @@ import com.example.vroom.database.TokenHandler;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,12 +61,11 @@ public class Login extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 return;
                             }
+                            TokenHandler.init(getApplicationContext());
                             fcmtoken=task.getResult();
                             new mytask().execute();
                         }
                     });
-
-
                 }
             }
         });
@@ -80,8 +80,10 @@ public class Login extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond;
+        String respond,id,pic;
         JSONObject jsonObject = null;
+        Boolean RunIntent = false;
+        Intent intent;
         @Override
         protected Void doInBackground(Void... voids) {
             RequestBody requestBody = new MultipartBody.Builder()
@@ -96,11 +98,15 @@ public class Login extends AppCompatActivity {
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
-                    TokenHandler.write("USER_ID",jsonObject.getString("id"));
+                    id=jsonObject.getString("id");
+                    pic=jsonObject.getString("picture");
+                    TokenHandler.write("USER_ID",id);
                     TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));
                     TokenHandler.write("USER_ROLE",jsonObject.getString("role"));
-                    Intent intent = new Intent(Login.this, MainActivity.class);
-                    startActivity(intent);
+                    TokenHandler.write("USER_PIC",pic);
+                    intent = new Intent(Login.this, MainActivity.class);
+                    RunIntent = true;
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -111,7 +117,12 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if (jsonObject.has("message")){
+            if (RunIntent){
+                Picasso.get().load(getString(R.string.profilepic)+id+"."+pic).into(request.SaveImage(getApplicationContext().getPackageName()+"/Picture/",id+"."+pic));
+                startActivity(intent);
+                finish();
+            }
+            else if (jsonObject.has("message")){
                 try {
                     Toast.makeText(getBaseContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {

@@ -83,7 +83,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
             case StatusName:
                 View v1 = inflater.inflate(R.layout.layout_requeststatus, parent, false);
                 return new StatusViewHolder(v1,viewType);
-            default:
+            default: 
                 View v2 = inflater.inflate(R.layout.cardview_status, parent, false);
                 return new StatusViewHolder(v2,viewType);
         }

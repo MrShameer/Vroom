@@ -1,29 +1,26 @@
 package com.example.vroom.ui.profile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.vroom.R;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
+import com.example.vroom.ui.lessor.Lessorhome;
 
 import java.io.File;
 import java.util.List;
@@ -35,6 +32,7 @@ public class ProfileFragment extends Fragment {
     TextView tv_myname,tv_email;
     ImageButton btn_edetails;
     CircleImageView user_image;
+    Button btn_lessor;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -76,6 +74,16 @@ public class ProfileFragment extends Fragment {
         }else{
             user_image.setImageResource(R.drawable.profile_image);
         }
+
+
+        btn_lessor=root.findViewById(R.id.btn_lessor);
+        btn_lessor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), Lessorhome.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 
