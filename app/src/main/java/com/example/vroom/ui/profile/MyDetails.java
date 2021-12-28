@@ -1,25 +1,17 @@
 package com.example.vroom.ui.profile;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.util.proto.ProtoOutputStream;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,9 +21,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -46,15 +35,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.internal.Util;
 
 public class MyDetails extends AppCompatActivity implements View.OnClickListener  {
     private UserViewModel userViewModel;
@@ -71,7 +55,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mydetails);
 
-        tv_username=findViewById(R.id.tv_username);
+        tv_username=findViewById(R.id.tv_status);
         tv_fullname=findViewById(R.id.tv_fullname);
         tv_email=findViewById(R.id.tv_email);
         tv_address=findViewById(R.id.tv_address);

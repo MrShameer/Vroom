@@ -1,5 +1,6 @@
 package com.example.vroom.ui.chat.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.ui.chat.MessageActivity;
 import com.example.vroom.ui.chat.modal.ChatCard;
 
@@ -22,10 +24,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public ArrayList<ChatCard> chatCards;
 
 
-    public ChatAdapter() {
-        this.chatCards = new ArrayList<ChatCard>();
-    }
+//    public ChatAdapter(ArrayList<ChatCard> chatArrayList) {
+//        this.chatCards = new ArrayList<ChatCard>();
+//    }
+    @SuppressLint("NotifyDataSetChanged")
+    public void setChatCards(ArrayList<ChatCard> chatArrayList){
+        this.chatCards=chatArrayList;
+        notifyDataSetChanged();
 
+    }
     @NonNull
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,7 +42,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         ChatCard chatCard= chatCards.get(position);
-        //chatmap.put(chatCard.getChatid(),position);
         holder.name.setText(chatCard.getName());
         holder.message.setText(chatCard.getMessage());
     }
@@ -44,9 +50,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return chatCards.size();
     }
 
-    public void updateChatList(final ArrayList<ChatCard> chatArrayList) {
+    public void updateChatList(ArrayList<ChatCard> chatArrayList) {
         this.chatCards.clear();
         this.chatCards = chatArrayList;
+        System.out.println("RECYCLER VIEW ER ADAPERTER"+ chatCards.size());
         notifyDataSetChanged();
     }
 
