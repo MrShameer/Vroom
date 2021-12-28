@@ -26,7 +26,7 @@
     <string name="RejectedText">Your Request has Been Rejected</string>
     <string name="PendingText">The Lessor have not responded yet</string>
 
-    <string name="login">http://192.168.1.112/vroom-api/public/api/login</string>
+    <string name="login">https://vroom.lepak.xyz/api/login</string>
     <string name="register">https://vroom.lepak.xyz/api/register</string>
     <string name="validate">https://vroom.lepak.xyz/api/validate</string>
     <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
