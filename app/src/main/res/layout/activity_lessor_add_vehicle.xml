@@ -9,7 +9,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"></ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abel"
+                android:text="Add New Vehicle"
+                android:textSize="26dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintTop_toTopOf="parent"></TextView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp">
 
@@ -72,7 +101,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/abel"
-            android:text="Car Brand & Model"
+            android:text="Car Brand and Model"
             android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +179,7 @@
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TYPE "
+            android:text="Colour"
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,10 +199,10 @@
         android:layout_height="70dp">
 
         <TextView
-            android:id="@+id/tv0"
+            android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vehicle Type"
+            android:text="Rate Per Day"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:fontFamily="@font/abel"
@@ -183,7 +212,7 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
-            android:id="@+id/tv_status"
+            android:id="@+id/tv_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Required"
@@ -193,16 +222,16 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/tv3"></TextView>
 
         <Button
-            android:id="@+id/btn_type"
+            android:id="@+id/btn_rate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TYPE "
+            android:text="Rate "
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -219,13 +248,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="170dp">
 
         <TextView
-            android:id="@+id/tv0"
+            android:id="@+id/tv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vehicle Type"
+            android:text="Condition"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:fontFamily="@font/abel"
@@ -235,7 +264,7 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
-            android:id="@+id/tv_status"
+            android:id="@+id/tv_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Required"
@@ -245,18 +274,17 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/tv4"></TextView>
 
         <Button
-            android:id="@+id/btn_type"
+            android:id="@+id/btn_condition"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TYPE "
+            android:text="Condition "
             android:textSize="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"></Button>
 
@@ -273,10 +301,10 @@
         android:layout_height="70dp">
 
         <TextView
-            android:id="@+id/tv0"
+            android:id="@+id/tv5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vehicle Type"
+            android:text="Vehicle Age"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:fontFamily="@font/abel"
@@ -286,7 +314,7 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
-            android:id="@+id/tv_status"
+            android:id="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Required"
@@ -296,67 +324,16 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/tv5"></TextView>
 
         <Button
-            android:id="@+id/btn_type"
+            android:id="@+id/btn_age"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TYPE "
-            android:textSize="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></Button>
-
-        <ImageView
-            android:layout_width="408dp"
-            android:layout_height="1dp"
-            android:src="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></ImageView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
-        <TextView
-            android:id="@+id/tv0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vehicle Type"
-            android:textSize="18dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/abel"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-        <TextView
-            android:id="@+id/tv_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Required"
-            android:textSize="14dp"
-            android:textColor="@color/design_default_color_error"
-            android:fontFamily="@font/abel"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
-
-        <Button
-            android:id="@+id/btn_type"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TYPE "
+            android:text="AGE "
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -375,10 +352,10 @@
         android:layout_height="70dp">
 
         <TextView
-            android:id="@+id/tv0"
+            android:id="@+id/tv6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vehicle Type"
+            android:text="Insurance"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:fontFamily="@font/abel"
@@ -388,7 +365,7 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
-            android:id="@+id/tv_status"
+            android:id="@+id/tv_insurance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Required"
@@ -398,16 +375,16 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/tv6"></TextView>
 
         <Button
-            android:id="@+id/btn_type"
+            android:id="@+id/btn_insurance"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TYPE "
+            android:text="Insurance "
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -426,10 +403,10 @@
         android:layout_height="70dp">
 
         <TextView
-            android:id="@+id/tv0"
+            android:id="@+id/tv7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vehicle Type"
+            android:text="Plat No"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:fontFamily="@font/abel"
@@ -439,7 +416,7 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
-            android:id="@+id/tv_status"
+            android:id="@+id/tv_platno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Required"
@@ -449,16 +426,67 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/tv7"></TextView>
 
         <Button
-            android:id="@+id/btn_type"
+            android:id="@+id/btn_platno"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:text="TYPE "
+            android:text="Plat No "
+            android:textSize="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Button>
+
+        <ImageView
+            android:layout_width="408dp"
+            android:layout_height="1dp"
+            android:src="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/tv8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Days"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/abel"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+        <TextView
+            android:id="@+id/tv_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required"
+            android:textSize="14dp"
+            android:textColor="@color/design_default_color_error"
+            android:fontFamily="@font/abel"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv8"></TextView>
+
+        <Button
+            android:id="@+id/btn_available"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:text="Days "
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
