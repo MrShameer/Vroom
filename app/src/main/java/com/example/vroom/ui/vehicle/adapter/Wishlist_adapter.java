@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.example.vroom.ui.createrequest.CreateReq;
+import com.example.vroom.ui.vehicledetails.VehicleInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +42,11 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
         holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), CreateReq.class);
+                Intent intent=new Intent(v.getContext(), VehicleInfo.class);
                 v.getContext().startActivity(intent);
             }
         });
 
-//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {
@@ -55,7 +54,7 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setVehicleDetails(List<VehicleDetails>vehicleDetails){
+    public void setWishlistDetails(List<VehicleDetails>vehicleDetails){
         this.vehicleDetails=vehicleDetails;
         notifyDataSetChanged();
 

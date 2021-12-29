@@ -31,8 +31,7 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
     }
     @Override
     public void onBindViewHolder(@NonNull WishlistAdapter.DesignViewHolder holder, int position) {
-        //main function to bind the design
-        //pass down the position
+
         WishlistData wishlistDatas=wishlistData.get(position);
         //set the image
         holder.tv_lessorname.setText(wishlistDatas.getLessorname());
@@ -41,8 +40,6 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
         holder.vehiclePic.setImageResource(R.drawable.perodua_bezza);
 
 
-
-//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {
@@ -50,7 +47,7 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setVehicleDetails(List<WishlistData>wishlistData){
+    public void setWishlistDetails(List<WishlistData>wishlistData){
         this.wishlistData=wishlistData;
         notifyDataSetChanged();
 

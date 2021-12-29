@@ -68,7 +68,7 @@ public class VehicleExplore extends Fragment {
             @Override
             public void onChanged(@Nullable List<VehicleDetails>vehicleDetails) {
                 adapterExplore.setVehicleDetails(vehicleDetails);
-                adapterWish.setVehicleDetails(vehicleDetails);
+                adapterWish.setWishlistDetails(vehicleDetails);
             }
         });
         return root;

@@ -2,10 +2,13 @@ package com.example.vroom.database.VehicleDetails;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "VehicleDetails_table")
-public class VehicleDetails {
+public class VehicleDetails implements Serializable {
     @PrimaryKey
     @NonNull
     private String vehicleplat;
@@ -43,6 +46,21 @@ public class VehicleDetails {
         this.vehicleinsurance = vehicleinsurance;
         this.vehicletank = vehicletank;
         this.vehiclerating = vehiclerating;
+        this.vehicleprice = vehicleprice;
+    }
+
+    @Ignore
+    public VehicleDetails(String lessorname, String vehicleplat, String vehiclebrand, String vehiclemodel, String vehicleinsurance, String vehicleage, String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehicletank, String vehicleprice){
+        this.vehicleplat = vehicleplat;
+        this.lessorname = lessorname;
+        this.vehiclepassanger = vehiclepassanger;
+        this.vehicledoor = vehicledoor;
+        this.vehicleluggage = vehicleluggage;
+        this.vehiclebrand = vehiclebrand;
+        this.vehiclemodel = vehiclemodel;
+        this.vehicleage = vehicleage;
+        this.vehicleinsurance = vehicleinsurance;
+        this.vehicletank = vehicletank;
         this.vehicleprice = vehicleprice;
     }
 

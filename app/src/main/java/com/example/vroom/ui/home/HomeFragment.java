@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
@@ -41,6 +42,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -51,7 +53,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
-//    private HomeViewModel homeViewModel;
     private GoogleMap mMap;
     MapView mapview;
     MarkerOptions now,destination;
@@ -71,6 +72,23 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        user_image=(CircleImageView) root.findViewById(R.id.user_image);
+        File dir = new File(Environment.getExternalStorageDirectory()
+                + "/Android/data/"
+                + getActivity().getApplicationContext().getPackageName()
+                + "/Picture/");
+
+        String mImageName = TokenHandler.read(TokenHandler.USER_ID, null)+"."+TokenHandler.read(TokenHandler.USER_PIC, null);
+
+        File file = new File(dir, mImageName);
+        if(file.exists()){
+            Picasso.get().load(file).into(user_image);
+        }else{
+            user_image.setImageResource(R.drawable.profile_image);
+        }
+
+
         //Room & userViewModel
         tv_name=(TextView) root.findViewById(R.id.tv_name);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
@@ -116,22 +134,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        //Setting Up Image
-         user_image=(CircleImageView)root.findViewById(R.id.user_image);
-            File dir = new File(Environment.getExternalStorageDirectory()
-                + "/Android/data/"
-                + getActivity().getApplicationContext().getPackageName()
-                + "/Files");
-        String mImageName="profile_image.jpg";
 
-        File file = new File(dir, mImageName);
-        if(file.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            user_image.setImageBitmap(myBitmap);
-
-        }else{
-            user_image.setImageResource(R.drawable.profile_image);
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("myCh", "My Channel", NotificationManager.IMPORTANCE_DEFAULT);
