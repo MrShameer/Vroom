@@ -81,6 +81,8 @@ public class VehicleExplore extends Fragment {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     JSONObject vehicle = jsonObject.getJSONObject("vehicle");
+                    //TODO
+                    // APE WTH TU
                     vehicleDetails.add(new VehicleDetails(vehicle.getJSONObject("owner").getString("name"),
                             vehicle.getJSONObject("owner").getString("id"),
                             jsonObject.getString("plat"),
