@@ -18,12 +18,17 @@ import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.ui.wishlist.Wishlist;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class VehicleInfo extends AppCompatActivity {
     ImageButton btn_back;
     Button btn_book,btn_wishlist, btn_passanger, btn_door, btn_luggage, btn_gas;
     TextView tv_price, tv_lessorname;
     VehicleDetails vehicleDetails;
+    CircleImageView iv_lessor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,17 @@ public class VehicleInfo extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
         vehicleDetails = (VehicleDetails) getIntent().getSerializableExtra("VEHICLE_INFO");
+        iv_lessor=findViewById(R.id.lessorPic2);
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+vehicleDetails.getLessorid()+".jpg").into(iv_lessor, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                iv_lessor.setImageResource(R.drawable.profile_image);
+            }
+        });
 
         tv_lessorname=findViewById(R.id.tv_lessorname2);
         tv_lessorname.setText(vehicleDetails.getLessorname());
@@ -74,6 +90,7 @@ public class VehicleInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(VehicleInfo.this, Wishlist.class);
+                intent.putExtra("ADD",vehicleDetails.getVehicleplat());
                 startActivity(intent);
             }
         });

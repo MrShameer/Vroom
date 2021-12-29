@@ -69,7 +69,7 @@ public class VehicleExplore extends Fragment {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond,message;
+        String respond;
         JSONArray jsonArray = null;
         @Override
         protected Void doInBackground(Void... voids) {
@@ -81,8 +81,6 @@ public class VehicleExplore extends Fragment {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     JSONObject vehicle = jsonObject.getJSONObject("vehicle");
-                    //TODO
-                    // DAPATKN GMBR
                     vehicleDetails.add(new VehicleDetails(vehicle.getJSONObject("owner").getString("name"),
                             vehicle.getJSONObject("owner").getString("id"),
                             jsonObject.getString("plat"),
