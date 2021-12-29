@@ -73,54 +73,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp">
+<!--             <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="70dp">-->
 
-                    <TextView
-                        android:id="@+id/tv0"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Username"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/abel"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="15dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></TextView>
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv0"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Username"-->
+<!--                        android:textSize="14dp"-->
+<!--                        android:fontFamily="@font/abel"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_marginStart="15dp"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"></TextView>-->
 
-                    <TextView
-                        android:id="@+id/tv_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Username"
-                        android:textSize="18dp"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/abel"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_status"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Username"-->
+<!--                        android:textSize="18dp"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:fontFamily="@font/abel"-->
+<!--                        android:layout_marginStart="15dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>-->
 
-                    <ImageButton
-                        android:id="@+id/btn_eusername"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:src="@drawable/ic_baseline_edit_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/btn_eusername"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginEnd="10dp"-->
+<!--                        android:backgroundTint="@android:color/transparent"-->
+<!--                        android:src="@drawable/ic_baseline_edit_24"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"></ImageButton>-->
 
-                 <ImageView
-                     android:layout_width="408dp"
-                     android:layout_height="1dp"
-                     android:src="@color/white"
-                     app:layout_constraintBottom_toBottomOf="parent"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintStart_toStartOf="parent"></ImageView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                 <ImageView-->
+<!--                     android:layout_width="408dp"-->
+<!--                     android:layout_height="1dp"-->
+<!--                     android:src="@color/white"-->
+<!--                     app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                     app:layout_constraintEnd_toEndOf="parent"-->
+<!--                     app:layout_constraintStart_toStartOf="parent"></ImageView>-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -200,16 +200,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv2"></TextView>
 
-                <ImageButton
-                    android:id="@+id/btn_eemail"
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_edit_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ImageButton>
+<!--                <ImageButton-->
+<!--                    android:id="@+id/btn_eemail"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:backgroundTint="@android:color/transparent"-->
+<!--                    android:src="@drawable/ic_baseline_edit_24"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"></ImageButton>-->
 
                 <ImageView
                     android:layout_width="408dp"
@@ -240,12 +240,11 @@
                     android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User Address"
-                    android:textSize="18dp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/abel"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/abel"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv3"></TextView>
 
@@ -289,12 +288,11 @@
                     android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone No"
-                    android:textSize="18dp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/abel"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/abel"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv4"></TextView>
 
@@ -326,26 +324,26 @@
                     android:id="@+id/tv5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/abel"
                     android:text="Password"
                     android:textSize="14dp"
-                    android:fontFamily="@font/abel"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></TextView>
 
-                <TextView
-                    android:id="@+id/tv_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*******"
-                    android:textSize="18dp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/abel"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv5"></TextView>
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_password"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="*******"-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:fontFamily="@font/abel"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tv5"></TextView>-->
 
                 <ImageButton
                     android:id="@+id/btn_epassword"
@@ -359,6 +357,7 @@
                     app:layout_constraintTop_toTopOf="parent"></ImageButton>
 
                 <ImageView
+                    android:id="@+id/imageView10"
                     android:layout_width="408dp"
                     android:layout_height="1dp"
                     android:src="@color/white"

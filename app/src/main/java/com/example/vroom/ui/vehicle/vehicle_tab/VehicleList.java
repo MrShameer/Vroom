@@ -89,8 +89,11 @@ public class VehicleList extends Fragment {
                 lastPage = Integer.parseInt(jsonObject.getString("last_page"));
                 JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
                 for (int i=0; i<jsonArray.length(); i++){
+                    //TODO
+                    // DAPATKN GMBR AND MASUK ID LESSOR
+                    // DAPATKAN LESSOR NAME!! NAME!!
                     jsonObject = jsonArray.getJSONObject(i);
-                    vehicleDetails.add(new VehicleDetails(jsonObject.getString("owner"), jsonObject.getString("plat"), jsonObject.getString("brand"), jsonObject.getString("model"),jsonObject.getString("insurance"), jsonObject.getString("age"),jsonObject.getString("passanger"), jsonObject.getString("door"), jsonObject.getString("luggage"), jsonObject.getString("gallon"), jsonObject.getString("rent")));
+                    vehicleDetails.add(new VehicleDetails("",jsonObject.getString("owner"), jsonObject.getString("plat"), jsonObject.getString("brand"), jsonObject.getString("model"),jsonObject.getString("insurance"), jsonObject.getString("age"),jsonObject.getString("passanger"), jsonObject.getString("door"), jsonObject.getString("luggage"), jsonObject.getString("gallon"), jsonObject.getString("rent")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

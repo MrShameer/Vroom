@@ -3,6 +3,7 @@ package com.example.vroom.ui.vehicle.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.example.vroom.ui.chat.modal.ChatCard;
 import com.example.vroom.ui.vehicledetails.SetReqDetails;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
 import com.example.vroom.ui.wishlist.Wishlist;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,15 +41,23 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
     }
     @Override
     public void onBindViewHolder(@NonNull Vehicle_adapter.DesignViewHolder holder, int position) {
-        //main function to bind the design
-        //pass down the position
+
         VehicleDetails currentVehicle= vehicleDetails.get(position);
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+currentVehicle.getLessorid()+".jpg").into(holder.iv_lessor, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.iv_lessor.setImageResource(R.drawable.profile_image);
+            }
+        });
         //set the image
         holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
         holder.tv_price.setText(currentVehicle.getVehicleprice());
         holder.tv_brand.setText(currentVehicle.getVehiclebrand()+" "+currentVehicle.getVehiclemodel());
         holder.tv_rating.setText(currentVehicle.getVehiclerating());
-
         holder.btn_passanger.setText(currentVehicle.getVehiclepassanger());
         holder.btn_door.setText(currentVehicle.getVehicledoor());
         holder.btn_luggage.setText(currentVehicle.getVehicleluggage());

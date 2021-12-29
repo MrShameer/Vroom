@@ -1,5 +1,6 @@
 package com.example.vroom.ui.vehicle.vehicle_tab;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,29 +8,28 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.example.vroom.database.VehicleDetails.VehicleViewModel;
-import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
 import com.example.vroom.ui.vehicle.adapter.Explore_adapter;
 import com.example.vroom.ui.vehicle.adapter.Wishlist_adapter;
 
-import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.List;
+import java.util.ArrayList;
+import okhttp3.RequestBody;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class VehicleExplore extends Fragment {
-
+    Request request = new Request();
+    ArrayList<VehicleDetails> vehicleDetails;
+    Wishlist_adapter adapterWish;
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private VehicleViewModel vehicleViewModel;
     RecyclerView recycleryoumayalsolike,recyclerwishlist;
     public static VehicleExplore newInstance(int index) {
         VehicleExplore fragment = new VehicleExplore();
@@ -58,19 +58,54 @@ public class VehicleExplore extends Fragment {
         recyclerwishlist.setHasFixedSize(true);
         recyclerwishlist.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
 
-        final Explore_adapter adapterExplore=new Explore_adapter();
-        final Wishlist_adapter adapterWish=new Wishlist_adapter();
+         Explore_adapter adapterExplore=new Explore_adapter();
+         adapterWish=new Wishlist_adapter();
         recycleryoumayalsolike.setAdapter(adapterExplore);
         recyclerwishlist.setAdapter(adapterWish);
+        vehicleDetails=new ArrayList<VehicleDetails>();
 
-        vehicleViewModel=new ViewModelProvider(this).get(VehicleViewModel.class);
-        vehicleViewModel.getGetAllVehicleDetails().observe(getViewLifecycleOwner(), new Observer<List<VehicleDetails>>() {
-            @Override
-            public void onChanged(@Nullable List<VehicleDetails>vehicleDetails) {
-                adapterExplore.setVehicleDetails(vehicleDetails);
-                adapterWish.setWishlistDetails(vehicleDetails);
-            }
-        });
+        new mytask().execute();
         return root;
+    }
+
+    private class mytask extends AsyncTask<Void,Void,Void> {
+        String respond,message;
+        JSONArray jsonArray = null;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+            RequestBody requestBody = RequestBody.create(null, new byte[0]);
+            respond = request.PostHeader(requestBody,getString(R.string.wishlist),token);
+            try {
+                jsonArray=new JSONArray(respond);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    JSONObject vehicle = jsonObject.getJSONObject("vehicle");
+                    //TODO
+                    // DAPATKN GMBR
+                    vehicleDetails.add(new VehicleDetails(vehicle.getJSONObject("owner").getString("name"),
+                            vehicle.getJSONObject("owner").getString("id"),
+                            jsonObject.getString("plat"),
+                            vehicle.getString("brand"),
+                            vehicle.getString("model"),
+                            vehicle.getString("insurance"),
+                            "WTH",
+                            vehicle.getString("passanger"),
+                            vehicle.getString("door"),
+                            vehicle.getString("luggage"),
+                            vehicle.getString("gallon"),
+                            vehicle.getString("rent")
+                    ));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            adapterWish.setWishlistDetails(vehicleDetails);
+        }
     }
 }

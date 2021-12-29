@@ -1,11 +1,15 @@
 package com.example.vroom.api;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.util.Log;
 
 
+import com.example.vroom.Login;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -73,43 +77,86 @@ public class Request {
         return "500";
     }
 
+    //only for Login
+//    public static Target SaveImage(final String dir, String url){
+//        Target target = new Target(){
+//            File file;
+//            @Override
+//            public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        file = new File(Environment.getExternalStorageDirectory() + "/Android/data/" + dir);
+//                        if (!file.exists()){
+//                            file.mkdirs();
+//                        }
+//                        file = new File(file+"/"+url);
+//                        try {
+//                            file.createNewFile();
+//                            FileOutputStream ostream = new FileOutputStream(file);
+//                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, ostream);
+//                            ostream.flush();
+//                            ostream.close();
+////                            Login.exit();
+////                            context.startActivity(intent);
+////                            ((Activity)context).finish();
+//                        }catch (IOException e){
+//                            System.out.println(e);
+//                            Log.e("IOException", e.getLocalizedMessage());
+//                        }
+//                    }
+//                }).start();
+//            }
+//
+//            @Override
+//            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+//            }
+//            @Override
+//            public void onPrepareLoad(Drawable placeHolderDrawable) {
+//            }
+//        };
+//        return target;
+//    }
 
-    public static Target SaveImage(final String dir, String url){
-        Target target = new Target(){
-            File file;
-            @Override
-            public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        file = new File(Environment.getExternalStorageDirectory() + "/Android/data/" + dir);
-                        if (!file.exists()){
-                            file.mkdirs();
-                        }
-                        file = new File(file+"/"+url);
-                        try {
-                            file.createNewFile();
-                            FileOutputStream ostream = new FileOutputStream(file);
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, ostream);
-                            ostream.flush();
-                            ostream.close();
-                        }catch (IOException e){
-                            Log.e("IOException", e.getLocalizedMessage());
-                        }
-                    }
-                }).start();
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        };
-        return target;
-    }
+//    public void test(String url, String dir, String path){
+//        Picasso.get().load(url).into(new Target() {
+//            File file;
+//            @Override
+//            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        file = new File(Environment.getExternalStorageDirectory() + "/Android/data/" + dir);
+//                        if (!file.exists()){
+//                            file.mkdirs();
+//                        }
+//                        file = new File(file+"/"+path);
+//                        try {
+//                            file.createNewFile();
+//                            FileOutputStream ostream = new FileOutputStream(file);
+//                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, ostream);
+//                            ostream.flush();
+//                            ostream.close();
+////                            Login.exit();
+////                            context.startActivity(intent);
+////                            ((Activity)context).finish();
+//                        }catch (IOException e){
+//                            System.out.println(e);
+//                            Log.e("IOException", e.getLocalizedMessage());
+//                        }
+//                    }
+//                }).start();
+//            }
+//
+//            @Override
+//            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+//
+//            }
+//
+//            @Override
+//            public void onPrepareLoad(Drawable placeHolderDrawable) {
+//
+//            }
+//        });
+//    }
 }

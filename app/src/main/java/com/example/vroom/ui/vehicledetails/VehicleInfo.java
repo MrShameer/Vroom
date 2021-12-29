@@ -22,7 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 public class VehicleInfo extends AppCompatActivity {
     ImageButton btn_back;
     Button btn_book,btn_wishlist, btn_passanger, btn_door, btn_luggage, btn_gas;
-    TextView tv_price;
+    TextView tv_price, tv_lessorname;
     VehicleDetails vehicleDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class VehicleInfo extends AppCompatActivity {
 
         vehicleDetails = (VehicleDetails) getIntent().getSerializableExtra("VEHICLE_INFO");
 
+        tv_lessorname=findViewById(R.id.tv_lessorname2);
+        tv_lessorname.setText(vehicleDetails.getLessorname());
         tv_price=findViewById(R.id.tv_price4);
         tv_price.setText(vehicleDetails.getVehicleprice());
         btn_passanger=findViewById(R.id.btn_passenger4);

@@ -26,8 +26,9 @@ public class VehicleDetails implements Serializable {
     private String vehicletank;
     private String vehiclerating;
     private String vehicleprice;
+    private String lessorid;
 
-    public VehicleDetails(@NonNull String vehicleplat, String lessorname, String lessorlocation, String lessorrating,
+    public VehicleDetails(@NonNull String vehicleplat, String lessorname, String lessorid, String lessorlocation, String lessorrating,
                           String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehiclebrand,
                           String vehiclemodel, String vehiclecolor, String vehicleage,
                           String vehicleinsurance, String vehicletank,
@@ -50,9 +51,10 @@ public class VehicleDetails implements Serializable {
     }
 
     @Ignore
-    public VehicleDetails(String lessorname, String vehicleplat, String vehiclebrand, String vehiclemodel, String vehicleinsurance, String vehicleage, String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehicletank, String vehicleprice){
+    public VehicleDetails(String lessorname, String lessorid, String vehicleplat, String vehiclebrand, String vehiclemodel, String vehicleinsurance, String vehicleage, String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehicletank, String vehicleprice){
         this.vehicleplat = vehicleplat;
         this.lessorname = lessorname;
+        this.lessorid = lessorid;
         this.vehiclepassanger = vehiclepassanger;
         this.vehicledoor = vehicledoor;
         this.vehicleluggage = vehicleluggage;
@@ -71,6 +73,10 @@ public class VehicleDetails implements Serializable {
 
     public String getLessorname() {
         return lessorname;
+    }
+
+    public String getLessorid(){
+        return lessorid;
     }
 
     public String getLessorlocation() {

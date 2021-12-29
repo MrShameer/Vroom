@@ -58,8 +58,6 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
                 v.getContext().startActivity(intent);
             }
         });
-
-
 //        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
@@ -83,7 +81,6 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //Hooks
             tv_rating=itemView.findViewById(R.id.tv_rating);
             btn_booknow=itemView.findViewById(R.id.btn_booknow);
             btn_wishlist=itemView.findViewById(R.id.btn_wishlist);
@@ -96,8 +93,6 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
             tv_names=itemView.findViewById(R.id.tv_totaldays);
             tv_brand=itemView.findViewById(R.id.tv_brand);
             tv_title=itemView.findViewById(R.id.tv_title);
-
-
         }
     }
 }
