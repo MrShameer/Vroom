@@ -156,7 +156,7 @@
                     </de.hdodenhof.circleimageview.CircleImageView>
 
                     <Button
-                        android:id="@+id/btn_booknow"
+                        android:id="@+id/btn_viewdetails"
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:backgroundTint="@color/fontcolor"

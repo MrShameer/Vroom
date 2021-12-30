@@ -402,7 +402,7 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_wishlist"
+        android:id="@+id/btn_reject"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="Wishlist"

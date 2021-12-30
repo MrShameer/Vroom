@@ -1,9 +1,7 @@
 package com.example.vroom.ui.vehicle.adapter;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.example.vroom.ui.chat.MessageActivity;
-import com.example.vroom.ui.chat.modal.ChatCard;
 import com.example.vroom.ui.vehicledetails.SetReqDetails;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
 import com.example.vroom.ui.wishlist.Wishlist;
@@ -96,12 +92,12 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);
             tv_brand=itemView.findViewById(R.id.tv_brand);
             iv_lessor=itemView.findViewById(R.id.iv_lessor);
-            btn_booknow=itemView.findViewById(R.id.btn_booknow);
-            btn_wishlist=itemView.findViewById(R.id.btn_wishlist);
-            btn_passanger=itemView.findViewById(R.id.btn_passenger3);
-            btn_door=itemView.findViewById(R.id.btn_door3);
-            btn_luggage=itemView.findViewById(R.id.btn_luggage3);
-            btn_tank=itemView.findViewById(R.id.btn_gas3);
+            btn_booknow=itemView.findViewById(R.id.btn_viewdetails);
+            btn_wishlist=itemView.findViewById(R.id.btn_reject);
+            btn_passanger=itemView.findViewById(R.id.btn_passenger);
+            btn_door=itemView.findViewById(R.id.btn_door);
+            btn_luggage=itemView.findViewById(R.id.btn_luggage);
+            btn_tank=itemView.findViewById(R.id.btn_gas);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

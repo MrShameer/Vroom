@@ -20,7 +20,7 @@
             >
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/iv_bar"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/dark_purple"
@@ -126,7 +126,7 @@
                 android:textSize="22dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/vehiclePic"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_bar" />
 
             <TextView
                 android:id="@+id/tv_totaldays"

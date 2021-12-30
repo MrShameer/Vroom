@@ -71,7 +71,7 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
 
             //Hooks
             tv_rating=itemView.findViewById(R.id.tv_rating);
-            btn_booknow=itemView.findViewById(R.id.btn_booknow);
+            btn_booknow=itemView.findViewById(R.id.btn_viewdetails);
             tv_price=itemView.findViewById(R.id.tv_price);
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);
             tv_lessorname=itemView.findViewById(R.id.tv_totaldays);

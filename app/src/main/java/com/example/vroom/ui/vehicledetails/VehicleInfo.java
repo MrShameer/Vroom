@@ -67,7 +67,7 @@ public class VehicleInfo extends AppCompatActivity {
         });
 
         //setup Wishlist Button
-        btn_wishlist=findViewById(R.id.btn_wishlist);
+        btn_wishlist=findViewById(R.id.btn_reject);
         btn_wishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
