@@ -23,8 +23,8 @@ public class VehicleSucessfull extends AppCompatActivity {
     btn_ok.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-//            Intent intent=new Intent(VehicleSucessfull.this, MainActivity.class);
-//            startActivity(intent);
+            Intent intent=new Intent(VehicleSucessfull.this, MainActivity.class);
+            startActivity(intent);
             finish();
         }
     });

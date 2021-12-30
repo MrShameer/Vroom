@@ -53,7 +53,7 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(v.getContext(), SetReqDetails.class);
-
+                intent.putExtra("PLAT",currentVehicle.getVehicleplat());
                 v.getContext().startActivity(intent);
             }
         });

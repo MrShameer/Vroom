@@ -80,6 +80,7 @@ public class VehicleInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(VehicleInfo.this,SetReqDetails.class);
+                intent.putExtra("PLAT",vehicleDetails.getVehicleplat());
                 startActivity(intent);
             }
         });

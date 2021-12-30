@@ -73,6 +73,7 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(v.getContext(), SetReqDetails.class);
+                intent.putExtra("PLAT",currentVehicle.getVehicleplat());
                 v.getContext().startActivity(intent);
             }
         });
