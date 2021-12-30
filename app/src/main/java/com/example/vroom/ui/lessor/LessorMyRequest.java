@@ -12,11 +12,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vroom.R;
-import com.example.vroom.ui.lessor.tab.LessorTabAccepted;
-import com.example.vroom.ui.lessor.tab.LessorTabListed;
-import com.example.vroom.ui.lessor.tab.LessorTabPending;
-import com.example.vroom.ui.lessor.tab.LessorTabRejected;
-import com.example.vroom.ui.lessor.tab.LessorTabUnlisted;
+import com.example.vroom.ui.lessor.tab.LessorTabRequest;
 import com.google.android.material.tabs.TabLayout;
 
 public class LessorMyRequest extends AppCompatActivity {
@@ -74,13 +70,13 @@ public class LessorMyRequest extends AppCompatActivity {
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    fragment = new LessorTabPending();
+                    fragment =new LessorTabRequest("pending");
                     break;
                 case 1:
-                    fragment = new LessorTabAccepted();
+                    fragment = new LessorTabRequest("accepted");
                     break;
                 case 2:
-                    fragment = new LessorTabRejected();
+                    fragment = new LessorTabRequest("rejected");
                     break;
             }
             return fragment;
