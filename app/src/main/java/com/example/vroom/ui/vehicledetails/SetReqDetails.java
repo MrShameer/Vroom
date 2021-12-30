@@ -32,6 +32,7 @@ public class SetReqDetails extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(SetReqDetails.this, VehicleSucessfull.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
