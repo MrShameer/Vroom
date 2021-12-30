@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="10dp"
+    android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="250dp"
         android:backgroundTint="@color/cardbackground"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,40 +25,57 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/btn_viewdetails"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:text="View Details"
+                android:textSize="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout5"
                 android:layout_width="match_parent"
-                android:layout_height="145dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="70dp"
                 android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_lessor"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/profile_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </de.hdodenhof.circleimageview.CircleImageView>
+            <ImageButton
+                android:id="@+id/ib_list"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:foreground="@drawable/ic_baseline_hide_source_24"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_remove_red_eye_24"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_brand"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_brand"
+                />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
                 android:text="RM"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/fontcolor"
                 android:textSize="18dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/tv_brand"
+                app:layout_constraintTop_toBottomOf="@+id/tv_brand" />
 
             <TextView
                 android:id="@+id/tv_price"
@@ -74,23 +92,22 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
                 android:text="Per Day"
                 android:textColor="@color/textcolour"
                 android:textSize="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView13"
-                app:layout_constraintEnd_toStartOf="@+id/textView13"
-                app:layout_constraintTop_toTopOf="@+id/textView13" />
+                app:layout_constraintEnd_toStartOf="@+id/textView13" />
 
             <ImageView
                 android:id="@+id/iv_vehicle"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
                 android:layout_marginHorizontal="55dp"
-                android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView15"
+                app:layout_constraintTop_toBottomOf="@+id/tv_brand"
                 app:srcCompat="@drawable/perodua_bezza" />
 
             <TextView
@@ -101,10 +118,10 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Myvi City 1.5L"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_purple"
                 android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView5"
@@ -113,9 +130,9 @@
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@color/white"
                 app:cardCornerRadius="5dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_brand"
-                app:layout_constraintStart_toEndOf="@+id/tv_brand"
-                app:layout_constraintTop_toTopOf="@+id/tv_brand">
+                app:layout_constraintBottom_toBottomOf="@+id/btn_gas"
+                app:layout_constraintStart_toEndOf="@+id/btn_gas"
+                app:layout_constraintTop_toTopOf="@+id/btn_gas">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="45dp"
@@ -124,7 +141,7 @@
                     <ImageView
                         android:id="@+id/imageView7"
                         android:layout_width="10dp"
-                        android:layout_height="10dp"
+                        android:layout_height="7dp"
                         android:layout_marginStart="4dp"
                         android:src="@drawable/ic_baseline_star_24"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,22 +182,10 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btn_viewdetails"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Book Now"
-                android:textSize="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
-
-            <Button
                 android:id="@+id/btn_passenger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="20dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:minWidth="0dip"
@@ -194,8 +199,7 @@
                 app:iconSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_brand"
-                app:layout_constraintVertical_bias="0.666" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
             <Button
                 android:id="@+id/btn_door"
@@ -261,17 +265,6 @@
                 app:layout_constraintTop_toTopOf="@+id/btn_luggage"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <Button
-                android:id="@+id/btn_reject"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/gold"
-                android:text="Wishlist"
-                android:textColor="@color/black"
-                android:textSize="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/btn_viewdetails"
-                app:layout_constraintStart_toStartOf="@+id/btn_viewdetails"
-                app:layout_constraintTop_toBottomOf="@+id/btn_viewdetails" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

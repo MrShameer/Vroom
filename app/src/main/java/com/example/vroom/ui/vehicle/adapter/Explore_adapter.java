@@ -100,8 +100,8 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
 
             iv_lessor=itemView.findViewById(R.id.lessorPic);
             tv_rating=itemView.findViewById(R.id.tv_rating);
-            btn_booknow=itemView.findViewById(R.id.btn_booknow);
-            btn_wishlist=itemView.findViewById(R.id.btn_wishlist);
+            btn_booknow=itemView.findViewById(R.id.btn_viewdetails);
+            btn_wishlist=itemView.findViewById(R.id.btn_reject);
             tv_price=itemView.findViewById(R.id.tv_price);
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);
             btn_passenger=itemView.findViewById(R.id.btn_passenger);

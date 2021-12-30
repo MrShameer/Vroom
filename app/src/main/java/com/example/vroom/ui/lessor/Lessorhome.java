@@ -1,5 +1,6 @@
 package com.example.vroom.ui.lessor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class Lessorhome extends AppCompatActivity {
     RecyclerView rc_vehicle;
     RecyclerView.Adapter adapter;
     ImageButton btn_back;
+    Button btn_vehicle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,15 @@ public class Lessorhome extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finishAndRemoveTask();
+            }
+        });
+
+        btn_vehicle=findViewById(R.id.btn_vehicle);
+        btn_vehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Lessorhome.this, LessorMyVehicle.class);
+                startActivity(intent);
             }
         });
     }

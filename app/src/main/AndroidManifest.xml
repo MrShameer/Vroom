@@ -27,6 +27,18 @@
         //activity declaration
         <activity android:name=".ui.chat.MessageActivity" />
         <activity android:name=".ui.vehicledetails.SetReqDetails" />
+        <activity android:name=".ui.lessor.LessorMyVehicle"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".ui.lessor.LessorMyRequest"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.vehicledetails.VehicleInfo"
             android:exported="true">
         </activity>
@@ -48,11 +60,11 @@
             tools:ignore="Instantiatable" />
         <activity android:name=".ui.splash.SplashLoading"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
 
