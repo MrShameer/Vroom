@@ -111,7 +111,7 @@ public class VehicleInfo extends AppCompatActivity {
                     fragment = new TabVehicleDetails(vehicleDetails);
                     break;
                 case 1:
-                    fragment = new TabRating();
+                    fragment = new TabRating(vehicleDetails.getVehicleplat());
                     break;
             }
             return fragment;

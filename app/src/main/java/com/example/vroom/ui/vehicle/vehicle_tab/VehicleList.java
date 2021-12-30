@@ -30,7 +30,7 @@ public class VehicleList extends Fragment {
     RecyclerView recyclerViewCar;
     Request request = new Request();
     Vehicle_adapter vehicle_adapter;
-    List<VehicleDetails> vehicleDetails= new ArrayList<>();
+    List<VehicleDetails> vehicleDetails;
 
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount, currentPage=0, lastPage=1;
@@ -43,6 +43,7 @@ public class VehicleList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        vehicleDetails= new ArrayList<>();
     }
 
     @Override
