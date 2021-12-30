@@ -36,7 +36,7 @@
 
     <string name="wishlist">https://vroom.lepak.xyz/api/wishlist</string>
     <string name="addwishlist">https://vroom.lepak.xyz/api/addwishlist</string>
-    <string name="ratinglist">http://192.168.1.112/vroom-api/public/api/ratinglist</string>
+    <string name="ratinglist">https://vroom.lepak.xyz/api/ratinglist</string>
 
     <string name="requestvehicle">https://vroom.lepak.xyz/api/request</string>
 
