@@ -87,7 +87,7 @@ public class VehicleInfo extends AppCompatActivity {
                 new chattask().execute();
             }
         });
-        //setup Back Button
+
         btn_back=findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +96,6 @@ public class VehicleInfo extends AppCompatActivity {
             }
         });
 
-        //setup Book Button
         btn_book=findViewById(R.id.btn_book);
         btn_book.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +106,6 @@ public class VehicleInfo extends AppCompatActivity {
             }
         });
 
-        //setup Wishlist Button
         btn_wishlist=findViewById(R.id.btn_reject);
         btn_wishlist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,17 +142,13 @@ public class VehicleInfo extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-//            if (!respond.isEmpty()){
                 Intent intent = new Intent(VehicleInfo.this, MessageActivity.class);
                 intent.putExtra("CHAT_ID",chatid);
                 intent.putExtra("ID",id);
                 intent.putExtra("CHAT_NAME", name);
                 startActivity(intent);
-//            }
-
         }
     }
-
 
     public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
         private final String[] tabTitles = new String[]{"Details","Rating"};
@@ -164,17 +158,13 @@ public class VehicleInfo extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = null;
             switch (position) {
                 case 0:
-                    fragment = new TabVehicleDetails(vehicleDetails);
-                    break;
-                case 1:
-                    fragment = new TabRating(vehicleDetails.getVehicleplat());
-                    break;
+                    return new TabVehicleDetails(vehicleDetails);
             }
-            return fragment;
+            return new TabRating(vehicleDetails.getVehicleplat());
         }
+
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
@@ -184,6 +174,5 @@ public class VehicleInfo extends AppCompatActivity {
         public int getCount() {
             return 2;
         }
-
    }
 }

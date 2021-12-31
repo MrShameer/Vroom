@@ -41,9 +41,11 @@
     <string name="requestvehicle">https://vroom.lepak.xyz/api/request</string>
 
     <!--    <string name="status">http://192.168.1.112/vroom-api/public/api/status</string>-->
-    <string name="send">https://vroom.lepak.xyz/api/send</string>
     <string name="status">https://vroom.lepak.xyz/api/status</string>
-    <string name="chatroom">http://192.168.1.112/vroom-api/public/api/chatroom</string>
-    <string name="chatexists">http://192.168.1.112/vroom-api/public/api/chatexists</string>
-    <string name="message">http://192.168.1.112/vroom-api/public/api/message</string>
+    <string name="lessorlist">https://vroom.lepak.xyz/api/lessorlist</string>
+
+    <string name="send">https://vroom.lepak.xyz/api/send</string>
+    <string name="chatroom">https://vroom.lepak.xyz/api/chatroom</string>
+    <string name="chatexists">https://vroom.lepak.xyz/api/chatexists</string>
+    <string name="message">https://vroom.lepak.xyz/api/message</string>
 </resources>
