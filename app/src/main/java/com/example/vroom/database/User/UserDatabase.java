@@ -50,8 +50,8 @@ public abstract class UserDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             //table user (username, full name, email, current address, phone number, password)
-            userDAO.insert(new User("U01", "Anwar Chong", "Mohamad Anwar", "anwarbinbujang@gmail.com",
-                    "No.19 Jalan Surada 2", "+60113735411", "anwarb", "No Document Submitted", "No Document Submitted"));
+//            userDAO.insert(new User("U01", "Anwar Chong", "Mohamad Anwar", "anwarbinbujang@gmail.com",
+//                    "No.19 Jalan Surada 2", "+60113735411", "anwarb", "No Document Submitted", "No Document Submitted"));
 //            userDAO.insert(new User("U01","Anwar Chong","Mohamad Anwar","anwarbinbujang@gmail.com",
 //                    "No.19 Jalan Surada 2","+60113735411","anwarb"));
             return null;

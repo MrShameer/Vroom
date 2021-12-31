@@ -83,7 +83,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
             case StatusName:
                 View v1 = inflater.inflate(R.layout.layout_requeststatus, parent, false);
                 return new StatusViewHolder(v1,viewType);
-            default:
+            default: 
                 View v2 = inflater.inflate(R.layout.cardview_status, parent, false);
                 return new StatusViewHolder(v2,viewType);
         }
@@ -91,7 +91,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
 
     @Override
     public void onBindViewHolder(@NonNull StatusViewHolder holder, int position) {
-
+        //TODO
+        // WARNA LINE ADE PROBLEM BILA SCROLL SEMULA KE BAWAH
         switch (holder.getItemViewType()) {
             case StatusName:
                 StatusName name = (StatusName) list.get(position);
@@ -106,7 +107,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 if (title.equals("accepted")){
                     holder.requestTextView.setText(R.string.AcceptedText);
                     holder.requestTextView.setTextColor(Color.parseColor("#67E405"));
-                    //holder.requestTextView.setHighlightColor(R.color.accepted);
                     holder.btnstatusgreen.setText(R.string.PaymentButton);
                     holder.btnstatusred.setText(R.string.CancleButton);
                     holder.glowbar.setBackgroundResource(R.color.accepted);
@@ -114,7 +114,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 else if (title.equals("rejected")){
                     holder.requestTextView.setText(R.string.RejectedText);
                     holder.requestTextView.setTextColor(Color.parseColor("#E40505"));
-                    // holder.requestTextView.getResources().getColor(R.color.rejected);
                     holder.btnstatusgreen.setText(R.string.ViewMessageButton);
                     holder.btnstatusred.setVisibility(View.GONE);
                     holder.glowbar.setBackgroundResource(R.color.rejected);
@@ -122,8 +121,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 else {
                     holder.requestTextView.setText(R.string.PendingText);
                     holder.requestTextView.setTextColor(Color.parseColor("#FFDC5D"));
-
-                    //holder.requestTextView.getResources().getColor(R.color.pending);
                     holder.btnstatusgreen.setVisibility(View.GONE);
                     holder.btnstatusred.setText(R.string.CancleButton);
                     holder.glowbar.setBackgroundResource(R.color.pending);

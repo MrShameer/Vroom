@@ -165,7 +165,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btn_booknow"
+                android:id="@+id/btn_viewdetails"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
@@ -176,7 +176,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
             <Button
-                android:id="@+id/btn_passenger3"
+                android:id="@+id/btn_passenger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -198,7 +198,7 @@
                 app:layout_constraintVertical_bias="0.666" />
 
             <Button
-                android:id="@+id/btn_door3"
+                android:id="@+id/btn_door"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -213,13 +213,13 @@
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_passenger3"
-                app:layout_constraintStart_toEndOf="@+id/btn_passenger3"
-                app:layout_constraintTop_toTopOf="@+id/btn_passenger3"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_passenger"
+                app:layout_constraintStart_toEndOf="@+id/btn_passenger"
+                app:layout_constraintTop_toTopOf="@+id/btn_passenger"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/btn_luggage3"
+                android:id="@+id/btn_luggage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -235,13 +235,13 @@
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_door3"
-                app:layout_constraintStart_toEndOf="@+id/btn_door3"
-                app:layout_constraintTop_toTopOf="@+id/btn_door3"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_door"
+                app:layout_constraintStart_toEndOf="@+id/btn_door"
+                app:layout_constraintTop_toTopOf="@+id/btn_door"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/btn_gas3"
+                android:id="@+id/btn_gas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -256,22 +256,22 @@
                 app:iconGravity="textEnd"
                 app:iconPadding="4dp"
                 app:iconSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_luggage3"
-                app:layout_constraintStart_toEndOf="@+id/btn_luggage3"
-                app:layout_constraintTop_toTopOf="@+id/btn_luggage3"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_luggage"
+                app:layout_constraintStart_toEndOf="@+id/btn_luggage"
+                app:layout_constraintTop_toTopOf="@+id/btn_luggage"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/btn_wishlist"
+                android:id="@+id/btn_reject"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/gold"
                 android:text="Wishlist"
                 android:textColor="@color/black"
                 android:textSize="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/btn_booknow"
-                app:layout_constraintStart_toStartOf="@+id/btn_booknow"
-                app:layout_constraintTop_toBottomOf="@+id/btn_booknow" />
+                app:layout_constraintEnd_toEndOf="@+id/btn_viewdetails"
+                app:layout_constraintStart_toStartOf="@+id/btn_viewdetails"
+                app:layout_constraintTop_toBottomOf="@+id/btn_viewdetails" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

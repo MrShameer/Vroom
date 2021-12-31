@@ -2,10 +2,13 @@ package com.example.vroom.database.VehicleDetails;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "VehicleDetails_table")
-public class VehicleDetails {
+public class VehicleDetails implements Serializable {
     @PrimaryKey
     @NonNull
     private String vehicleplat;
@@ -23,8 +26,9 @@ public class VehicleDetails {
     private String vehicletank;
     private String vehiclerating;
     private String vehicleprice;
+    private String lessorid;
 
-    public VehicleDetails(@NonNull String vehicleplat, String lessorname, String lessorlocation, String lessorrating,
+    public VehicleDetails(@NonNull String vehicleplat, String lessorname, String lessorid, String lessorlocation, String lessorrating,
                           String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehiclebrand,
                           String vehiclemodel, String vehiclecolor, String vehicleage,
                           String vehicleinsurance, String vehicletank,
@@ -46,6 +50,22 @@ public class VehicleDetails {
         this.vehicleprice = vehicleprice;
     }
 
+    @Ignore
+    public VehicleDetails(String lessorname, String lessorid, String vehicleplat, String vehiclebrand, String vehiclemodel, String vehicleinsurance, String vehicleage, String vehiclepassanger, String vehicledoor, String vehicleluggage, String vehicletank, String vehicleprice){
+        this.vehicleplat = vehicleplat;
+        this.lessorname = lessorname;
+        this.lessorid = lessorid;
+        this.vehiclepassanger = vehiclepassanger;
+        this.vehicledoor = vehicledoor;
+        this.vehicleluggage = vehicleluggage;
+        this.vehiclebrand = vehiclebrand;
+        this.vehiclemodel = vehiclemodel;
+        this.vehicleage = vehicleage;
+        this.vehicleinsurance = vehicleinsurance;
+        this.vehicletank = vehicletank;
+        this.vehicleprice = vehicleprice;
+    }
+
     @NonNull
     public String getVehicleplat() {
         return vehicleplat;
@@ -53,6 +73,10 @@ public class VehicleDetails {
 
     public String getLessorname() {
         return lessorname;
+    }
+
+    public String getLessorid(){
+        return lessorid;
     }
 
     public String getLessorlocation() {

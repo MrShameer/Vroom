@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.vroom.R;
@@ -16,7 +15,6 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_explore, R.string.tab_car, R.string.tab_motorcycle, R.string.tab_van};
-//    private static final int[] TAB_TITLES = new int[]{R.string.tab_explore, R.string.tab_car, R.string.tab_motorcycle, R.string.tab_van, R.string.tab_bicycle};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -27,25 +25,16 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-
-        if(position == 0){
-            return new VehicleExplore();
-        }
-        else if (position == 1){
-            return new VehicleCar();
+        if (position == 1){
+            return new VehicleList("car");
         }
         else if (position == 2){
-            return new VehicleMotorcycle();
+            return new VehicleList("bike");
         }
-//        else
-//            return new VehicleVan();
         else if (position == 3){
-            return new VehicleVan();
+            return new VehicleList("van");
         }
-        return new VehicleBicycle();
-        //return VehicleExplore.newInstance(position + 1);
+        return new VehicleExplore();
     }
 
     @Nullable
@@ -56,7 +45,6 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
-//        return 5;
+        return TAB_TITLES.length;
     }
 }

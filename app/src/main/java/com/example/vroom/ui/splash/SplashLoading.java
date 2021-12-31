@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.Toast;
 
 import com.example.vroom.Login;
 import com.example.vroom.MainActivity;
@@ -21,6 +19,7 @@ import okhttp3.RequestBody;
 
 public class SplashLoading extends AppCompatActivity {
     Request request = new Request();
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +29,9 @@ public class SplashLoading extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond;
+        String respond,id;
+//        String pic;
         JSONObject jsonObject = null;
-        Intent intent;
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -42,6 +41,11 @@ public class SplashLoading extends AppCompatActivity {
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("id")){
+                    //TODO - PERSOALAN AKU
+                    // KALAU USER TU TUKAR PASSWORD KT PHONE LAIN CAMNE?
+                    // BUKAN KE KENE REDIRECT DIA KE LOGIN ON THE CURRENT PHONE?
+
+                    id=jsonObject.getString("id");
                     jsonObject.getString("name");
                     jsonObject.getString("email");
                     jsonObject.getString("role");
@@ -56,6 +60,7 @@ public class SplashLoading extends AppCompatActivity {
                 }
                 startActivity(intent);
                 finish();
+
             } catch (JSONException | InterruptedException e) {
                 e.printStackTrace();
             }
