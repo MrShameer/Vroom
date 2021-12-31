@@ -63,8 +63,8 @@ import okhttp3.RequestBody;
         return chatArrayList;
     }
 
-    public void updatedmessage(String name,String body,String header){
-        chatArrayList.add(new ChatCard(name,body,header));
+    public void updatedmessage(String name,String body,String header, String id){
+        chatArrayList.add(new ChatCard(name,body,header,id));
         chatLiveData.postValue(chatArrayList);
         ChatAdapter chatAdapter=new ChatAdapter();
         chatAdapter.updateChatList(chatArrayList);
@@ -91,12 +91,15 @@ import okhttp3.RequestBody;
 
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
-            respond = request.PostHeader(requestBody, "https://vroom.lepak.xyz/api/chatroom",token);
+            //TODO
+            // TUKAR LINK
+            respond = request.PostHeader(requestBody, "http://192.168.1.112/vroom-api/public/api/chatroom",token);
             try {
                 jsonArray=new JSONArray(respond);
+                System.out.println(respond);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    chatArrayList.add(new ChatCard(jsonObject.getString("name"),jsonObject.getString("message"),jsonObject.getString("chatid")));
+                    chatArrayList.add(new ChatCard(jsonObject.getString("name"),jsonObject.getString("message"),jsonObject.getString("chatid"),jsonObject.getString("id")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

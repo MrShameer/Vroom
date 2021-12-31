@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,7 @@ public class TabRating extends Fragment  {
     ArrayList<ReviewCard> reviewCards;
     Request request = new Request();
     String plat;
+    TextView totalrating;
     public TabRating(String plat) {
         this.plat=plat;
     }
@@ -45,6 +47,7 @@ public class TabRating extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root =inflater.inflate(R.layout.fragment_vehicle_rating, container, false);
+        totalrating=root.findViewById(R.id.tv_totalrating);
         rc_rating=(RecyclerView) root.findViewById(R.id.rc_rating);
         rc_rating.setHasFixedSize(true);
         rc_rating.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
@@ -56,6 +59,7 @@ public class TabRating extends Fragment  {
     private class mytask extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONObject jsonObject = null;
+        JSONArray jsonArray;
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
@@ -65,7 +69,7 @@ public class TabRating extends Fragment  {
                     .build();
             respond = request.PostHeader(requestBody,getString(R.string.ratinglist),token);
             try {
-                JSONArray jsonArray = new JSONArray(respond);
+                jsonArray = new JSONArray(respond);
                 for (int i=0; i<jsonArray.length(); i++){
                     jsonObject = jsonArray.getJSONObject(i);
                     //TODO
@@ -81,6 +85,7 @@ public class TabRating extends Fragment  {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            totalrating.setText(String.valueOf(jsonArray.length()));
             reviewAdapter.setVehicleDetails(reviewCards);
         }
     }

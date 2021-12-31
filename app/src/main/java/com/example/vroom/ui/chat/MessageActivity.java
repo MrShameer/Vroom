@@ -26,7 +26,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class MessageActivity extends AppCompatActivity {
-    String chatid,to;
+    String chatid,to,idother;
     TextView name, send_message;
     Button send_btn;
 
@@ -39,6 +39,7 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         chatid = getIntent().getStringExtra("CHAT_ID");
+        idother=getIntent().getStringExtra("ID");
         name = findViewById(R.id.chatName);
         name.setText(getIntent().getStringExtra("CHAT_NAME"));
         send_message = findViewById(R.id.send_message);
@@ -76,7 +77,7 @@ public class MessageActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray(respond);
                 for (int i=0; i<jsonArray.length(); i++){
                     jsonObject = jsonArray.getJSONObject(i);
-                    to=jsonObject.getString("sender");
+                   // to=jsonObject.getString("sender");
                     messageCards.add(new MessageCard(jsonObject.getString("id"),jsonObject.getString("message"),jsonObject.getString("sender"),jsonObject.getString("created_at")));
                 }
             } catch (JSONException e) {
@@ -101,7 +102,7 @@ public class MessageActivity extends AppCompatActivity {
             String id = TokenHandler.read(TokenHandler.USER_ID, null);
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
-                    .addFormDataPart("to", to)
+                    .addFormDataPart("to", idother)
                     .addFormDataPart("message",send_message.getText().toString())
                     .addFormDataPart("chatid",chatid)
                     .build();
@@ -109,7 +110,6 @@ public class MessageActivity extends AppCompatActivity {
             respond = request.PostHeader(requestBody,getString(R.string.send),token);
             messageCards.add(new MessageCard(null,send_message.getText().toString(),id,null));
             send_message.setText("");
-            //System.out.println(respond);
             return null;
         }
         @Override
