@@ -25,20 +25,16 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        if(position == 0){
-            return new VehicleExplore();
-        }
-        else if (position == 1){
-            return new VehicleList(R.string.carlist);
+        if (position == 1){
+            return new VehicleList("car");
         }
         else if (position == 2){
-            return new VehicleList(R.string.bikelist);
+            return new VehicleList("bike");
         }
         else if (position == 3){
-            return new VehicleList(R.string.vanlist);
+            return new VehicleList("van");
         }
         return new VehicleExplore();
-        //return VehicleExplore.newInstance(position + 1);
     }
 
     @Nullable

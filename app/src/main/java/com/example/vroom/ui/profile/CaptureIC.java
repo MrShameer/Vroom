@@ -33,7 +33,7 @@ public class CaptureIC extends AppCompatActivity {
     FloatingActionButton btn_camera;
     Button btn_done;
     Intent intent;
-    private String userID, username, name, email, address, phone, password, icstatus, dlstatus;
+    private String userID, name, email, address, phone, icstatus, dlstatus;
     private User user;
     private UserViewModel userViewModel;
     private static final int pic_id = 123;
@@ -47,16 +47,6 @@ public class CaptureIC extends AppCompatActivity {
         btn_camera = findViewById(R.id.btn_camera);
         btn_done = findViewById(R.id.btn_done);
         intent = getIntent();
-        ArrayList<String> userdetails = (ArrayList<String>) intent.getSerializableExtra("userdetails");
-        userID = userdetails.get(0);
-        username = userdetails.get(1);
-        name = userdetails.get(2);
-        email = userdetails.get(3);
-        address = userdetails.get(4);
-        phone = userdetails.get(5);
-        password = userdetails.get(6);
-        icstatus = userdetails.get(7);
-        dlstatus = userdetails.get(8);
         AlertDialog.Builder builder = new AlertDialog.Builder(CaptureIC.this);
         builder.setMessage("Empty");
         builder.setTitle("Please Fill in Details !");
@@ -83,7 +73,8 @@ public class CaptureIC extends AppCompatActivity {
                 } else {
                     icstatus = "IC is Under Review";
 //                    user=new User(userID,username,name,email,address,phone,password);
-                    user = new User(userID, username, name, email, address, phone, password, icstatus, dlstatus);
+                    //TODO
+                    user = new User(userID, name, email,"lessee", address, phone, icstatus, dlstatus);
                     user.setUserID(userID);
                     userViewModel.update(user);
                     Intent intent = new Intent(CaptureIC.this, MyDetails.class);
@@ -103,8 +94,6 @@ public class CaptureIC extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-                        // Set the image in imageview for display
                         click_image.setImageBitmap(photo);
                     }
                 }

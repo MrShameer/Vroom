@@ -26,24 +26,26 @@
     <string name="RejectedText">Your Request has Been Rejected</string>
     <string name="PendingText">The Lessor have not responded yet</string>
 
-    <string name="login">http://192.168.1.112/vroom-api/public/api/login</string>
+    <string name="login">https://vroom.lepak.xyz/api/login</string>
     <string name="register">https://vroom.lepak.xyz/api/register</string>
     <string name="validate">https://vroom.lepak.xyz/api/validate</string>
     <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
 <!--    <string name="profilepic">http://192.168.1.112/vroom-api/public/storage/picture/profile/</string>-->
 
-    <string name="carlist">https://vroom.lepak.xyz/api/carlist</string>
-    <string name="bikelist">https://vroom.lepak.xyz/api/bikelist</string>
-    <string name="bicyclelist">https://vroom.lepak.xyz/api/bicyclelist</string>
-    <string name="vanlist">https://vroom.lepak.xyz/api/vanlist</string>
+    <string name="vehiclelist">https://vroom.lepak.xyz/api/vehiclelist</string>
 
     <string name="wishlist">https://vroom.lepak.xyz/api/wishlist</string>
     <string name="addwishlist">https://vroom.lepak.xyz/api/addwishlist</string>
+    <string name="ratinglist">https://vroom.lepak.xyz/api/ratinglist</string>
+
+    <string name="requestvehicle">https://vroom.lepak.xyz/api/request</string>
 
     <!--    <string name="status">http://192.168.1.112/vroom-api/public/api/status</string>-->
-    <string name="send">https://vroom.lepak.xyz/api/send</string>
     <string name="status">https://vroom.lepak.xyz/api/status</string>
+    <string name="lessorlist">https://vroom.lepak.xyz/api/lessorlist</string>
+
+    <string name="send">https://vroom.lepak.xyz/api/send</string>
     <string name="chatroom">https://vroom.lepak.xyz/api/chatroom</string>
+    <string name="chatexists">https://vroom.lepak.xyz/api/chatexists</string>
     <string name="message">https://vroom.lepak.xyz/api/message</string>
-<!--    <string name="tokentemporary">2KEzU8QwUycdAjWpVFcqjTE9ImABLwhU6IoC0y2r</string>-->
 </resources>

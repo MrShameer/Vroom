@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.ui.vehicledetails.model.ReviewCard;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +34,22 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.DesignView
         //main function to bind the design
         //pass down the position
         ReviewCard reviewCard= reviewCards.get(position);
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+reviewCard.getLessorid()+".jpg").into(holder.lessorPic2, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.lessorPic2.setImageResource(R.drawable.profile_image);
+            }
+        });
+
         //set the image
         holder.tv_lessorname.setText(reviewCard.getLessorname());
         holder.tv_review.setText(reviewCard.getReview());
         holder.tv_date.setText(reviewCard.getDate());
 
-//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {
@@ -52,7 +64,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.DesignView
     }
 
     //this will hold the View Design
-    public static class DesignViewHolder extends RecyclerView.ViewHolder{
+    public class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView lessorPic2;
         TextView tv_lessorname, tv_review,tv_date;
 

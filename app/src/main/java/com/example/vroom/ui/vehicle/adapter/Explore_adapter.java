@@ -14,11 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
+import com.example.vroom.ui.vehicledetails.SetReqDetails;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
 import com.example.vroom.ui.wishlist.Wishlist;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.DesignViewHolder> {
     private List<VehicleDetails> vehicleDetails=new ArrayList<>();
@@ -34,6 +39,16 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         //main function to bind the design
         //pass down the position
         VehicleDetails currentVehicle= vehicleDetails.get(position);
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+currentVehicle.getLessorid()+".jpg").into(holder.iv_lessor, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.iv_lessor.setImageResource(R.drawable.profile_image);
+            }
+        });
         //set the image
         holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
         holder.tv_names.setText(currentVehicle.getLessorname());
@@ -47,7 +62,8 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), VehicleInfo.class);
+                Intent intent=new Intent(v.getContext(), SetReqDetails.class);
+                intent.putExtra("PLAT",currentVehicle.getVehicleplat());
                 v.getContext().startActivity(intent);
             }
         });
@@ -55,11 +71,10 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(v.getContext(), Wishlist.class);
+                intent.putExtra("ADD",currentVehicle.getVehicleplat());
                 v.getContext().startActivity(intent);
             }
         });
-
-
 //        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
@@ -75,18 +90,19 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
     }
 
     //this will hold the View Design
-    public static class DesignViewHolder extends RecyclerView.ViewHolder{
+    public class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
+        CircleImageView iv_lessor;
         TextView tv_title, tv_brand,tv_names,tv_price,tv_rating;
         Button btn_passenger,btn_door,btn_luggage,btn_gas,btn_booknow,btn_wishlist;
 
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //Hooks
+            iv_lessor=itemView.findViewById(R.id.lessorPic);
             tv_rating=itemView.findViewById(R.id.tv_rating);
-            btn_booknow=itemView.findViewById(R.id.btn_booknow);
-            btn_wishlist=itemView.findViewById(R.id.btn_wishlist);
+            btn_booknow=itemView.findViewById(R.id.btn_viewdetails);
+            btn_wishlist=itemView.findViewById(R.id.btn_reject);
             tv_price=itemView.findViewById(R.id.tv_price);
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);
             btn_passenger=itemView.findViewById(R.id.btn_passenger);
@@ -97,7 +113,15 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
             tv_brand=itemView.findViewById(R.id.tv_brand);
             tv_title=itemView.findViewById(R.id.tv_title);
 
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    VehicleDetails currentVehicle= vehicleDetails.get(getAdapterPosition());
+                    Intent intent=new Intent(view.getContext(), VehicleInfo.class);
+                    intent.putExtra("VEHICLE_INFO",  currentVehicle);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

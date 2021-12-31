@@ -23,24 +23,27 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class VehicleList extends Fragment {
     RecyclerView recyclerViewCar;
     Request request = new Request();
     Vehicle_adapter vehicle_adapter;
-    List<VehicleDetails> vehicleDetails= new ArrayList<>();
+    List<VehicleDetails> vehicleDetails;
 
     private boolean loading = true;
-    int pastVisiblesItems, visibleItemCount, totalItemCount, currentPage=0, lastPage=1, url;
+    int pastVisiblesItems, visibleItemCount, totalItemCount, currentPage=0, lastPage=1;
+    String type;
 
-    public VehicleList(int url) {
-        this.url=url;
+    public VehicleList(String type) {
+        this.type=type;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        vehicleDetails= new ArrayList<>();
     }
 
     @Override
@@ -80,17 +83,21 @@ public class VehicleList extends Fragment {
     private class send extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONObject jsonObject;
+        RequestBody requestBody;
         @Override
         protected Void doInBackground(Void... voids) {
-            RequestBody requestBody = RequestBody.create(null, new byte[0]);
-            respond = request.RequestPost(requestBody,getString(url)+"?page="+currentPage);
+            requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("type", type)
+                    .build();
+            respond = request.RequestPost(requestBody,getString(R.string.vehiclelist)+"?page="+currentPage);
             try {
                 jsonObject = new JSONObject(respond);
                 lastPage = Integer.parseInt(jsonObject.getString("last_page"));
                 JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
                 for (int i=0; i<jsonArray.length(); i++){
                     jsonObject = jsonArray.getJSONObject(i);
-                    vehicleDetails.add(new VehicleDetails(jsonObject.getString("owner"), jsonObject.getString("plat"), jsonObject.getString("brand"), jsonObject.getString("model"),jsonObject.getString("insurance"), jsonObject.getString("age"),jsonObject.getString("passanger"), jsonObject.getString("door"), jsonObject.getString("luggage"), jsonObject.getString("gallon"), jsonObject.getString("rent")));
+                    vehicleDetails.add(new VehicleDetails(jsonObject.getJSONObject("owner").getString("name"),jsonObject.getJSONObject("owner").getString("id"), jsonObject.getString("plat"), jsonObject.getString("brand"), jsonObject.getString("model"),jsonObject.getString("insurance"), jsonObject.getString("age"),jsonObject.getString("passanger"), jsonObject.getString("door"), jsonObject.getString("luggage"), jsonObject.getString("gallon"), jsonObject.getString("rent")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

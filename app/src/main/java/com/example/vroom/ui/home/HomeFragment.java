@@ -4,8 +4,6 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,7 +32,6 @@ import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
-import com.example.vroom.ui.profile.MyDetails;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -78,16 +75,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 + "/Android/data/"
                 + getActivity().getApplicationContext().getPackageName()
                 + "/Picture/");
-
-        String mImageName = TokenHandler.read(TokenHandler.USER_ID, null)+"."+TokenHandler.read(TokenHandler.USER_PIC, null);
+        String mImageName = TokenHandler.read(TokenHandler.USER_ID, null)+".jpg";
 
         File file = new File(dir, mImageName);
         if(file.exists()){
+            Picasso.get().invalidate(file);
             Picasso.get().load(file).into(user_image);
         }else{
             user_image.setImageResource(R.drawable.profile_image);
         }
-
 
         //Room & userViewModel
         tv_name=(TextView) root.findViewById(R.id.tv_name);
@@ -95,9 +91,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         userViewModel.getGetAllUser().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
-                User currentUser=users.get(0);
-                tv_name.setText(currentUser.getUsername());
-                statusIC=currentUser.getIcstatus();
+//                if (!users.isEmpty()){
+                    User currentUser=users.get(0);
+                    tv_name.setText(currentUser.getName());
+                    statusIC=currentUser.getIcstatus();
+//                }
             }
         });
 
@@ -139,8 +137,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("myCh", "My Channel", NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription("Your IC Has been Reviewed");
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
+
             NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
@@ -153,9 +150,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         notification=builder.build();
         notificationManagerCompat= NotificationManagerCompat.from(root.getContext());
         if(statusIC=="IC is Under Review"){
-            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
             notificationManagerCompat.notify(1,notification);}
-        else {Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
+        else {
+//            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
             notificationManagerCompat.notify(1,notification);}
         return root;
     }

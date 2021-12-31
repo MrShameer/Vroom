@@ -42,6 +42,8 @@
                         android:id="@+id/tv_totaldays"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxWidth="100dp"
+                        android:gravity="center"
                         android:text="Mohamad Vice"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/white"
@@ -301,7 +303,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_vehicle" />
 
             <Button
-                android:id="@+id/btn_booknow"
+                android:id="@+id/btn_viewdetails"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
@@ -312,16 +314,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
             <Button
-                android:id="@+id/btn_wishlist"
+                android:id="@+id/btn_reject"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/gold"
                 android:text="Wishlist"
                 android:textColor="@color/black"
                 android:textSize="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/btn_booknow"
-                app:layout_constraintStart_toStartOf="@+id/btn_booknow"
-                app:layout_constraintTop_toBottomOf="@+id/btn_booknow" />
+                app:layout_constraintEnd_toEndOf="@+id/btn_viewdetails"
+                app:layout_constraintStart_toStartOf="@+id/btn_viewdetails"
+                app:layout_constraintTop_toBottomOf="@+id/btn_viewdetails" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
