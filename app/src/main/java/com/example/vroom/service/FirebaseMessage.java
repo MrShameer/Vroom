@@ -44,7 +44,7 @@ public class FirebaseMessage extends FirebaseMessagingService {
 
         JSONObject message = new JSONObject(remoteMessage.getData());
         //chatAdapter.chatmap.containsKey()
-        chatArrayList.add(new ChatCard("anwar","ollaa","88"));
+        chatArrayList.add(new ChatCard("anwar","ollaa","88","88"));
         //viewModel.getUserMutableLiveData().postValue(chatArrayList);
 //        try {
 //            if (chatAdapter.chatmap.containsKey(message.getString("title")));

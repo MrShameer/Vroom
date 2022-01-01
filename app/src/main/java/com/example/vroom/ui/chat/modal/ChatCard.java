@@ -8,10 +8,11 @@ public class ChatCard implements Serializable {
     String id;
     String chatid;
 
-    public ChatCard(String name, String message, String chatid) {
+    public ChatCard(String name, String message, String chatid, String id) {
         this.name = name;
         this.message = message;
         this.chatid = chatid;
+        this.id=id;
     }
 
     public String getName() {

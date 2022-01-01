@@ -298,9 +298,9 @@
                     android:textColor="@color/white"
                     android:textSize="10dp"
                     android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-                    app:layout_constraintStart_toEndOf="@+id/imageButton2"
-                    app:layout_constraintTop_toTopOf="@+id/imageButton2"></TextView>
+                    app:layout_constraintBottom_toBottomOf="@+id/chatbutton"
+                    app:layout_constraintStart_toEndOf="@+id/chatbutton"
+                    app:layout_constraintTop_toTopOf="@+id/chatbutton"></TextView>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/lessorPic2"
@@ -350,7 +350,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/textView20" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/chatbutton"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:backgroundTint="@android:color/transparent"

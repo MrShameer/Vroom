@@ -16,7 +16,6 @@ import com.example.vroom.ui.lessor.tab.LessorTabRequest;
 import com.google.android.material.tabs.TabLayout;
 
 public class LessorMyRequest extends AppCompatActivity {
-
     ViewPager2 view_pager;
     ImageButton btn_back;
     @Override
@@ -29,7 +28,7 @@ public class LessorMyRequest extends AppCompatActivity {
         btn_back=findViewById(R.id.btn_back);
 
         FragmentManager fm = getSupportFragmentManager();
-        LessorMyRequest.SectionsPagerAdapter sectionsPagerAdapter = new LessorMyRequest.SectionsPagerAdapter(fm, getLifecycle());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(fm, getLifecycle());
         view_pager.setAdapter(sectionsPagerAdapter);
         tabs.addTab(tabs.newTab().setText("Pending"));
         tabs.addTab(tabs.newTab().setText("Accepted"));
@@ -43,14 +42,13 @@ public class LessorMyRequest extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
+
         view_pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -58,8 +56,8 @@ public class LessorMyRequest extends AppCompatActivity {
             }
         });
     }
-    public class SectionsPagerAdapter extends FragmentStateAdapter {
 
+    public class SectionsPagerAdapter extends FragmentStateAdapter {
         public SectionsPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
             super(fragmentManager, lifecycle);
         }
@@ -67,24 +65,18 @@ public class LessorMyRequest extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            Fragment fragment = null;
             switch (position) {
-                case 0:
-                    fragment =new LessorTabRequest("pending");
-                    break;
                 case 1:
-                    fragment = new LessorTabRequest("accepted");
-                    break;
+                    return new LessorTabRequest("accepted");
                 case 2:
-                    fragment = new LessorTabRequest("rejected");
-                    break;
+                    return new LessorTabRequest("rejected");
             }
-            return fragment;
+            return new LessorTabRequest("pending");
         }
 
         @Override
         public int getItemCount() {
-            return 3;        }
+            return 3;
+        }
     }
-
 }

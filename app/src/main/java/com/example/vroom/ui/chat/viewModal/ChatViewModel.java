@@ -30,7 +30,6 @@ import okhttp3.RequestBody;
     private Application application;
     Request request = new Request();
 
-
     private static ChatViewModel _instance;
     public static ChatViewModel getInstance() {
         {
@@ -42,34 +41,20 @@ import okhttp3.RequestBody;
         }
     }
     public ChatViewModel() {
-        // call your Rest API in init method
         chatLiveData = new MutableLiveData<>();
         init();
-//
-//        chatLiveData = new MutableLiveData<>();
-//        // call your Rest API in init method
-//        init();
-//        //chatLiveData.p = chatArrayList
     }
-//    public MutableLiveData<ArrayList<ChatCard>> chatLiveData() {
-//        if (chatLiveData == null) {
-//            chatLiveData = new MutableLiveData<>();
-//            init();
-//        }
-//        return chatLiveData;
-//    }
 
     public ArrayList<ChatCard> getUserArraylist(){
         return chatArrayList;
     }
 
-    public void updatedmessage(String name,String body,String header){
-        chatArrayList.add(new ChatCard(name,body,header));
+    public void updatedmessage(String name,String body,String header, String id){
+        chatArrayList.add(new ChatCard(name,body,header,id));
         chatLiveData.postValue(chatArrayList);
         ChatAdapter chatAdapter=new ChatAdapter();
         chatAdapter.updateChatList(chatArrayList);
         System.out.println(chatArrayList.size()+"RECYCLERVIEW");
-
     }
 
     public MutableLiveData<ArrayList<ChatCard>> getUserMutableLiveData(){
@@ -77,7 +62,6 @@ import okhttp3.RequestBody;
     }
 
     public void init(){
-//        populateList();
         new mytask().execute();
         chatArrayList = new ArrayList<>();
     }
@@ -91,12 +75,15 @@ import okhttp3.RequestBody;
 
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
+            //TODO
+            // TUKAR LINK
             respond = request.PostHeader(requestBody, "https://vroom.lepak.xyz/api/chatroom",token);
             try {
                 jsonArray=new JSONArray(respond);
+                System.out.println(respond);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    chatArrayList.add(new ChatCard(jsonObject.getString("name"),jsonObject.getString("message"),jsonObject.getString("chatid")));
+                    chatArrayList.add(new ChatCard(jsonObject.getString("name"),jsonObject.getString("message"),jsonObject.getString("chatid"),jsonObject.getString("id")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
