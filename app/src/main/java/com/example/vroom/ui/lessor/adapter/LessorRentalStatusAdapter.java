@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.ui.lessor.model.MyRentalStatusData;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,6 +42,17 @@ public class LessorRentalStatusAdapter extends RecyclerView.Adapter<LessorRental
     @Override
     public void onBindViewHolder(@NonNull LessorRentalStatusAdapter.DesignViewHolder holder, int position) {
         MyRentalStatusData currentVehicle= myRentalStatusData.get(position);
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getPlatno()+".png").into(holder.iv_vehicle, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+            }
+        });
+
         holder.tv_rental.setText(currentVehicle.getStatus());
         switch (currentVehicle.getStatus()){
             case "pending":
@@ -107,7 +120,6 @@ public class LessorRentalStatusAdapter extends RecyclerView.Adapter<LessorRental
 
         holder.tv_brand.setText(currentVehicle.getBrand());
         holder.tv_price.setText(currentVehicle.getPrice());
-        holder.iv_vehicle.setImageResource(perodua_bezza);
         holder.btn_passenger.setText(currentVehicle.getPassanger());
         holder.btn_door.setText(currentVehicle.getDoor());
         holder.btn_luggage.setText(currentVehicle.getLuggage());

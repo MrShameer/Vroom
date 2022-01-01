@@ -7,8 +7,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.vroom.ui.chat.viewModal.ChatViewModel;
+
+import java.io.Serializable;
+
 @Entity(tableName = "user_table")
-public class User {
+public class User implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo
@@ -71,10 +75,34 @@ public class User {
         return phone;
     }
 
-
     public String getIcstatus() {return icstatus;}
 
     public String getDlstatus() {return dlstatus;}
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setIcstatus(String icstatus) {
+        this.icstatus = icstatus;
+    }
+
+    public void setDlstatus(String dlstatus) {
+        this.dlstatus = dlstatus;
+    }
 
 
 }

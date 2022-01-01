@@ -89,8 +89,5 @@ public class ProfileFragment extends Fragment {
         super.onResume();
         //TODO
         // GMBR TKNK UBAH BILA BACK, HANYA UBAH BILA REFRESH
-        System.out.println("DKJSAJJDASJKDHKJASHDKJAS");
-//        Picasso.get().load(file).into(user_image);
-//        Picasso.get().invalidate(file);
     }
 }

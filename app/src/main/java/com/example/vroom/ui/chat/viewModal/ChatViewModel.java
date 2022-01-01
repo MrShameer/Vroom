@@ -75,8 +75,6 @@ import okhttp3.RequestBody;
 
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
-            //TODO
-            // TUKAR LINK
             respond = request.PostHeader(requestBody, "https://vroom.lepak.xyz/api/chatroom",token);
             try {
                 jsonArray=new JSONArray(respond);

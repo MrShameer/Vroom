@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -72,7 +73,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
 
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
         getData();
-        //TODO
         btn_efullname=findViewById(R.id.btn_efullname);
         btn_efullname.setOnClickListener(this);
 
@@ -126,6 +126,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 tv_addic.setText(currentUser.getIcstatus());
                 tv_adddriving.setText(currentUser.getDlstatus());
                 //TODO
+                // FIX/SIAPKAN IC AND DRIVING LICENSE
 //                if(userdetails.get(7).equals("IC is Under Review")){
 //                    tv_addic.setTextColor(Color.YELLOW);
 //                    btn_eic.setVisibility(View.INVISIBLE);
@@ -170,6 +171,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 intent.putExtra("DRIVING","");
                 break;
         }
+        intent.putExtra("DATA",  currentUser);
         startActivity(intent);
         finishAndRemoveTask();
     }
@@ -179,7 +181,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
         //TODO
         // HANTR GMBR KE SERVER
-
         if (resultCode== Activity.RESULT_OK){
             Picasso.get().load(data.getData()).into(new Target() {
                 File file;

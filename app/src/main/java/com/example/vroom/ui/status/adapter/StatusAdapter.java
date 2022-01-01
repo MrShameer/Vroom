@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vroom.R;
 import com.example.vroom.ui.status.model.StatusCard;
 import com.example.vroom.ui.status.model.StatusName;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -93,6 +95,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
     public void onBindViewHolder(@NonNull StatusViewHolder holder, int position) {
         //TODO
         // WARNA LINE ADE PROBLEM BILA SCROLL SEMULA KE BAWAH
+        // GAMBR VEHICLE TK KLUAR LAGI
         switch (holder.getItemViewType()) {
             case StatusName:
                 StatusName name = (StatusName) list.get(position);
@@ -103,6 +106,16 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 StatusCard card = (StatusCard) list.get(position);
                 holder.lessorTextView.setText(card.getlessorName());
                 holder.modelTextView.setText(card.getModel());
+
+//                Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getVehicleplat()+".png").into(holder.iv_vehicle, new Callback() {
+//                    @Override
+//                    public void onSuccess() {
+//                    }
+//                    @Override
+//                    public void onError(Exception e) {
+//                        holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+//                    }
+//                });
 
                 if (title.equals("accepted")){
                     holder.requestTextView.setText(R.string.AcceptedText);
