@@ -20,7 +20,7 @@ public class LessorViewRequestDetails extends AppCompatActivity {
     TextView tv_carbrand,tv_startdate,tv_enddate,tv_pickuplocation,tv_pickupdate,tv_cost;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_details);
+        setContentView(R.layout.activity_lessor_request_details);
 
         tv_carbrand=findViewById(R.id.tv_carbrand);
         tv_startdate=findViewById(R.id.tv_startdate);
