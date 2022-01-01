@@ -137,7 +137,6 @@ public class EditMyDetails extends AppCompatActivity {
                     currentuser.setAddress(et_newdetails.getText().toString());
                     break;
                 case "Phone":
-                    System.out.println("dsfdsfsdfsdfsd");
                     currentuser.setPhone(et_newdetails.getText().toString());
                     break;
             }

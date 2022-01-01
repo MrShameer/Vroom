@@ -4,20 +4,15 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vroom.R;
-import com.example.vroom.ui.lessor.tab.LessorTabListed;
-import com.example.vroom.ui.lessor.tab.LessorTabUnlisted;
-import com.example.vroom.ui.vehicledetails.TabRating;
-import com.example.vroom.ui.vehicledetails.TabVehicleDetails;
+import com.example.vroom.ui.lessor.tab.LessorTabList;
 import com.google.android.material.tabs.TabLayout;
 
 public class LessorMyVehicle extends AppCompatActivity {
@@ -46,14 +41,10 @@ public class LessorMyVehicle extends AppCompatActivity {
     }
 
     @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
+    public void onTabUnselected(TabLayout.Tab tab) { }
 
     @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
+    public void onTabReselected(TabLayout.Tab tab) { }
 });
         view_pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
         @Override
@@ -71,21 +62,15 @@ public class LessorMyVehicle extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            Fragment fragment = null;
-            switch (position) {
-                case 0:
-                    fragment = new LessorTabListed();
-                    break;
-                case 1:
-                    fragment = new LessorTabUnlisted();
-                    break;
+            if (position==0) {
+                return new LessorTabList(true);
             }
-            return fragment;
+            return new LessorTabList(false);
         }
 
         @Override
         public int getItemCount() {
-            return 2;        }
+            return 2;
+        }
     }
-
 }
