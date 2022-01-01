@@ -3,6 +3,7 @@ package com.example.vroom.ui.profile;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,19 +18,27 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.vroom.R;
+import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
+
+import org.json.JSONObject;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 
 public class EditMyDetails extends AppCompatActivity {
     Intent intent;
-    private User user;
+    Request request = new Request();
     private UserViewModel userViewModel;
     EditText et_newdetails;
     TextView tv_details,tv_current,tv_titles,tv_new;
     ConstraintLayout cl_hide;
     Button btn_done,btn_cancel;
     ImageView iv_camera;
+    User currentuser;
     private String userID,name, email,address,phone,icstatus,dlstatus;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,15 +75,8 @@ public class EditMyDetails extends AppCompatActivity {
                     alertDialog.show();
                     }
                 else{
-                    eventsetup();
                     //TODO
-                    user=new User(userID,name,email,"lessee",address,phone,icstatus,dlstatus);
-                    user.setUserID(userID);
-                    userViewModel.update(user);
-                    Intent intent=new Intent(EditMyDetails.this,MyDetails.class);
-                    startActivity(intent);
-                    finishAndRemoveTask();
-
+                    new mytask().execute();
                 }
             }
         });
@@ -87,6 +89,7 @@ public class EditMyDetails extends AppCompatActivity {
     }
 
     public void eventsetup(){
+        currentuser = (User) intent.getSerializableExtra("DATA");
         tv_titles.setText("Change "+intent.getStringExtra("TITLE"));
         tv_current.setText("Current "+intent.getStringExtra("TITLE"));
         tv_new.setText("New "+intent.getStringExtra("TITLE"));
@@ -102,6 +105,46 @@ public class EditMyDetails extends AppCompatActivity {
         }
         else if (intent.hasExtra("DRIVING")){
             cl_hide.setVisibility(View.GONE);
+        }
+    }
+
+    private class mytask extends AsyncTask<Void,Void,Void> {
+        String respond,data;
+        JSONObject jsonObject;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+            data=intent.getStringExtra("TITLE");
+            if (!data.equals("I/C") || !data.equals("Driving License")){
+                RequestBody requestBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("column", data.toLowerCase())
+                        .addFormDataPart("data", et_newdetails.getText().toString())
+                        .build();
+                respond = request.PostHeader(requestBody,getString(R.string.updateinfo),token);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            switch (data){
+                case "Name":
+                    currentuser.setName(et_newdetails.getText().toString());
+                    break;
+                case "Address":
+                    currentuser.setAddress(et_newdetails.getText().toString());
+                    break;
+                case "Phone":
+                    System.out.println("dsfdsfsdfsdfsd");
+                    currentuser.setPhone(et_newdetails.getText().toString());
+                    break;
+            }
+            userViewModel.update(currentuser);
+            Intent intent=new Intent(EditMyDetails.this,MyDetails.class);
+            startActivity(intent);
+            finish();
         }
     }
 }

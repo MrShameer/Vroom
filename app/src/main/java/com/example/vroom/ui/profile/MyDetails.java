@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -170,6 +171,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 intent.putExtra("DRIVING","");
                 break;
         }
+        intent.putExtra("DATA",  currentUser);
         startActivity(intent);
         finishAndRemoveTask();
     }

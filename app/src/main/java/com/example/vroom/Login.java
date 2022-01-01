@@ -117,12 +117,11 @@ public class Login extends AppCompatActivity {
                     JSONObject info = jsonObject.getJSONObject("info");
 
                     //TODO
-
                     id=info.getString("id");
                     name=info.getString("name");
                     role=info.getString("role");
-                    address=info.getString("address");
-                    phone=info.getString("phone");
+                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
+                    phone=(info.getString("phone").equals("null")) ? "" : info.getString("phone");
 //                    info.getString("icstatus");
 //                    info.getString("dlstatus");
                     TokenHandler.write("USER_ID",id);
@@ -171,8 +170,6 @@ public class Login extends AppCompatActivity {
                 user.setUserID(id);
                 userViewModel.deleteAll(user);
                 userViewModel.insert(user);
-//                request.test(getString(R.string.profilepic)+id+"."+pic,getApplicationContext().getPackageName()+"/Picture/",id+"."+pic);
-//                Picasso.get().load(getString(R.string.profilepic)+id+"."+pic).into(request.SaveImage(getApplicationContext().getPackageName()+"/Picture/",id+"."+pic));
             }
             else if (jsonObject.has("message")){
                 try {
