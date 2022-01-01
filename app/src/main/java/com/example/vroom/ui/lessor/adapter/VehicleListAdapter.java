@@ -31,8 +31,6 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
     }
     @Override
     public void onBindViewHolder(@NonNull VehicleListAdapter.DesignViewHolder holder, int position) {
-        //main function to bind the design
-        //pass down the position
         VehicleListData currentVehicle= vehicleListData.get(position);
         //set the image
         holder.vehiclePic.setImageResource(R.drawable.perodua_bezza);

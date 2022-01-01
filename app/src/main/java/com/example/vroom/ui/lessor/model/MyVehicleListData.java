@@ -8,7 +8,7 @@ public class MyVehicleListData {
     String luggage;
     String gas;
     String price;
-    String list;
+    Boolean list;
 
     public String getBrand() {
         return brand;
@@ -38,11 +38,11 @@ public class MyVehicleListData {
         return price;
     }
 
-    public String getList() {
+    public Boolean getList() {
         return list;
     }
 
-    public MyVehicleListData(String brand, String rating, String passanger, String door, String luggage, String gas, String price, String list) {
+    public MyVehicleListData(String brand, String rating, String passanger, String door, String luggage, String gas, String price, Boolean list) {
         this.brand = brand;
         this.rating = rating;
         this.passanger = passanger;

@@ -22,39 +22,42 @@ public class LessorMyVehicle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_lessor_myvehicle);
+        setContentView(R.layout.activity_lessor_myvehicle);
 
-    view_pager=findViewById(R.id.view_pager);
-    TabLayout tabs = findViewById(R.id.tabs);
-    btn_back=findViewById(R.id.btn_back);
+        view_pager=findViewById(R.id.view_pager);
+        TabLayout tabs = findViewById(R.id.tabs);
+        btn_back=findViewById(R.id.btn_back);
 
-    FragmentManager fm = getSupportFragmentManager();
-    SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(fm, getLifecycle());
-    view_pager.setAdapter(sectionsPagerAdapter);
-    tabs.addTab(tabs.newTab().setText("Listed"));
-    tabs.addTab(tabs.newTab().setText("Unlisted"));
+        FragmentManager fm = getSupportFragmentManager();
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(fm, getLifecycle());
+        view_pager.setAdapter(sectionsPagerAdapter);
+        tabs.addTab(tabs.newTab().setText("Listed"));
+        tabs.addTab(tabs.newTab().setText("Unlisted"));
 
-    tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        view_pager.setCurrentItem(tab.getPosition());
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                view_pager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) { }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) { }
+        });
+
+        view_pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabs.selectTab(tabs.getTabAt(position));
+            }
+        });
     }
 
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) { }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) { }
-});
-        view_pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-        @Override
-        public void onPageSelected(int position) {
-            tabs.selectTab(tabs.getTabAt(position));
-        }
-    });
-}
+    //TODO
+    // TAB TK UPDATE BILE TUKAR BALIK
     public class SectionsPagerAdapter extends FragmentStateAdapter {
-
         public SectionsPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
             super(fragmentManager, lifecycle);
         }
@@ -62,6 +65,7 @@ public class LessorMyVehicle extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
+            System.out.println(position);
             if (position==0) {
                 return new LessorTabList(true);
             }

@@ -32,14 +32,15 @@
     <string name="updateinfo">http://192.168.1.112/vroom-api/public/api/updateinfo</string>
     <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
 
-    <string name="vehiclelist">http://192.168.1.112/vroom-api/public/api/vehiclelist</string>
+    <string name="vehiclelist">https://vroom.lepak.xyz/api/vehiclelist</string>
     <string name="wishlist">https://vroom.lepak.xyz/api/wishlist</string>
     <string name="addwishlist">https://vroom.lepak.xyz/api/addwishlist</string>
     <string name="ratinglist">https://vroom.lepak.xyz/api/ratinglist</string>
 
     <string name="requestvehicle">https://vroom.lepak.xyz/api/request</string>
     <string name="status">https://vroom.lepak.xyz/api/status</string>
-    <string name="lessorlist">http://192.168.1.112/vroom-api/public/api/lessorlist</string>
+    <string name="lessorrequest">https://vroom.lepak.xyz/api/lessorrequest</string>
+    <string name="lessorlist">https://vroom.lepak.xyz/api/lessorlist</string>
 
     <string name="send">https://vroom.lepak.xyz/api/send</string>
     <string name="chatroom">https://vroom.lepak.xyz/api/chatroom</string>

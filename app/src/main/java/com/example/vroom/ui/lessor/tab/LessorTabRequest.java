@@ -70,7 +70,7 @@ public class LessorTabRequest extends Fragment {
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("status", status)
                     .build();
-            respond = request.PostHeader(requestBody,getString(R.string.lessorlist),token);
+            respond = request.PostHeader(requestBody,getString(R.string.lessorrequest),token);
             try {
                 jsonArray = new JSONArray(respond);
                 for (int i=0; i<jsonArray.length(); i++){
