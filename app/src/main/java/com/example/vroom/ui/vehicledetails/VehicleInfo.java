@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -41,6 +42,7 @@ public class VehicleInfo extends AppCompatActivity {
     TextView tv_price, tv_lessorname;
     VehicleDetails vehicleDetails;
     CircleImageView iv_lessor;
+    ImageView iv_vehicle;
     String chatid="0",id,name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,17 @@ public class VehicleInfo extends AppCompatActivity {
             @Override
             public void onError(Exception e) {
                 iv_lessor.setImageResource(R.drawable.profile_image);
+            }
+        });
+
+        iv_vehicle=findViewById(R.id.iv_vehicle);
+        Picasso.get().load(getString(R.string.vehiclepic)+vehicleDetails.getVehicleplat()+".png").into(iv_vehicle, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+//                iv_vehicle.setImageResource(R.drawable.profile_image);
             }
         });
 

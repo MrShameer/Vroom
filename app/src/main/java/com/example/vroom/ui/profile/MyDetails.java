@@ -73,7 +73,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
 
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
         getData();
-        //TODO
         btn_efullname=findViewById(R.id.btn_efullname);
         btn_efullname.setOnClickListener(this);
 
@@ -127,6 +126,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 tv_addic.setText(currentUser.getIcstatus());
                 tv_adddriving.setText(currentUser.getDlstatus());
                 //TODO
+                // FIX/SIAPKAN IC AND DRIVING LICENSE
 //                if(userdetails.get(7).equals("IC is Under Review")){
 //                    tv_addic.setTextColor(Color.YELLOW);
 //                    btn_eic.setVisibility(View.INVISIBLE);
@@ -181,7 +181,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
         //TODO
         // HANTR GMBR KE SERVER
-
         if (resultCode== Activity.RESULT_OK){
             Picasso.get().load(data.getData()).into(new Target() {
                 File file;

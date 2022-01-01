@@ -49,8 +49,19 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
                 holder.iv_lessor.setImageResource(R.drawable.profile_image);
             }
         });
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getVehicleplat()+".png").into(holder.iv_vehicle, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+            }
+        });
+
         //set the image
-        holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+
         holder.tv_names.setText(currentVehicle.getLessorname());
         holder.btn_passenger.setText(currentVehicle.getVehiclepassanger());
         holder.btn_door.setText(currentVehicle.getVehicledoor());

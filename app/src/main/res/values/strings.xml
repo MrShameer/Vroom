@@ -31,6 +31,7 @@
     <string name="validate">https://vroom.lepak.xyz/api/validate</string>
     <string name="updateinfo">http://192.168.1.112/vroom-api/public/api/updateinfo</string>
     <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
+    <string name="vehiclepic">https://vroom.lepak.xyz/storage/picture/vehicle/</string>
 
     <string name="vehiclelist">https://vroom.lepak.xyz/api/vehiclelist</string>
     <string name="wishlist">https://vroom.lepak.xyz/api/wishlist</string>

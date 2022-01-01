@@ -22,6 +22,9 @@ import com.example.vroom.ui.lessor.model.VehicleListData;
 import com.example.vroom.ui.vehicle.adapter.Explore_adapter;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
 import com.example.vroom.ui.wishlist.Wishlist;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +47,16 @@ public class VehicleMyVehicleAdapter extends RecyclerView.Adapter<VehicleMyVehic
 
         MyVehicleListData currentVehicle= myVehicleListData.get(position);
         //set the image
-        holder.iv_vehicle.setImageResource(perodua_bezza);
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getPlat()+".png").into(holder.iv_vehicle, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+            }
+        });
+
         holder.btn_passenger.setText(currentVehicle.getPassanger());
         holder.btn_door.setText(currentVehicle.getDoor());
         holder.btn_luggage.setText(currentVehicle.getLuggage());

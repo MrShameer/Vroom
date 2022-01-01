@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.ui.lessor.model.VehicleListData;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +34,17 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
     @Override
     public void onBindViewHolder(@NonNull VehicleListAdapter.DesignViewHolder holder, int position) {
         VehicleListData currentVehicle= vehicleListData.get(position);
-        //set the image
-        holder.vehiclePic.setImageResource(R.drawable.perodua_bezza);
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getPlatno()+".png").into(holder.vehiclePic, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.vehiclePic.setImageResource(R.drawable.perodua_bezza);
+            }
+        });
+
         holder.tv_car.setText(currentVehicle.getBrand());
         holder.tv_totaldays.setText("Total Days Rented (Days): "+currentVehicle.getTotaldays());
         holder.tv_rate.setText("Rate per Days (RM): "+currentVehicle.getRate());

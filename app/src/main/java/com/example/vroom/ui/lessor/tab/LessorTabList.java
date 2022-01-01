@@ -68,13 +68,13 @@ public class LessorTabList extends Fragment {
                     .addFormDataPart("list", String.valueOf(list))
                     .build();
             //FOR THIS PART I'M NOT GONNA PAGINATE
-//            System.out.println("sSSDSADDSFSDFDSFSDF");
             respond = request.PostHeader(requestBody,getString(R.string.lessorlist),token);
             try {
                 JSONArray jsonArray = new JSONArray(respond);
                 for (int i=0; i<jsonArray.length(); i++){
                     jsonObject = jsonArray.getJSONObject(i);
-                    myVehicleListData.add(new MyVehicleListData(jsonObject.getString("brand"),
+                    myVehicleListData.add(new MyVehicleListData(jsonObject.getString("plat"),
+                            jsonObject.getString("brand"),
                             "4.8",
                             jsonObject.getString("passanger"),
                             jsonObject.getString("door"),
