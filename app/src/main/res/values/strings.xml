@@ -30,6 +30,7 @@
     <string name="register">https://vroom.lepak.xyz/api/register</string>
     <string name="validate">https://vroom.lepak.xyz/api/validate</string>
     <string name="updateinfo">http://192.168.1.112/vroom-api/public/api/updateinfo</string>
+    <string name="uploadimage">http://192.168.1.112/vroom-api/public/api/uploadimage</string>
     <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
     <string name="vehiclepic">https://vroom.lepak.xyz/storage/picture/vehicle/</string>
 

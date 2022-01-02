@@ -1,8 +1,11 @@
 package com.example.vroom.ui.profile;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,8 +15,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -25,11 +31,15 @@ import com.example.vroom.database.User.UserViewModel;
 
 import org.json.JSONObject;
 
+import java.io.File;
+
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 
 public class EditMyDetails extends AppCompatActivity {
+    private static final int PICK_IMAGE = 1;
     Intent intent;
     Request request = new Request();
     private UserViewModel userViewModel;
@@ -39,6 +49,7 @@ public class EditMyDetails extends AppCompatActivity {
     Button btn_done,btn_cancel;
     ImageView iv_camera;
     User currentuser;
+    File file;
     private String userID,name, email,address,phone,icstatus,dlstatus;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +97,15 @@ public class EditMyDetails extends AppCompatActivity {
                 finish();
             }
         });
+
+        iv_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
     }
 
     public void eventsetup(){
@@ -100,7 +120,7 @@ public class EditMyDetails extends AppCompatActivity {
         else if (intent.hasExtra("PASSWORD")){
             iv_camera.setVisibility(View.GONE);
         }
-        else if (intent.hasExtra("IC")){
+        else if (intent.hasExtra("I/C")){
             cl_hide.setVisibility(View.GONE);
         }
         else if (intent.hasExtra("DRIVING")){
@@ -108,20 +128,49 @@ public class EditMyDetails extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+//            System.out.println(data.getData().getPath());
+            file=new File(request.getPath(getApplicationContext(),data.getData()));
+            int permissionstorage = ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE);
+            if (permissionstorage != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+//                listPermissionsNeeded.add(Manifest.permission.MANAGE_EXTERNAL_STORAGE);
+            }
+
+            new mytask().execute();
+        }
+    }
+
     private class mytask extends AsyncTask<Void,Void,Void> {
+
         String respond,data;
         JSONObject jsonObject;
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             data=intent.getStringExtra("TITLE");
-            if (!data.equals("I/C") || !data.equals("Driving License")){
+            System.out.println(file);
+            if (data.equals("I/C")){
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("column", data.toLowerCase())
-                        .addFormDataPart("data", et_newdetails.getText().toString())
+                        .addFormDataPart("image",currentuser.getUserID(), RequestBody.create(MediaType.parse("image/*"),file))
+                        .addFormDataPart("path", "identification")
                         .build();
-                respond = request.PostHeader(requestBody,getString(R.string.updateinfo),token);
+                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
+            }
+            else if (data.equals("Driving License")){
+
+            }
+            else{
+//                RequestBody requestBody = new MultipartBody.Builder()
+//                        .setType(MultipartBody.FORM)
+//                        .addFormDataPart("column", data.toLowerCase())
+//                        .addFormDataPart("data", et_newdetails.getText().toString())
+//                        .build();
+//                respond = request.PostHeader(requestBody,getString(R.string.updateinfo),token);
             }
             return null;
         }
