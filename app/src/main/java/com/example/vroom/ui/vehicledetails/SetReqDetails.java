@@ -2,6 +2,7 @@ package com.example.vroom.ui.vehicledetails;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,14 +23,18 @@ import com.example.vroom.database.TokenHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.format.DateFormat;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class SetReqDetails extends AppCompatActivity {
+public class SetReqDetails extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+    int day, month, year, hour, minute;
+    int myday, myMonth, myYear, myHour, myMinute;
     ImageButton btn_back;
     public TextView btn_req;
     public static TextView tv_startdate,tv_enddate;
@@ -82,8 +88,50 @@ public class SetReqDetails extends AppCompatActivity {
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
+        tv_pickupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SetReqDetails.this, SetReqDetails.this,year, month,day);
+                datePickerDialog.show();
+            }
+        });
     }
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        myYear = year;
+        myday = day;
+        myMonth = month;
+        Calendar c = Calendar.getInstance();
+        hour = c.get(Calendar.HOUR);
+        minute = c.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(SetReqDetails.this, SetReqDetails.this, hour, minute, DateFormat.is24HourFormat(this));
+        timePickerDialog.show();
+    }
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        myHour = hourOfDay;
+        myMinute = minute;
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR,myYear);
+        calendar.set(Calendar.MONTH,myMonth);
+        calendar.set(Calendar.DAY_OF_MONTH,myday);
+        calendar.set(Calendar.HOUR_OF_DAY,myHour);
+        calendar.set(Calendar.MINUTE,myMinute);
+        Date date1=calendar.getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+        String pickupdate=formatter.format(date1);
+        tv_pickupdate.setText(pickupdate);
+//        tv_pickupdate.setText("Year: " + myYear + "\n" +
+//                "Month: " + myMonth + "\n" +
+//                "Day: " + myday + "\n" +
+//                "Hour: " + myHour + "\n" +
+//                "Minute: " + myMinute);
 
+    }
     private class mytask extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONObject jsonObject = null;
@@ -146,7 +194,9 @@ public class SetReqDetails extends AppCompatActivity {
             mCalendar.set(Calendar.MONTH,month);
             mCalendar.set(Calendar.DAY_OF_MONTH,day);
             // Get the date in form of string
-            String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy");
+            Date date1=mCalendar.getTime();
+            String selectedDate = formatter.format(date1);
             // Set the textview to the selectedDate String
             tv1.setText(selectedDate);
         }

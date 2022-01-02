@@ -24,6 +24,7 @@ import com.example.vroom.R;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -93,8 +94,7 @@ public class CaptureIC extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
-                        Bitmap photo = (Bitmap) data.getExtras().get("data");
-                        click_image.setImageBitmap(photo);
+                        Picasso photo = (Picasso) data.getExtras().get("data");
                     }
                 }
             });
