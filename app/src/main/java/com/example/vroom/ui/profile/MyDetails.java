@@ -204,6 +204,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                         file.mkdirs();
                     }
                     file = new File(file+"/"+mImageName);
+                    System.out.println(file);
                     new mytask().execute();
                     try {
                         file.createNewFile();
