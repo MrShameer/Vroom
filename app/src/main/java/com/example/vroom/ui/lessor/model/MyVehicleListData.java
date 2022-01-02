@@ -1,6 +1,7 @@
 package com.example.vroom.ui.lessor.model;
 
 public class MyVehicleListData {
+    String plat;
     String brand;
     String rating;
     String passanger;
@@ -8,7 +9,11 @@ public class MyVehicleListData {
     String luggage;
     String gas;
     String price;
-    String list;
+    Boolean list;
+
+    public  String getPlat(){
+        return plat;
+    }
 
     public String getBrand() {
         return brand;
@@ -38,11 +43,12 @@ public class MyVehicleListData {
         return price;
     }
 
-    public String getList() {
+    public Boolean getList() {
         return list;
     }
 
-    public MyVehicleListData(String brand, String rating, String passanger, String door, String luggage, String gas, String price, String list) {
+    public MyVehicleListData(String plat, String brand, String rating, String passanger, String door, String luggage, String gas, String price, Boolean list) {
+        this.plat = plat;
         this.brand = brand;
         this.rating = rating;
         this.passanger = passanger;

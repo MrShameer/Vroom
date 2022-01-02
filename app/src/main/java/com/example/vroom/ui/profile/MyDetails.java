@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,11 +21,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.vroom.R;
+import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
+import com.example.vroom.database.VehicleDetails.VehicleDetails;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,6 +42,9 @@ import java.nio.channels.FileChannel;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class MyDetails extends AppCompatActivity implements View.OnClickListener  {
     private static final int PICK_IMAGE = 1;
@@ -43,8 +55,9 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
     private static final int GALLERY_CODE = 103;
     CircleImageView user_image;
     User currentUser;
+    Request request = new Request();
     String mImageName = TokenHandler.read(TokenHandler.USER_ID, null)+".jpg";
-
+    File file;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mydetails);
@@ -72,7 +85,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
 
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
         getData();
-        //TODO
         btn_efullname=findViewById(R.id.btn_efullname);
         btn_efullname.setOnClickListener(this);
 
@@ -126,6 +138,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 tv_addic.setText(currentUser.getIcstatus());
                 tv_adddriving.setText(currentUser.getDlstatus());
                 //TODO
+                // FIX/SIAPKAN IC AND DRIVING LICENSE
 //                if(userdetails.get(7).equals("IC is Under Review")){
 //                    tv_addic.setTextColor(Color.YELLOW);
 //                    btn_eic.setVisibility(View.INVISIBLE);
@@ -159,30 +172,30 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.btn_epassword:
                 intent.putExtra("TITLE","Password");
-                intent.putExtra("password","");
+                intent.putExtra("PASSWORD","");
                 break;
             case R.id.btn_eic:
                 intent.putExtra("TITLE","I/C");
-                intent.putExtra("IC","");
+                intent.putExtra("I/C","");
                 break;
             case R.id.btn_eadddriving:
                 intent.putExtra("TITLE","Driving License");
                 intent.putExtra("DRIVING","");
                 break;
         }
+        intent.putExtra("DATA",  currentUser);
         startActivity(intent);
         finishAndRemoveTask();
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //TODO
-        // HANTR GMBR KE SERVER
-
+        //TODO: DH SETTLE TAPIIIII BUKAN KENE UPLOAD KE SERVER DULU AND KALO OK BARU TUKAR GMBR KE?
         if (resultCode== Activity.RESULT_OK){
             Picasso.get().load(data.getData()).into(new Target() {
-                File file;
                 @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                     getExternalCacheDir().getParent();
@@ -191,6 +204,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                         file.mkdirs();
                     }
                     file = new File(file+"/"+mImageName);
+                    new mytask().execute();
                     try {
                         file.createNewFile();
                         FileOutputStream ostream = new FileOutputStream(file);
@@ -207,6 +221,22 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 @Override
                 public void onPrepareLoad(Drawable placeHolderDrawable) { }
             });
+        }
+    }
+
+
+    private class mytask extends AsyncTask<Void,Void,Void> {
+        String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+        String respond;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("image",file.getName(), RequestBody.create(MediaType.parse("image/*"),file))
+                    .addFormDataPart("path", "profile")
+                    .build();
+            respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
+            return null;
         }
     }
 }

@@ -21,6 +21,9 @@ public interface UserDAO {
     @Update
     void update(User user);
 
+//    @Query("UPDATE user_table SET order_price=:price WHERE order_id = :id")
+//    void update(Float price, int id);
+
     @Delete
     void delete(User user);
 

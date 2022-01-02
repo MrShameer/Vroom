@@ -29,23 +29,26 @@
     <string name="login">https://vroom.lepak.xyz/api/login</string>
     <string name="register">https://vroom.lepak.xyz/api/register</string>
     <string name="validate">https://vroom.lepak.xyz/api/validate</string>
+    <string name="updateinfo">http://192.168.1.112/vroom-api/public/api/updateinfo</string>
+    <string name="uploadimage">http://192.168.1.112/vroom-api/public/api/uploadimage</string>
     <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
-<!--    <string name="profilepic">http://192.168.1.112/vroom-api/public/storage/picture/profile/</string>-->
+    <string name="vehiclepic">https://vroom.lepak.xyz/storage/picture/vehicle/</string>
 
     <string name="vehiclelist">https://vroom.lepak.xyz/api/vehiclelist</string>
-
     <string name="wishlist">https://vroom.lepak.xyz/api/wishlist</string>
     <string name="addwishlist">https://vroom.lepak.xyz/api/addwishlist</string>
     <string name="ratinglist">https://vroom.lepak.xyz/api/ratinglist</string>
 
     <string name="requestvehicle">https://vroom.lepak.xyz/api/request</string>
-
-    <!--    <string name="status">http://192.168.1.112/vroom-api/public/api/status</string>-->
     <string name="status">https://vroom.lepak.xyz/api/status</string>
+    <string name="lessorrequest">https://vroom.lepak.xyz/api/lessorrequest</string>
     <string name="lessorlist">https://vroom.lepak.xyz/api/lessorlist</string>
 
     <string name="send">https://vroom.lepak.xyz/api/send</string>
     <string name="chatroom">https://vroom.lepak.xyz/api/chatroom</string>
     <string name="chatexists">https://vroom.lepak.xyz/api/chatexists</string>
     <string name="message">https://vroom.lepak.xyz/api/message</string>
+
+    <!--    <string name="profilepic">http://192.168.1.112/vroom-api/public/storage/picture/profile/</string>-->
+    <!--    <string name="status">http://192.168.1.112/vroom-api/public/api/status</string>-->
 </resources>

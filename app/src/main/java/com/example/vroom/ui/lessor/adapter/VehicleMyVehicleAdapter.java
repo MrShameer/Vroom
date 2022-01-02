@@ -22,6 +22,9 @@ import com.example.vroom.ui.lessor.model.VehicleListData;
 import com.example.vroom.ui.vehicle.adapter.Explore_adapter;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
 import com.example.vroom.ui.wishlist.Wishlist;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +44,19 @@ public class VehicleMyVehicleAdapter extends RecyclerView.Adapter<VehicleMyVehic
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull VehicleMyVehicleAdapter.DesignViewHolder holder, int position) {
-        //main function to bind the design
-        //pass down the position
+
         MyVehicleListData currentVehicle= myVehicleListData.get(position);
         //set the image
-        holder.iv_vehicle.setImageResource(perodua_bezza);
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getPlat()+".png").into(holder.iv_vehicle, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+            }
+        });
+
         holder.btn_passenger.setText(currentVehicle.getPassanger());
         holder.btn_door.setText(currentVehicle.getDoor());
         holder.btn_luggage.setText(currentVehicle.getLuggage());
@@ -53,26 +64,17 @@ public class VehicleMyVehicleAdapter extends RecyclerView.Adapter<VehicleMyVehic
         holder.tv_price.setText(currentVehicle.getPrice());
         holder.tv_brand.setText(currentVehicle.getBrand());
         holder.tv_rating.setText(currentVehicle.getRating());
-        String list=currentVehicle.getList();
-        if(list=="list"){holder.ib_list.setForeground(null);}
 
+        if(currentVehicle.getList()){
+            holder.ib_list.setForeground(null);
+        }
 
-
-//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {
         return myVehicleListData.size();
     }
 
-//    @SuppressLint("NotifyDataSetChanged")
-//    public void setVehicleDetails(List<MyVehicleListData>myVehicleListData){
-//        this.myVehicleListData=myVehicleListData;
-//        notifyDataSetChanged();
-//
-//    }
-
-    //this will hold the View Design
     public static class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
         TextView tv_brand,tv_price,tv_rating;
@@ -82,7 +84,6 @@ public class VehicleMyVehicleAdapter extends RecyclerView.Adapter<VehicleMyVehic
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //Hooks
             tv_rating=itemView.findViewById(R.id.tv_rating);
             tv_price=itemView.findViewById(R.id.tv_price);
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);

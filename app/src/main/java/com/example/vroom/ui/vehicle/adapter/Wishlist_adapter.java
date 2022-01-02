@@ -44,7 +44,16 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
             }
         });
 
-        holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getVehicleplat()+".png").into(holder.iv_vehicle, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+            }
+        });
+
         holder.tv_lessorname.setText(currentVehicle.getLessorname());
         holder.tv_rating.setText(currentVehicle.getVehiclerating());
         holder.tv_price.setText(currentVehicle.getVehicleprice());
