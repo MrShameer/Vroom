@@ -68,7 +68,7 @@ public class CaptureDL extends AppCompatActivity {
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 } else {
-                    dlstatus = "Driver's License is Under Review";
+//                    dlstatus = "Driver's License is Under Review";
 //                    user=new User(userID,username,name,email,address,phone,password);
                     //TODO
                     user = new User(userID, name, email, "lessee", address, phone, icstatus, dlstatus);
