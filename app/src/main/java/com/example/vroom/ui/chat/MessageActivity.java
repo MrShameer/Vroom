@@ -77,7 +77,6 @@ public class MessageActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray(respond);
                 for (int i=0; i<jsonArray.length(); i++){
                     jsonObject = jsonArray.getJSONObject(i);
-                   // to=jsonObject.getString("sender");
                     messageCards.add(new MessageCard(jsonObject.getString("id"),jsonObject.getString("message"),jsonObject.getString("sender"),jsonObject.getString("created_at")));
                 }
             } catch (JSONException e) {
@@ -92,7 +91,6 @@ public class MessageActivity extends AppCompatActivity {
             messageAdapter.notifyDataSetChanged();
         }
     }
-
 
     private class send extends AsyncTask<Void,Void,Void> {
         String respond;

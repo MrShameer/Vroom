@@ -1,6 +1,5 @@
 package com.example.vroom.ui.status.adapter;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,16 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.ui.status.model.StatusCard;
 import com.example.vroom.ui.status.model.StatusName;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusViewHolder>  {
@@ -78,9 +72,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
     @NonNull
     @Override
     public StatusViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
         switch (viewType) {
             case StatusName:
                 View v1 = inflater.inflate(R.layout.layout_requeststatus, parent, false);
@@ -113,7 +105,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
 //                    }
 //                    @Override
 //                    public void onError(Exception e) {
-//                        holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+//                        Picasso.get().load(R.drawable.perodua_bezza).into(holder.iv_vehicle);
 //                    }
 //                });
 

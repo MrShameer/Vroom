@@ -53,7 +53,7 @@ public class VehicleMyVehicleAdapter extends RecyclerView.Adapter<VehicleMyVehic
             }
             @Override
             public void onError(Exception e) {
-                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+                Picasso.get().load(R.drawable.perodua_bezza).into(holder.iv_vehicle);
             }
         });
 

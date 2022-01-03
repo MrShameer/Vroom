@@ -54,7 +54,6 @@ public class Wishlist extends AppCompatActivity {
                 finishAndRemoveTask();
             }
         });
-
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {

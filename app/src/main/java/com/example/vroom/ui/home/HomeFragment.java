@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             Picasso.get().invalidate(file);
             Picasso.get().load(file).into(user_image);
         }else{
-            user_image.setImageResource(R.drawable.profile_image);
+            Picasso.get().load(R.drawable.profile_image).into(user_image);
         }
 
         //Room & userViewModel

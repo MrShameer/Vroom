@@ -29,15 +29,13 @@ import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
-
-import org.json.JSONObject;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-
 
 public class EditMyDetails extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
@@ -48,7 +46,7 @@ public class EditMyDetails extends AppCompatActivity {
     TextView tv_details,tv_current,tv_titles,tv_new;
     ConstraintLayout cl_hide;
     Button btn_done,btn_cancel;
-    ImageView iv_camera;
+    ImageView iv_camera, iv_card;
     User currentuser;
     File file;
     String data;
@@ -65,6 +63,7 @@ public class EditMyDetails extends AppCompatActivity {
         btn_cancel=findViewById(R.id.btn_cancel);
         cl_hide=findViewById(R.id.cl_hide);
         iv_camera=findViewById(R.id.iv_camera);
+        iv_card=findViewById(R.id.iv_card);
         intent=getIntent();
 
         AlertDialog.Builder builder= new AlertDialog.Builder(EditMyDetails.this);
@@ -79,36 +78,25 @@ public class EditMyDetails extends AppCompatActivity {
         });
         eventsetup();
 
-        btn_done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(TextUtils.isEmpty(et_newdetails.getText().toString())){
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                    }
-                else{
-                    new mytask().execute();
+        btn_done.setOnClickListener(view -> {
+            if(TextUtils.isEmpty(et_newdetails.getText().toString())){
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 }
+            else{
+                new mytask().execute();
             }
         });
-        btn_cancel.setOnClickListener (new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        btn_cancel.setOnClickListener (view -> finish());
 
-        iv_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int permissionstorage = ContextCompat.checkSelfPermission(EditMyDetails.this, Manifest.permission.READ_EXTERNAL_STORAGE);
-                if (permissionstorage != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(EditMyDetails.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                }else{
-                    Intent intent=new Intent(Intent.ACTION_PICK);
-                    intent.setType("image/*");
-                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-                }
+        iv_camera.setOnClickListener(view -> {
+            int permissionstorage = ContextCompat.checkSelfPermission(EditMyDetails.this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (permissionstorage != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(EditMyDetails.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            }else{
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
     }
@@ -149,6 +137,7 @@ public class EditMyDetails extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             file=new File(request.getPath(getApplicationContext(),data.getData()));
+            Picasso.get().load(data.getData()).into(iv_card);
         }
     }
 
@@ -197,6 +186,12 @@ public class EditMyDetails extends AppCompatActivity {
                     break;
                 case "Phone":
                     currentuser.setPhone(et_newdetails.getText().toString());
+                    break;
+                case "I/C":
+                    currentuser.setIcstatus("review");
+                    break;
+                case "Driving License":
+                    currentuser.setDlstatus("review");
                     break;
             }
             userViewModel.update(currentuser);

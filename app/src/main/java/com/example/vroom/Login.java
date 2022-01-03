@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
-import com.example.vroom.database.User.UserDAO;
-import com.example.vroom.database.User.UserDatabase;
 import com.example.vroom.database.User.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,12 +32,10 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
-import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class Login extends AppCompatActivity {
     Request request = new Request();
@@ -86,12 +82,9 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        btn_signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent = new Intent(Login.this, SignUp.class);
-                startActivity(intent);
-            }
+        btn_signup.setOnClickListener(view -> {
+            intent = new Intent(Login.this, SignUp.class);
+            startActivity(intent);
         });
     }
 
@@ -108,22 +101,20 @@ public class Login extends AppCompatActivity {
                     .addFormDataPart("password", password)
                     .addFormDataPart("fcm",fcmtoken)
                     .build();
-
             respond = request.RequestPost(requestBody,getString(R.string.login));
 
             try {
                 jsonObject = new JSONObject(respond);
                 if (jsonObject.has("access_token")){
                     JSONObject info = jsonObject.getJSONObject("info");
-
                     //TODO
                     id=info.getString("id");
                     name=info.getString("name");
                     role=info.getString("role");
                     address=(info.getString("address").equals("null")) ? "" : info.getString("address");
                     phone=(info.getString("phone").equals("null")) ? "" : info.getString("phone");
-//                    info.getString("icstatus");
-//                    info.getString("dlstatus");
+                    icstatus=info.getString("icverified");
+                    dlstatus=info.getString("dlverified");
                     TokenHandler.write("USER_ID",id);
                     TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));
                     intent = new Intent(Login.this, MainActivity.class);

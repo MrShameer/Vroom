@@ -36,8 +36,6 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
     }
     @Override
     public void onBindViewHolder(@NonNull Explore_adapter.DesignViewHolder holder, int position) {
-        //main function to bind the design
-        //pass down the position
         VehicleDetails currentVehicle= vehicleDetails.get(position);
 
         Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+currentVehicle.getLessorid()+".jpg").into(holder.iv_lessor, new Callback() {
@@ -46,7 +44,7 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
             }
             @Override
             public void onError(Exception e) {
-                holder.iv_lessor.setImageResource(R.drawable.profile_image);
+                Picasso.get().load(R.drawable.profile_image).into(holder.iv_lessor);
             }
         });
 
@@ -56,11 +54,9 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
             }
             @Override
             public void onError(Exception e) {
-                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+                Picasso.get().load(R.drawable.perodua_bezza).into(holder.iv_vehicle);
             }
         });
-
-        //set the image
 
         holder.tv_names.setText(currentVehicle.getLessorname());
         holder.btn_passenger.setText(currentVehicle.getVehiclepassanger());
@@ -86,7 +82,6 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
                 v.getContext().startActivity(intent);
             }
         });
-//        holder.tv_title.setText(VehicleDetails.getVehiclebrand());
     }
     @Override
     public int getItemCount() {
@@ -100,7 +95,6 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
 
     }
 
-    //this will hold the View Design
     public class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
         CircleImageView iv_lessor;

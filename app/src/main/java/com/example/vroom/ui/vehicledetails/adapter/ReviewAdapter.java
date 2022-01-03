@@ -31,8 +31,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.DesignView
     }
     @Override
     public void onBindViewHolder(@NonNull ReviewAdapter.DesignViewHolder holder, int position) {
-        //main function to bind the design
-        //pass down the position
         ReviewCard reviewCard= reviewCards.get(position);
 
         Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+reviewCard.getLessorid()+".jpg").into(holder.lessorPic2, new Callback() {
@@ -41,11 +39,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.DesignView
             }
             @Override
             public void onError(Exception e) {
-                holder.lessorPic2.setImageResource(R.drawable.profile_image);
+                Picasso.get().load(R.drawable.profile_image).into(holder.lessorPic2);
             }
         });
 
-        //set the image
         holder.tv_lessorname.setText(reviewCard.getLessorname());
         holder.tv_review.setText(reviewCard.getReview());
         holder.tv_date.setText(reviewCard.getDate());
@@ -60,10 +57,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.DesignView
     public void setVehicleDetails(List<ReviewCard>reviewCards){
         this.reviewCards=reviewCards;
         notifyDataSetChanged();
-
     }
 
-    //this will hold the View Design
     public class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView lessorPic2;
         TextView tv_lessorname, tv_review,tv_date;
@@ -74,9 +69,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.DesignView
             tv_lessorname=itemView.findViewById(R.id.tv_totaldays);
             tv_review=itemView.findViewById(R.id.tv_review);
             tv_date=itemView.findViewById(R.id.tv_date);
-
-
-
         }
     }
 }

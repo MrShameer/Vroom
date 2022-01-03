@@ -48,7 +48,7 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
             }
             @Override
             public void onError(Exception e) {
-                holder.iv_lessor.setImageResource(R.drawable.profile_image);
+                Picasso.get().load(R.drawable.profile_image).into(holder.iv_lessor);
             }
         });
 
@@ -58,7 +58,7 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
             }
             @Override
             public void onError(Exception e) {
-                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+                Picasso.get().load(R.drawable.perodua_bezza).into(holder.iv_vehicle);
             }
         });
 
@@ -86,8 +86,8 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
                 v.getContext().startActivity(intent);
             }
         });
-
     }
+
     @Override
     public int getItemCount() {
         return vehicleDetails.size();
@@ -99,7 +99,6 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         notifyDataSetChanged();
     }
 
-    //this will hold the View Design
     public class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle;
         CircleImageView iv_lessor;
@@ -109,7 +108,6 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         public DesignViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //Hooks
             tv_rating=itemView.findViewById(R.id.tv_rating);
             tv_price=itemView.findViewById(R.id.tv_price);
             iv_vehicle=itemView.findViewById(R.id.iv_vehicle);

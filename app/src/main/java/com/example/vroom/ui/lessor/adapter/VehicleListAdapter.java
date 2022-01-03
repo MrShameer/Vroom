@@ -41,7 +41,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
             }
             @Override
             public void onError(Exception e) {
-                holder.vehiclePic.setImageResource(R.drawable.perodua_bezza);
+                Picasso.get().load(R.drawable.perodua_bezza).into(holder.vehiclePic);
             }
         });
 

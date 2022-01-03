@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,15 +32,14 @@ public class ProfileFragment extends Fragment {
     private UserViewModel userViewModel;
     TextView tv_myname,tv_email;
     ImageButton btn_edetails;
+    ImageView iv_verified;
     CircleImageView user_image;
     Button btn_lessor;
     File file,dir;
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        user_image=(CircleImageView)root.findViewById(R.id.user_image);
+        user_image= root.findViewById(R.id.user_image);
         dir = new File(Environment.getExternalStorageDirectory()
                 + "/Android/data/"
                 + getActivity().getApplicationContext().getPackageName()
@@ -50,11 +50,12 @@ public class ProfileFragment extends Fragment {
         if(file.exists()){
             Picasso.get().load(file).into(user_image);
         }else{
-            user_image.setImageResource(R.drawable.profile_image);
+            Picasso.get().load(R.drawable.profile_image).into(user_image);
         }
 
-        tv_myname=(TextView) root.findViewById(R.id.tv_myname);
-        tv_email=(TextView) root.findViewById(R.id.tv_email);
+        iv_verified= root.findViewById(R.id.iv_verified);
+        tv_myname= root.findViewById(R.id.tv_myname);
+        tv_email= root.findViewById(R.id.tv_email);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.getGetAllUser().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
             @Override
@@ -62,24 +63,21 @@ public class ProfileFragment extends Fragment {
                 User currentUser=users.get(0);
                 tv_myname.setText(currentUser.getName());
                 tv_email.setText(currentUser.getEmail());
+                if (currentUser.getIcstatus().equals("done") && currentUser.getDlstatus().equals("done")){
+                    Picasso.get().load(R.drawable.ic_baseline_check_circle_24).into(iv_verified);
+                }
             }
         });
-        btn_edetails=(ImageButton) root.findViewById(R.id.btn_edetails);
-        btn_edetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getContext(),MyDetails.class);
-                startActivity(intent);
-            }
+        btn_edetails= root.findViewById(R.id.btn_edetails);
+        btn_edetails.setOnClickListener(view -> {
+            Intent intent=new Intent(getContext(),MyDetails.class);
+            startActivity(intent);
         });
 
         btn_lessor=root.findViewById(R.id.btn_lessor);
-        btn_lessor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getContext(), Lessorhome.class);
-                startActivity(intent);
-            }
+        btn_lessor.setOnClickListener(v -> {
+            Intent intent=new Intent(getContext(), Lessorhome.class);
+            startActivity(intent);
         });
         return root;
     }

@@ -65,7 +65,7 @@ public class VehicleInfo extends AppCompatActivity {
             }
             @Override
             public void onError(Exception e) {
-                iv_lessor.setImageResource(R.drawable.profile_image);
+                Picasso.get().load(R.drawable.profile_image).into(iv_lessor);
             }
         });
 
@@ -76,7 +76,7 @@ public class VehicleInfo extends AppCompatActivity {
             }
             @Override
             public void onError(Exception e) {
-//                iv_vehicle.setImageResource(R.drawable.profile_image);
+                Picasso.get().load(R.drawable.perodua_bezza).into(iv_vehicle);
             }
         });
 

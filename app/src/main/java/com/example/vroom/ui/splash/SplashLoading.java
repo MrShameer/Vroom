@@ -30,7 +30,6 @@ public class SplashLoading extends AppCompatActivity {
 
     private class mytask extends AsyncTask<Void,Void,Void> {
         String respond,id;
-//        String pic;
         JSONObject jsonObject = null;
 
         @Override
@@ -44,14 +43,13 @@ public class SplashLoading extends AppCompatActivity {
                     //TODO - PERSOALAN AKU
                     // KALAU USER TU TUKAR PASSWORD KT PHONE LAIN CAMNE?
                     // BUKAN KE KENE REDIRECT DIA KE LOGIN ON THE CURRENT PHONE?
-
+                    // LAGI SATU SETIPKALI BUKAK KENE CHECK IC AND LESEN KN? SEBAB TAKUT TIBE2 TK VALID DH KE
                     id=jsonObject.getString("id");
                     jsonObject.getString("name");
                     jsonObject.getString("email");
                     jsonObject.getString("role");
                     jsonObject.getString("phone");
-                    //SEMUA NI STORE SEKALI EH
-                    Thread.sleep(2000); //saja nk bgi org tgok dulu
+                    Thread.sleep(2000);
                     intent = new Intent(SplashLoading.this, MainActivity.class);
                 }
                 else {
