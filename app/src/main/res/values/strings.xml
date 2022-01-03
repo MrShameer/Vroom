@@ -17,7 +17,7 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-
+    <string name="spinnertype">Type</string>
     <string name="PaymentButton">Proceed to Payment</string>
     <string name="ViewMessageButton">View Message Sent</string>
     <string name="CancleButton">Cancle Request</string>
