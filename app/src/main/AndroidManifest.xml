@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vroom"
         android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         tools:ignore="ExtraText">
 
         <activity android:name=".ui.chat.MessageActivity" />
@@ -55,6 +56,11 @@
             android:name=".Login"
             android:exported="true"
             android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".ui.wishlist.Wishlist" />
@@ -64,11 +70,11 @@
 
         <activity android:name=".ui.splash.SplashLoading"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity
