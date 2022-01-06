@@ -22,7 +22,7 @@ public class Lessorhome extends AppCompatActivity {
     RecyclerView rc_vehicle;
     RecyclerView.Adapter adapter;
     ImageButton btn_back;
-    Button btn_vehicle,btn_request;
+    Button btn_vehicle,btn_request,btn_addvehicle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +58,14 @@ public class Lessorhome extends AppCompatActivity {
             }
         });
 
+        btn_addvehicle=findViewById(R.id.btn_addvehicle);
+        btn_addvehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Lessorhome.this, LessorAddVehicle.class);
+                startActivity(intent);
+            }
+        });
         btn_request=findViewById(R.id.btn_request);
         btn_request.setOnClickListener(new View.OnClickListener() {
             @Override

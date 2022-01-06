@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+    android:id="@+id/radiogroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RadioButton android:id="@+id/covered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Covered"
+        android:fontFamily="@font/abel"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:checked="true"
+        />
+    <RadioButton android:id="@+id/notcovered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Not Covered"
+        android:fontFamily="@font/abel"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        />
+    </RadioGroup>
+    <Spinner
+        android:id="@+id/spinnerinsurance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+    </Spinner>
+</androidx.appcompat.widget.LinearLayoutCompat>
