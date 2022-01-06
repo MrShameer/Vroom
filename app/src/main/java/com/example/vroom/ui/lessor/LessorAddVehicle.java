@@ -36,9 +36,7 @@ public class LessorAddVehicle extends AppCompatActivity {
     List<String> dayslist = new ArrayList<>();
     List<String> insurancelist = new ArrayList<>();
     List<String> locationlist = new ArrayList<>();
-
     String selectedItem,selectedItem2,brand,model,color,age,platno,startday,endday,insurance,rate,location;
-    Boolean typeselected=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
