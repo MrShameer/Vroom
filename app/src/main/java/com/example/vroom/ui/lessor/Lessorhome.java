@@ -42,37 +42,23 @@ public class Lessorhome extends AppCompatActivity {
         rc_vehicle.setAdapter(adapter);
 
         btn_back=findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finishAndRemoveTask();
-            }
-        });
+        btn_back.setOnClickListener(view -> finishAndRemoveTask());
 
         btn_vehicle=findViewById(R.id.btn_vehicle);
-        btn_vehicle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Lessorhome.this, LessorMyVehicle.class);
-                startActivity(intent);
-            }
+        btn_vehicle.setOnClickListener(v -> {
+            Intent intent = new Intent(Lessorhome.this, LessorMyVehicle.class);
+            startActivity(intent);
         });
 
         btn_addvehicle=findViewById(R.id.btn_addvehicle);
-        btn_addvehicle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Lessorhome.this, LessorAddVehicle.class);
-                startActivity(intent);
-            }
+        btn_addvehicle.setOnClickListener(v -> {
+            Intent intent = new Intent(Lessorhome.this, LessorAddVehicle.class);
+            startActivity(intent);
         });
         btn_request=findViewById(R.id.btn_request);
-        btn_request.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Lessorhome.this, LessorMyRequest.class);
-                startActivity(intent);
-            }
+        btn_request.setOnClickListener(v -> {
+            Intent intent = new Intent(Lessorhome.this, LessorMyRequest.class);
+            startActivity(intent);
         });
 
     }

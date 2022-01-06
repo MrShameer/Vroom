@@ -132,29 +132,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("myCh", "My Channel", NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setDescription("Your IC Has been Reviewed");
-
-            NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(root.getContext(),"myCh")
-                .setSmallIcon(R.drawable.icon)
-                .setContentTitle("Your IC Is Done")
-                .setContentText("Your IC Has been Reviewed")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        notification=builder.build();
-        notificationManagerCompat= NotificationManagerCompat.from(root.getContext());
-        if(statusIC=="IC is Under Review"){
-            //Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
-            notificationManagerCompat.notify(1,notification);}
-        else {
-//            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
-            notificationManagerCompat.notify(1,notification);}
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationChannel channel = new NotificationChannel("myCh", "My Channel", NotificationManager.IMPORTANCE_DEFAULT);
+//            channel.setDescription("Your IC Has been Reviewed");
+//
+//            NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
+//            manager.createNotificationChannel(channel);
+//        }
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(root.getContext(),"myCh")
+//                .setSmallIcon(R.drawable.icon)
+//                .setContentTitle("Your IC Is Done")
+//                .setContentText("Your IC Has been Reviewed")
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+//
+//        notification=builder.build();
+//        notificationManagerCompat= NotificationManagerCompat.from(root.getContext());
+//        if(statusIC=="IC is Under Review"){
+//            //Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
+//            notificationManagerCompat.notify(1,notification);}
+//        else {
+////            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
+//            notificationManagerCompat.notify(1,notification);}
         return root;
     }
     @Override
