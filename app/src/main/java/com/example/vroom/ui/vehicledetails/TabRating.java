@@ -89,5 +89,4 @@ public class TabRating extends Fragment  {
             reviewAdapter.setVehicleDetails(reviewCards);
         }
     }
-
 }

@@ -40,8 +40,7 @@ public class StatusFragment extends Fragment {
     RecyclerView recyclerView;
     StatusAdapter statusAdapter;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_status, container, false);
         recyclerView = root.findViewById(R.id.status_recv);
 

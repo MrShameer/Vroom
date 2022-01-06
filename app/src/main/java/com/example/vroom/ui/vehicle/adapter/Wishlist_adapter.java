@@ -40,7 +40,7 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
             }
             @Override
             public void onError(Exception e) {
-                holder.iv_lessor.setImageResource(R.drawable.profile_image);
+                Picasso.get().load(R.drawable.profile_image).into(holder.iv_lessor);
             }
         });
 
@@ -50,7 +50,7 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
             }
             @Override
             public void onError(Exception e) {
-                holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+                Picasso.get().load(R.drawable.perodua_bezza).into(holder.iv_vehicle);
             }
         });
 
@@ -77,10 +77,8 @@ public class Wishlist_adapter extends RecyclerView.Adapter<Wishlist_adapter.Desi
     public void setWishlistDetails(List<VehicleDetails>vehicleDetails){
         this.vehicleDetails=vehicleDetails;
         notifyDataSetChanged();
-
     }
 
-    //this will hold the View Design
     public class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_vehicle, iv_lessor;
         TextView tv_title, tv_brand,tv_lessorname,tv_rating,tv_price;

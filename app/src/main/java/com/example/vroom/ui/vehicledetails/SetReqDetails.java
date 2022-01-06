@@ -54,9 +54,8 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
         tv_pickupdate=findViewById(R.id.tv_pickupdate);
         tv_cost=findViewById(R.id.tv_cost);
 
-
         intent=getIntent();
-        //setup Back Button
+
         btn_back=findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +77,9 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment("start");
                 newFragment.show(getSupportFragmentManager(), "datePicker");
-
             }
         });
+
         tv_enddate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +87,7 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
+
         tv_pickupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +100,7 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
             }
         });
     }
+
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         myYear = year;
@@ -111,6 +112,7 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(SetReqDetails.this, SetReqDetails.this, hour, minute, DateFormat.is24HourFormat(this));
         timePickerDialog.show();
     }
+
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         myHour = hourOfDay;
@@ -130,8 +132,8 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
 //                "Day: " + myday + "\n" +
 //                "Hour: " + myHour + "\n" +
 //                "Minute: " + myMinute);
-
     }
+
     private class mytask extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONObject jsonObject = null;

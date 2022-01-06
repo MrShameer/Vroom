@@ -52,9 +52,7 @@ public class VehicleExplore extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_vehicle_explore, container, false);
 
         recycleryoumayalsolike=root.findViewById(R.id.rc_youmayalsolike);

@@ -29,18 +29,16 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_activity_wishlist,parent,false);
         return new WishlistAdapter.DesignViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull WishlistAdapter.DesignViewHolder holder, int position) {
-
         WishlistData wishlistDatas=wishlistData.get(position);
-        //set the image
         holder.tv_lessorname.setText(wishlistDatas.getLessorname());
         holder.tv_car.setText(wishlistDatas.getCar());
         holder.tv_rating.setText(wishlistDatas.getRating());
         holder.vehiclePic.setImageResource(R.drawable.perodua_bezza);
-
-
     }
+
     @Override
     public int getItemCount() {
         return wishlistData.size();
@@ -50,10 +48,8 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
     public void setWishlistDetails(List<WishlistData>wishlistData){
         this.wishlistData=wishlistData;
         notifyDataSetChanged();
-
     }
 
-    //this will hold the View Design
     public static class DesignViewHolder extends RecyclerView.ViewHolder{
         ImageView vehiclePic;
         CircleImageView lessorPic3;

@@ -25,12 +25,10 @@ public class TabVehicleDetails extends Fragment  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View root =inflater.inflate(R.layout.fragment_vehicle_details, container, false);
         tv_brand=root.findViewById(R.id.tv_brand);
         tv_brand.setText(vehicleDetails.getVehiclebrand()+" "+vehicleDetails.getVehiclemodel());

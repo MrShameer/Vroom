@@ -67,7 +67,7 @@ public class LessorTabList extends Fragment {
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("list", String.valueOf(list))
                     .build();
-            //FOR THIS PART I'M NOT GONNA PAGINATE
+            //TODO : FOR THIS PART I'M NOT GONNA PAGINATE
             respond = request.PostHeader(requestBody,getString(R.string.lessorlist),token);
             try {
                 JSONArray jsonArray = new JSONArray(respond);

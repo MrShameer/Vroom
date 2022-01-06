@@ -7,8 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,20 +23,12 @@ import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
-import com.example.vroom.database.VehicleDetails.VehicleDetails;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -104,23 +94,16 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         btn_eadddriving.setOnClickListener(this);
 
         btn_eimage=findViewById(R.id.btn_eimage);
-        btn_eimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-            }
+        btn_eimage.setOnClickListener(view -> {
+            Intent intent=new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
         });
 
         btn_back=findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finishAndRemoveTask();
-            }
-        });
+        btn_back.setOnClickListener(view -> finishAndRemoveTask());
     }
+
     @Override
     public void onBackPressed() {
         finishAndRemoveTask();
@@ -135,27 +118,33 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 tv_email.setText(currentUser.getEmail());
                 tv_address.setText(currentUser.getAddress());
                 tv_phone.setText(currentUser.getPhone());
-                tv_addic.setText(currentUser.getIcstatus());
-                tv_adddriving.setText(currentUser.getDlstatus());
-                //TODO
-                // FIX/SIAPKAN IC AND DRIVING LICENSE
-//                if(userdetails.get(7).equals("IC is Under Review")){
-//                    tv_addic.setTextColor(Color.YELLOW);
-//                    btn_eic.setVisibility(View.INVISIBLE);
-//                }
-//                if(userdetails.get(8).equals("Driver's License is Under Review")){
-//                    tv_adddriving.setTextColor(Color.YELLOW);
-//                    btn_eadddriving.setVisibility(View.INVISIBLE);
-//                }
+
+                if (currentUser.getIcstatus().equals("missing")){
+                    tv_addic.setText("Add Identification Card");
+                }else if (currentUser.getIcstatus().equals("review")){
+                    btn_eic.setVisibility(View.GONE);
+                    tv_addic.setText("Identification Card Under Review");
+                }else {
+                    btn_eic.setVisibility(View.GONE);
+                    tv_addic.setText("Identification Card Verified");
+                }
+
+                if (currentUser.getDlstatus().equals("missing")){
+                    tv_adddriving.setText("Add Driving License");
+                }else if (currentUser.getDlstatus().equals("review")){
+                    btn_eadddriving.setVisibility(View.GONE);
+                    tv_adddriving.setText("Driving License Under Review");
+                }else {
+                    btn_eadddriving.setVisibility(View.GONE);
+                    tv_adddriving.setText("Driving License Verified");
+                }
             }
         });
-
     }
 
     @Override
     public void onClick(View view) {
         Intent intent=new Intent(this,EditMyDetails.class);
-//        System.out.println(view.getParent());
         switch (view.getId()) {
             //TODO
             case R.id.btn_efullname:
@@ -188,8 +177,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         finishAndRemoveTask();
     }
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -204,6 +191,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                         file.mkdirs();
                     }
                     file = new File(file+"/"+mImageName);
+                    System.out.println(file);
                     new mytask().execute();
                     try {
                         file.createNewFile();
@@ -223,7 +211,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
             });
         }
     }
-
 
     private class mytask extends AsyncTask<Void,Void,Void> {
         String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
