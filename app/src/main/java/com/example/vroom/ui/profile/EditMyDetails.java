@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -143,6 +144,7 @@ public class EditMyDetails extends AppCompatActivity {
 
     private class mytask extends AsyncTask<Void,Void,Void> {
         String respond;
+        Boolean sucess=false;
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
@@ -163,7 +165,6 @@ public class EditMyDetails extends AppCompatActivity {
                 respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
             }
             else{
-                //TODO : KT DATABASE TABLE USER NK STORE IC AND DRIVING LICENSE KE?
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("column", data.toLowerCase())
@@ -171,30 +172,39 @@ public class EditMyDetails extends AppCompatActivity {
                         .build();
                 respond = request.PostHeader(requestBody,getString(R.string.updateinfo),token);
             }
+
+            if (respond.contains("success")){
+                sucess=true;
+            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            switch (data){
-                case "Name":
-                    currentuser.setName(et_newdetails.getText().toString());
-                    break;
-                case "Address":
-                    currentuser.setAddress(et_newdetails.getText().toString());
-                    break;
-                case "Phone":
-                    currentuser.setPhone(et_newdetails.getText().toString());
-                    break;
-                case "I/C":
-                    currentuser.setIcstatus("review");
-                    break;
-                case "Driving License":
-                    currentuser.setDlstatus("review");
-                    break;
+            if (sucess){
+                switch (data){
+                    case "Name":
+                        currentuser.setName(et_newdetails.getText().toString());
+                        break;
+                    case "Address":
+                        currentuser.setAddress(et_newdetails.getText().toString());
+                        break;
+                    case "Phone":
+                        currentuser.setPhone(et_newdetails.getText().toString());
+                        break;
+                    case "I/C":
+                        currentuser.setIcstatus("review");
+                        break;
+                    case "Driving License":
+                        currentuser.setDlstatus("review");
+                        break;
+                }
+                userViewModel.update(currentuser);
+                Toast.makeText(getBaseContext(),"Your Information Has Been Updated", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(getBaseContext(),"Sorry, A Problem Occur While Updating Your Information ", Toast.LENGTH_LONG).show();
             }
-            userViewModel.update(currentuser);
             finish();
         }
     }
