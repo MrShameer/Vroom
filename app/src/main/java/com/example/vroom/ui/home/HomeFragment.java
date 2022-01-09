@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,12 +27,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
+import com.example.vroom.ui.vehicle.vehicle_tab.VehicleExplore;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -42,23 +45,33 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
-
+    Request request = new Request();
+    int pastVisiblesItems, visibleItemCount, totalItemCount, currentPage=0, lastPage=1;
     private GoogleMap mMap;
     MapView mapview;
     MarkerOptions now,destination;
     Double distance;
     TextView tv_gonow,tv_name;
     LinearLayout ll_map;
+    private boolean loading = true;
     LatLng now1;
     RecyclerView recycler;
+    topvehicle_adapter adapter;
     ScrollView scrollview;
+    ArrayList<VehicleDetails> vehicleDetailsTop;
     private UserViewModel userViewModel;
     private VehicleViewModel vehicleViewModel;
     NotificationManagerCompat notificationManagerCompat;
@@ -101,18 +114,44 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         recycler=(RecyclerView) root.findViewById(R.id.rc_top);
         recycler.setHasFixedSize(true);
-        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+//        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
 
-        final topvehicle_adapter adapter=new topvehicle_adapter();
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recycler.setLayoutManager(llm);
+
+        adapter=new topvehicle_adapter();
         recycler.setAdapter(adapter);
 
-        vehicleViewModel=new ViewModelProvider(this).get(VehicleViewModel.class);
-            vehicleViewModel.getGetAllVehicleDetails().observe(getViewLifecycleOwner(), new Observer<List<VehicleDetails>>() {
+        vehicleDetailsTop=new ArrayList<VehicleDetails>();
+        new task().execute();
+        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onChanged(@Nullable List<VehicleDetails>vehicleDetails) {
-                adapter.setVehicleDetails(vehicleDetails);
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dx > 0) {
+                    visibleItemCount = llm.getChildCount();
+                    totalItemCount = llm.getItemCount();
+                    pastVisiblesItems = llm.findFirstVisibleItemPosition();
+                    if (loading) {
+                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                            loading = false;
+                            if (currentPage<lastPage){
+                                currentPage++;
+                                new task().execute();
+                            }
+                            loading = true;
+                        }
+                    }
+                }
             }
         });
+//        vehicleViewModel=new ViewModelProvider(this).get(VehicleViewModel.class);
+//            vehicleViewModel.getGetAllVehicleDetails().observe(getViewLifecycleOwner(), new Observer<List<VehicleDetails>>() {
+//            @Override
+//            public void onChanged(@Nullable List<VehicleDetails>vehicleDetails) {
+//                adapter.setVehicleDetails(vehicleDetails);
+//            }
+//        });
 
         mapview=(MapView)root.findViewById(R.id.Mapview);
         mapview.getMapAsync(this);
@@ -170,8 +209,37 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         });
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(now1));
+    }
 
-
+    private class task extends AsyncTask<Void,Void,Void> {
+        String respond;
+        JSONObject jsonObject;
+        RequestBody requestBody;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("type", "all")
+                    .build();
+            respond = request.RequestPost(requestBody,getString(R.string.vehiclelist)+"?page="+currentPage);
+            try {
+                jsonObject = new JSONObject(respond);
+                lastPage = Integer.parseInt(jsonObject.getString("last_page"));
+                JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+                for (int i=0; i<jsonArray.length(); i++){
+                    jsonObject = jsonArray.getJSONObject(i);
+                    vehicleDetailsTop.add(new VehicleDetails(jsonObject.getJSONObject("owner").getString("name"),jsonObject.getJSONObject("owner").getString("id"), jsonObject.getString("plat"), jsonObject.getString("brand"), jsonObject.getString("model"),jsonObject.getString("insurance"), jsonObject.getString("age"),jsonObject.getString("passanger"), jsonObject.getString("door"), jsonObject.getString("luggage"), jsonObject.getString("gallon"), jsonObject.getString("rent")));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            adapter.setVehicleDetails(vehicleDetailsTop);
+        }
     }
 
     @Override
