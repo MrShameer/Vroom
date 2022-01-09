@@ -2,6 +2,7 @@ package com.example.vroom.ui.lessor;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -109,6 +110,24 @@ public class LessorAddVehicle extends AppCompatActivity {
         btn_rate.setOnClickListener(v -> showAlertDialogButtonClicked(v,"rate"));
         btn_available.setOnClickListener(v -> showAlertDialogButtonClicked(v,"days"));
         btn_location.setOnClickListener(v -> showAlertDialogButtonClicked(v,"location"));
+
+        btn_condition.setOnClickListener(v -> {
+            Intent intent= new Intent(LessorAddVehicle.this,LessorVehicleImage.class);
+            startActivity(intent);
+        });
+        String newString;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("statusimage");
+                tv_condition.setText("Evaluating");
+                tv_condition.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("statusimage");
+        }
     }
 
 
@@ -135,7 +154,6 @@ public class LessorAddVehicle extends AppCompatActivity {
                 builder.setPositiveButton("OK", (dialog, which) -> {
                     tv_type.setText(selectedItem);
                     tv_type.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
-
                     btn_brand.setEnabled(true);
                     btn_color.setEnabled(true);
                     btn_age.setEnabled(true);
@@ -196,8 +214,6 @@ public class LessorAddVehicle extends AppCompatActivity {
 
                 });
                 break;
-
-
 
             case "age":
                 customLayout=getLayoutInflater().inflate(R.layout.layout_dialog_age,null);

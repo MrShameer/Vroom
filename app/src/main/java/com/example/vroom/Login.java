@@ -152,7 +152,7 @@ public class Login extends AppCompatActivity {
                         }
                     }
                     @Override
-                    public void onBitmapFailed(Exception e, Drawable errorDrawable) { }
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {startActivity(intent);finish();}
                     @Override
                     public void onPrepareLoad(Drawable placeHolderDrawable) { }
                 });

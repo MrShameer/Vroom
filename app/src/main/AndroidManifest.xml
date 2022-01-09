@@ -8,10 +8,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -27,11 +29,7 @@
         <activity android:name=".ui.chat.MessageActivity" />
 
         <activity android:name=".ui.vehicledetails.SetReqDetails" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
 
         <activity android:name=".ui.lessor.LessorMyVehicle"
@@ -49,6 +47,8 @@
         </activity>
 
         <activity android:name=".ui.profile.MyDetails" />
+        <activity android:name=".ui.lessor.LessorVehicleImage" />
+
         <activity android:name=".ui.vehicledetails.VehicleSucessfull" />
         <activity android:name=".ui.profile.EditMyDetails" android:excludeFromRecents="true" />
         <activity android:name=".MainActivity" android:exported="true" android:label="@string/app_name" />

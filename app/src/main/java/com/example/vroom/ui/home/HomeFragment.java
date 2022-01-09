@@ -151,7 +151,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 //            //Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
 //            notificationManagerCompat.notify(1,notification);}
 //        else {
-////            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
 //            notificationManagerCompat.notify(1,notification);}
         return root;
     }
