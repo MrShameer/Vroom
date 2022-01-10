@@ -143,8 +143,16 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("plat", intent.getStringExtra("PLAT"))
+                    .addFormDataPart("total","12345")
+                    .addFormDataPart("payment_type","Online Banking")
+                    .addFormDataPart("payment","2021-12-31")
+                    .addFormDataPart("pickup","2021-12-31")
+                    .addFormDataPart("return","2021-12-31")
+                    .addFormDataPart("location","kajang")
+                    .addFormDataPart("progress","paid")
                     .build();
             respond = request.PostHeader(requestBody,getString(R.string.requestvehicle),token);
+            System.out.println(respond);
             try {
                 jsonObject=new JSONObject(respond);
                 respond=jsonObject.getString("message");
