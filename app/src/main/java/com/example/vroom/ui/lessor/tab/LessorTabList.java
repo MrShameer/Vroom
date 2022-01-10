@@ -50,7 +50,7 @@ public class LessorTabList extends Fragment {
         rc_unlisted=(RecyclerView) root.findViewById(R.id.rc_list);
         rc_unlisted.setHasFixedSize(true);
         rc_unlisted.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
-        myVehicleListData=new ArrayList<MyVehicleListData>();
+        myVehicleListData= new ArrayList<>();
         vehicleMyVehicleAdapter=new VehicleMyVehicleAdapter(myVehicleListData);
         rc_unlisted.setAdapter(vehicleMyVehicleAdapter);
         new mytask().execute();
