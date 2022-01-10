@@ -140,6 +140,7 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+            //ToDO : betulkan parameter
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("plat", intent.getStringExtra("PLAT"))
