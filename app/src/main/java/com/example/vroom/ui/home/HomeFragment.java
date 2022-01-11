@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.database.VehicleDetails.VehicleViewModel;
 import com.example.vroom.ui.home.recyclervire.Topvehicle.topvehicle_adapter;
+import com.example.vroom.ui.profile.LocationPicker;
 import com.example.vroom.ui.vehicle.vehicle_tab.VehicleExplore;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -78,6 +81,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     Notification notification;
     CircleImageView user_image;
     String statusIC;
+    SearchView sv_search;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -101,15 +105,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         //Room & userViewModel
         tv_name=(TextView) root.findViewById(R.id.tv_name);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.getGetAllUser().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
-            @Override
-            public void onChanged(List<User> users) {
+        userViewModel.getGetAllUser().observe(getViewLifecycleOwner(), users -> {
 //                if (!users.isEmpty()){
-                    User currentUser=users.get(0);
-                    tv_name.setText(currentUser.getName());
-                    statusIC=currentUser.getIcstatus();
+                User currentUser=users.get(0);
+                tv_name.setText(currentUser.getName());
+                statusIC=currentUser.getIcstatus();
 //                }
-            }
         });
 
         recycler=(RecyclerView) root.findViewById(R.id.rc_top);
@@ -160,15 +161,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         now=new MarkerOptions().position(now1).title("Marker in Now");
         destination=new MarkerOptions().position(new LatLng(2.9303, 101.7774)).title("Marker in Destination");
         tv_gonow=(TextView)root.findViewById(R.id.tv_gonow);
-        tv_gonow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri gmmIntentUri = Uri.parse("google.navigation:q=2.976329428,+101.78749685&mode=d");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
+        tv_gonow.setOnClickListener(view -> {
+            Uri gmmIntentUri = Uri.parse("google.navigation:q=2.976329428,+101.78749685&mode=d");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
 
-            }
         });
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -192,6 +190,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 //        else {
 //            Toast.makeText(root.getContext(), "Notification On", Toast.LENGTH_SHORT).show();
 //            notificationManagerCompat.notify(1,notification);}
+
+
+        sv_search=(SearchView) root.findViewById(R.id.sv_search);
+        sv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), LocationPicker.class);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
     @Override

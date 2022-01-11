@@ -47,6 +47,7 @@
         </activity>
 
         <activity android:name=".ui.profile.MyDetails" />
+        <activity android:name=".ui.profile.LocationPicker" />
         <activity android:name=".ui.lessor.LessorVehicleImage" />
 
         <activity android:name=".ui.vehicledetails.VehicleSucessfull" />
@@ -88,6 +89,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+<!--        <meta-data-->
+<!--            android:name="com.google.android.maps.v2.API_KEY"-->
+<!--            android:value="AIzaSyCEtLtoQJZrHxVZy0rb7uobFHWZZu-qNtI"  />-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCEtLtoQJZrHxVZy0rb7uobFHWZZu-qNtI" />

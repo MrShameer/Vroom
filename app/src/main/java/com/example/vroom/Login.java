@@ -56,29 +56,26 @@ public class Login extends AppCompatActivity {
 
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                email = ETemail.getEditableText().toString();
-                password = ETpasword.getEditableText().toString();
-                if (email.isEmpty()) {
-                    Toast.makeText(getBaseContext(), "Please put in your email", Toast.LENGTH_SHORT).show();
-                } else if (password.isEmpty()) {
-                    Toast.makeText(getBaseContext(), "Please put in your password", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-                        @Override
-                        public void onComplete(@NonNull Task<String> task) {
-                            if (!task.isSuccessful()) {
-                                return;
-                            }
-                            TokenHandler.init(getApplicationContext());
-                            fcmtoken=task.getResult();
-                            new mytask().execute();
+        btn_login.setOnClickListener(view -> {
+            email = ETemail.getEditableText().toString();
+            password = ETpasword.getEditableText().toString();
+            if (email.isEmpty()) {
+                Toast.makeText(getBaseContext(), "Please put in your email", Toast.LENGTH_SHORT).show();
+            } else if (password.isEmpty()) {
+                Toast.makeText(getBaseContext(), "Please put in your password", Toast.LENGTH_LONG).show();
+            }
+            else {
+                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
                         }
-                    });
-                }
+                        TokenHandler.init(getApplicationContext());
+                        fcmtoken=task.getResult();
+                        new mytask().execute();
+                    }
+                });
             }
         });
 

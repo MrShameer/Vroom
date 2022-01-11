@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Vroom</string>
     <string name="title_home">Home</string>
-    <string name="API_KEY">AIzaSyCEtLtoQJZrHxVZy0rb7uobFHWZZu-qNtI</string>
+<!--    <string name="API_KEY">AIzaSyCEtLtoQJZrHxVZy0rb7uobFHWZZu-qNtI</string>-->
     <string name="title_vehicle">Vehicle</string>
     <string name="title_status">Status</string>
     <string name="title_chat">Chat</string>
