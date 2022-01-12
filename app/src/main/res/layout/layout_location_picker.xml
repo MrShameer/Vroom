@@ -23,12 +23,13 @@
         android:id="@+id/relLayout1">
 
         <ImageView
+            android:id="@+id/ic_magnify"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:id="@+id/ic_magnify"
+            android:layout_marginStart="20dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/places_ic_search"/>
+            android:src="@drawable/quantum_ic_search_grey600_24" />
 
         <AutoCompleteTextView
             android:id="@+id/input_search"
@@ -39,6 +40,7 @@
             android:background="@null"
             android:hint="Enter Address, City or Zip Code"
             android:imeOptions="actionSearch"
+            android:layout_marginStart="10dp"
             android:singleLine="true"
             android:textColor="#fff"
             android:textSize="15sp" />

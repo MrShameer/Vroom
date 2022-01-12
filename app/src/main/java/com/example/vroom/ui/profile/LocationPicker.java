@@ -1,5 +1,6 @@
 package com.example.vroom.ui.profile;
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -16,17 +17,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.libraries.places.api.Places;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.example.vroom.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.Places;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,21 +40,45 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LocationPicker extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener{
+    //widgets
+    private AutoCompleteTextView mSearchText;
+    private ImageView mGps;
+    //vars
+    private Boolean mLocationPermissionsGranted = false;
+    private GoogleMap mMap;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private GoogleApiClient mGoogleApiClient;
+    String[] clicked = {"no"};
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_location_picker);
+        mSearchText = findViewById(R.id.input_search);
+        mGps = findViewById(R.id.ic_gps);
+        getLocationPermission();
+
+    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
@@ -82,53 +110,18 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             new LatLng(-40, -168), new LatLng(71, 136));
 
 
-    //widgets
-    private AutoCompleteTextView mSearchText;
-    private ImageView mGps;
-
-    //vars
-    private Boolean mLocationPermissionsGranted = false;
-    private GoogleMap mMap;
-    private FusedLocationProviderClient mFusedLocationProviderClient;
-    private PlaceAutocompleteAdapter mPlaceAutocompleteAdapter;
-    private GoogleApiClient mGoogleApiClient;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_location_picker);
-        mSearchText = findViewById(R.id.input_search);
-        mGps = findViewById(R.id.ic_gps);
-
-        getLocationPermission();
-
-    }
-
     private void init(){
         Log.d(TAG, "init: initializing");
-
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();
-
-        mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient,
-                LAT_LNG_BOUNDS, null);
-
-        mSearchText.setAdapter(mPlaceAutocompleteAdapter);
 
         mSearchText.setOnEditorActionListener((textView, actionId, keyEvent) -> {
             if(actionId == EditorInfo.IME_ACTION_SEARCH
                     || actionId == EditorInfo.IME_ACTION_DONE
                     || keyEvent.getAction() == KeyEvent.ACTION_DOWN
                     || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
-
+                String searchString = mSearchText.getText().toString();
                 //execute our method for searching
-                geoLocate();
+                geoLocate(searchString);
             }
-
             return false;
         });
 
@@ -140,11 +133,10 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         hideSoftKeyboard();
     }
 
-    private void geoLocate(){
+    private void geoLocate(String searchString){
         Log.d(TAG, "geoLocate: geolocating");
-
-        String searchString = mSearchText.getText().toString();
-
+        StringBuilder sb = new StringBuilder();
+        String result = null;
         Geocoder geocoder = new Geocoder(LocationPicker.this);
         List<Address> list = new ArrayList<>();
         try{
@@ -152,16 +144,24 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         }catch (IOException e){
             Log.e(TAG, "geoLocate: IOException: " + e.getMessage() );
         }
-
         if(list.size() > 0){
             Address address = list.get(0);
-
+            Toast.makeText(this, "Location Found", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "geoLocate: found a location: " + address.toString());
-            //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
 
-            moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,
-                    address.getAddressLine(0));
+            result=address.getAddressLine(0)+" "+
+                    address.getLocality()+" "+
+                    address.getAdminArea()+" "+
+                    address.getPostalCode()+" "
+                    ;
+            mSearchText.getText().clear();
+            mSearchText.setHint(result);
+            moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,address.getAddressLine(0));
         }
+        else{
+            Toast.makeText(this, "Location does not Exist\n"+"Please Input a Real Location", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void getDeviceLocation(){
@@ -172,15 +172,12 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         try{
             if(mLocationPermissionsGranted){
 
-                final Task location = mFusedLocationProviderClient.getLastLocation();
+                @SuppressLint("MissingPermission") final Task location = mFusedLocationProviderClient.getLastLocation();
                 location.addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         Log.d(TAG, "onComplete: found location!");
                         Location currentLocation = (Location) task.getResult();
-
-                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                DEFAULT_ZOOM,
-                                "My Location");
+                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),DEFAULT_ZOOM,"My Location");
 
                     }else{
                         Log.d(TAG, "onComplete: current location is null");
@@ -198,10 +195,25 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
         if(!title.equals("My Location")){
+
             MarkerOptions options = new MarkerOptions()
                     .position(latLng)
-                    .title(title);
+                    .title(title)
+                    .draggable(true);
+
+            mMap.clear();
             mMap.addMarker(options);
+            mMap.setOnMarkerClickListener(marker -> {
+                if(clicked[0] =="no"){
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                Toast.makeText(LocationPicker.this, "Marker Clicked", Toast.LENGTH_SHORT).show();
+                    clicked[0] ="click";}
+                else{ marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    clicked[0] ="no";
+                }
+                return false;
+            });
+
         }
 
         hideSoftKeyboard();
@@ -210,7 +222,6 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     private void initMap(){
         Log.d(TAG, "initMap: initializing map");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-
         mapFragment.getMapAsync(LocationPicker.this);
     }
 
@@ -226,14 +237,10 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
                 mLocationPermissionsGranted = true;
                 initMap();
             }else{
-                ActivityCompat.requestPermissions(this,
-                        permissions,
-                        LOCATION_PERMISSION_REQUEST_CODE);
+                ActivityCompat.requestPermissions(this,permissions,LOCATION_PERMISSION_REQUEST_CODE);
             }
         }else{
-            ActivityCompat.requestPermissions(this,
-                    permissions,
-                    LOCATION_PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this,permissions,LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
 
