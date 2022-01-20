@@ -25,6 +25,8 @@ public class User implements Serializable {
     private String role;
     @ColumnInfo
     private String address;
+//    @ColumnInfo
+//    private String address2;
     @ColumnInfo
     private String phone;
     @ColumnInfo
@@ -33,11 +35,13 @@ public class User implements Serializable {
     private String dlstatus;
 
     public User(String userID, String name, String email, String role, String address, String phone, String icstatus, String dlstatus) {
+//  public User(String userID, String name, String email, String role, String address,String address2, String phone, String icstatus, String dlstatus) {
         this.userID = userID;
         this.name = name;
         this.email = email;
         this.role = role;
         this.address = address;
+//        this.address2 = address2;
         this.phone = phone;
         this.icstatus = icstatus;
         this.dlstatus = dlstatus;
@@ -71,6 +75,10 @@ public class User implements Serializable {
         return address;
     }
 
+//    public String getAddress2() {
+//        return address2;
+//    }
+
     public String getPhone() {
         return phone;
     }
@@ -91,6 +99,10 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
+//    public void setAddress2(String address2) {
+//        this.address = address2;
+//    }
 
     public void setPhone(String phone) {
         this.phone = phone;

@@ -1,6 +1,7 @@
 package com.example.vroom.ui.profile;
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -64,6 +65,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     private FusedLocationProviderClient mFusedLocationProviderClient;
     MaterialButton saveLocation;
     private GoogleApiClient mGoogleApiClient;
+    String current;
     String[] clicked = {"no"};
     final String[] longlat = {"",""};
     String Address="";
@@ -75,7 +77,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         saveLocation=findViewById(R.id.saveLocation);
         mGps = findViewById(R.id.ic_gps);
         getLocationPermission();
-
+        current= getIntent().getStringExtra("TITLE");
         saveLocation.setOnClickListener(v -> {
             //TODO save address line, lat and long dari sini
 //            Address

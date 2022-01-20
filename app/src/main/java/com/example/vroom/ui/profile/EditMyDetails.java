@@ -6,8 +6,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -46,8 +49,9 @@ public class EditMyDetails extends AppCompatActivity {
     EditText et_newdetails;
     TextView tv_details,tv_current,tv_titles,tv_new;
     ConstraintLayout cl_hide;
+    LinearLayoutCompat ll_details;
     Button btn_done,btn_cancel;
-    ImageView iv_camera, iv_card;
+    ImageView iv_camera, iv_card,iv_profile;
     User currentuser;
     File file;
     String data;
@@ -65,18 +69,14 @@ public class EditMyDetails extends AppCompatActivity {
         cl_hide=findViewById(R.id.cl_hide);
         iv_camera=findViewById(R.id.iv_camera);
         iv_card=findViewById(R.id.iv_card);
+        iv_profile=findViewById(R.id.iv_profile);
+        ll_details=findViewById(R.id.ll_details);
         intent=getIntent();
 
         AlertDialog.Builder builder= new AlertDialog.Builder(EditMyDetails.this);
         builder.setMessage("Empty");
         builder.setTitle("Please Fill in Details !");
-        builder.setPositiveButton("Okay",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog,int which)
-            {
-                dialog.cancel();
-            }
-        });
+        builder.setPositiveButton("Okay", (dialog, which) -> dialog.cancel());
         eventsetup();
 
         btn_done.setOnClickListener(view -> {
@@ -95,9 +95,9 @@ public class EditMyDetails extends AppCompatActivity {
             if (permissionstorage != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(EditMyDetails.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             }else{
-                Intent intent=new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(takePicture, 0);
+
             }
         });
     }
@@ -127,18 +127,30 @@ public class EditMyDetails extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
-            Intent intent=new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            for(int a=0;a<=1;a++){
+                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(takePicture, 0);
+            }
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            file=new File(request.getPath(getApplicationContext(),data.getData()));
-            Picasso.get().load(data.getData()).into(iv_card);
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+            int current=0;
+            if(current==0){
+//            file=new File(request.getPath(getApplicationContext(),data.getData()));
+            iv_card.setImageBitmap(selectedImage);
+            current++;
+            }
+            else
+            {
+                iv_profile.setImageBitmap(selectedImage);
+            }
+
+//            Picasso.get().load(data.getData()).into(iv_card);
         }
     }
 
