@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
+import com.example.vroom.database.User.User;
+import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.ui.vehicle.adapter.Explore_adapter;
 import com.example.vroom.ui.vehicle.adapter.Wishlist_adapter;
@@ -29,10 +32,12 @@ import okhttp3.RequestBody;
 
 public class VehicleExplore extends Fragment {
     Request request = new Request();
+    UserViewModel userViewModel;
     ArrayList<VehicleDetails> vehicleDetailswish;
     ArrayList<VehicleDetails> vehicleDetailssuggest;
     Wishlist_adapter adapterWish;
     Explore_adapter adapterExplore;
+    Boolean proceed;
     String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
     int pastVisiblesItems, visibleItemCount, totalItemCount, currentPage=0, lastPage=1;
     private boolean loading = true;
@@ -85,6 +90,19 @@ public class VehicleExplore extends Fragment {
             }
         });
 
+        userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.getGetAllUser().observe(getViewLifecycleOwner(), users -> {
+//                if (!users.isEmpty()){
+            User currentUser=users.get(0);
+            if(currentUser.getIcstatus().equals("verified")&&currentUser.getDlstatus().equals("verified")&&currentUser.getPhone().equals("null")){
+                proceed=true;
+            }
+            else{
+                proceed=false;
+            }
+          adapterExplore.setUserDetails(proceed);
+//                }
+        });
         recyclerwishlist=(RecyclerView) root.findViewById(R.id.rc_wishlist);
         recyclerwishlist.setHasFixedSize(true);
         recyclerwishlist.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
@@ -93,8 +111,11 @@ public class VehicleExplore extends Fragment {
         recyclerwishlist.setAdapter(adapterWish);
         vehicleDetailswish=new ArrayList<VehicleDetails>();
         new wishlisttask().execute();
+
         return root;
     }
+
+
 
     private class wishlisttask extends AsyncTask<Void,Void,Void> {
         String respond;

@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.DesignViewHolder> {
     UserViewModel userViewModel;
     private List<VehicleDetails> vehicleDetails=new ArrayList<>();
-    private List<User> setUserDetails=new ArrayList<>();
+    private Boolean proceed;
     AlertDialog.Builder builder1;
     @NonNull
     @Override
@@ -56,7 +56,6 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
     }
     @Override
     public void onBindViewHolder(@NonNull Explore_adapter.DesignViewHolder holder, int position) {
-        User setUserDetail= setUserDetails.get(position);
 
         VehicleDetails currentVehicle= vehicleDetails.get(position);
         Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+currentVehicle.getLessorid()+".jpg").into(holder.iv_lessor, new Callback() {
@@ -87,7 +86,7 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         holder.tv_brand.setText(currentVehicle.getVehiclebrand()+" "+currentVehicle.getVehiclemodel());
         holder.tv_rating.setText(currentVehicle.getVehiclerating());
         holder.btn_booknow.setOnClickListener(v -> {
-            if(setUserDetail.getDlstatus().equals("complete") || setUserDetail.getIcstatus().equals("complete")|| setUserDetail.getPhone()!="null"){
+            if(proceed){
             Intent intent=new Intent(v.getContext(), SetReqDetails.class);
             intent.putExtra("PLAT",currentVehicle.getVehicleplat());
             v.getContext().startActivity(intent);
@@ -114,8 +113,8 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
 
     }
     @SuppressLint("NotifyDataSetChanged")
-    public void setUserDetails(List<User>setUserDetails){
-        this.setUserDetails=setUserDetails;
+    public void setUserDetails(Boolean proceed){
+        this.proceed=proceed;
         notifyDataSetChanged();
 
     }

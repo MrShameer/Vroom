@@ -124,8 +124,8 @@ public class Login extends AppCompatActivity {
                     dlstatus=info.getString("dlverified");
 
                     //get 2 address
-                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
-                    address2=(info.getString("address").equals("null")) ? "" : info.getString("address");
+//                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
+//                    address2=(info.getString("address").equals("null")) ? "" : info.getString("address");
 
 
                     TokenHandler.write("USER_ID",id);

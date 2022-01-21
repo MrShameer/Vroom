@@ -125,9 +125,9 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
             tv_email.setText(currentUser.getEmail());
             tv_phone.setText(currentUser.getPhone());
 
-            if(currentUser.getAddress().equals("null")){
-                tv_address.setText("Address 1");
-            }
+//            if(currentUser.getAddress().equals("null")){
+//                tv_address.setText("Address 1");
+//            }
             tv_address.setText(currentUser.getAddress());
 
             if (currentUser.getIcstatus().equals("missing")){
