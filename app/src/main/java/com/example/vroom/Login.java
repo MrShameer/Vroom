@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond,id,name,role,address,phone,icstatus,dlstatus;
+        String respond,id,name,role,address,address2,phone,icstatus,dlstatus;
         JSONObject jsonObject = null;
         private User user;
 
@@ -119,10 +119,15 @@ public class Login extends AppCompatActivity {
                     id=info.getString("id");
                     name=info.getString("name");
                     role=info.getString("role");
-//                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
                     phone=(info.getString("phone").equals("null")) ? "" : info.getString("phone");
                     icstatus=info.getString("icverified");
                     dlstatus=info.getString("dlverified");
+
+                    //get 2 address
+                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
+                    address2=(info.getString("address").equals("null")) ? "" : info.getString("address");
+
+
                     TokenHandler.write("USER_ID",id);
                     TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));
                     intent = new Intent(Login.this, MainActivity.class);
@@ -167,7 +172,7 @@ public class Login extends AppCompatActivity {
                     public void onPrepareLoad(Drawable placeHolderDrawable) { }
                 });
 
-                user=new User(id,name,email,role,address,phone,icstatus,dlstatus);
+                user=new User(id,name,email,role,address,address2,phone,icstatus,dlstatus);
                 user.setUserID(id);
                 userViewModel.deleteAll(user);
                 userViewModel.insert(user);
