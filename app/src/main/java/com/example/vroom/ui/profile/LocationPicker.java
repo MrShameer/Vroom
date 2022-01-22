@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vroom.database.User.User;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Marker;
@@ -69,6 +70,10 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     String[] clicked = {"no"};
     final String[] longlat = {"",""};
     String Address="";
+    User currentuser;
+    Intent intent;
+    String data;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,10 +102,9 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
+        eventsetup();
 
         if (mLocationPermissionsGranted) {
-            getDeviceLocation();
-
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -108,8 +112,6 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             }
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
-            init();
         }
     }
 
@@ -146,6 +148,34 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         hideSoftKeyboard();
     }
 
+    public void eventsetup(){
+        intent=getIntent();
+        currentuser = (User) intent.getSerializableExtra("DATA");
+        data = intent.getStringExtra("TITLE");
+        if(data.equals("Address 1")) {
+            Toast.makeText(this,"Event Setup",Toast.LENGTH_SHORT).show();
+            if(currentuser.getAddress().equals(null)){
+
+//                  init();
+                Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
+                getDeviceLocation();
+                init();
+            }
+            else{
+                geoLocate(currentuser.getAddress());
+            }
+        }
+        else{
+            if(currentuser.getAddress2().equals(null)){
+                Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
+                getDeviceLocation();
+                init();
+            }
+            else{
+                geoLocate(currentuser.getAddress2());
+            }
+        }
+    }
     private void geoLocate(String searchString){
         Log.d(TAG, "geoLocate: geolocating");
         String result = null;

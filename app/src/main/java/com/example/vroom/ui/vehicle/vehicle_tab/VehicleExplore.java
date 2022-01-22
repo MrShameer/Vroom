@@ -67,7 +67,7 @@ public class VehicleExplore extends Fragment {
         recycleryoumayalsolike.setLayoutManager(llm);
         adapterExplore=new Explore_adapter();
         recycleryoumayalsolike.setAdapter(adapterExplore);
-        vehicleDetailssuggest=new ArrayList<VehicleDetails>();
+        vehicleDetailssuggest= new ArrayList<>();
         new suggesttask().execute();
         recycleryoumayalsolike.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

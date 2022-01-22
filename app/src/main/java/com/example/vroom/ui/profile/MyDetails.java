@@ -80,6 +80,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         btn_eaddress1.setOnClickListener(v -> {
             Intent intentadd=new Intent(MyDetails.this,LocationPicker.class);
             intentadd.putExtra("TITLE","Address 1");
+            intentadd.putExtra("DATA",  currentUser);
             startActivity(intentadd);
         });
 
@@ -87,6 +88,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         btn_eaddress2.setOnClickListener(v -> {
             Intent intentadd=new Intent(MyDetails.this,LocationPicker.class);
             intentadd.putExtra("TITLE","Address 2");
+            intentadd.putExtra("DATA",  currentUser);
             startActivity(intentadd);
         });
 

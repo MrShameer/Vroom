@@ -21,6 +21,7 @@ import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.ui.profile.EditMyDetails;
+import com.example.vroom.ui.profile.MyDetails;
 import com.example.vroom.ui.vehicledetails.SetReqDetails;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
 import com.example.vroom.ui.wishlist.Wishlist;
@@ -47,7 +48,7 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         builder1.setTitle("Incomplete Details")
                 .setMessage("Please Complete Your User Details Before Requesting Any Rental")
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                    Intent intent=new Intent(parent.getContext(), EditMyDetails.class);
+                    Intent intent=new Intent(parent.getContext(), MyDetails.class);
                     parent.getContext().startActivity(intent);
                 })
                 // A null listener allows the button to dismiss the dialog and take no further action.
@@ -142,14 +143,11 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
             tv_brand=itemView.findViewById(R.id.tv_brand);
             tv_title=itemView.findViewById(R.id.tv_title);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    VehicleDetails currentVehicle= vehicleDetails.get(getAdapterPosition());
-                    Intent intent=new Intent(view.getContext(), VehicleInfo.class);
-                    intent.putExtra("VEHICLE_INFO",  currentVehicle);
-                    view.getContext().startActivity(intent);
-                }
+            itemView.setOnClickListener(view -> {
+                VehicleDetails currentVehicle= vehicleDetails.get(getAdapterPosition());
+                Intent intent=new Intent(view.getContext(), VehicleInfo.class);
+                intent.putExtra("VEHICLE_INFO",  currentVehicle);
+                view.getContext().startActivity(intent);
             });
         }
     }
