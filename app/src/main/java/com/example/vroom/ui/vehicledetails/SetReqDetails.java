@@ -150,7 +150,6 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
                     .addFormDataPart("pickup","2021-12-31")
                     .addFormDataPart("return","2021-12-31")
                     .addFormDataPart("location","kajang")
-                    .addFormDataPart("progress","paid")
                     .build();
             respond = request.PostHeader(requestBody,getString(R.string.requestvehicle),token);
             System.out.println(respond);
