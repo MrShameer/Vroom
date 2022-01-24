@@ -108,7 +108,6 @@ public class Login extends AppCompatActivity {
                     id=info.getString("id");
                     name=info.getString("name");
                     role=info.getString("role");
-                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
                     phone=(info.getString("phone").equals("null")) ? "" : info.getString("phone");
                     icstatus=info.getString("icverified");
                     dlstatus=info.getString("dlverified");

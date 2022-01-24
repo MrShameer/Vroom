@@ -128,6 +128,10 @@ public class LessorAddVehicle extends AppCompatActivity {
         } else {
             newString= (String) savedInstanceState.getSerializable("statusimage");
         }
+
+        btn_submit.setOnClickListener(view -> {
+
+        });
     }
 
 
