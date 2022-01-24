@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
 import com.example.vroom.ui.chat.viewModal.ChatViewModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Entity(tableName = "user_table")
 public class User implements Serializable {
@@ -26,21 +27,34 @@ public class User implements Serializable {
     @ColumnInfo
     private String address;
     @ColumnInfo
+    private String address2;
+    @ColumnInfo
     private String phone;
     @ColumnInfo
     private String icstatus;
     @ColumnInfo
     private String dlstatus;
 
-    public User(String userID, String name, String email, String role, String address, String phone, String icstatus, String dlstatus) {
+
+//    public User(String userID, String name, String email, String role, String phone, String icstatus, String dlstatus,ArrayList<String>addresses) {
+  public User(String userID, String name, String email, String role, String address,String address2, String phone, String icstatus, String dlstatus) {
         this.userID = userID;
         this.name = name;
         this.email = email;
         this.role = role;
         this.address = address;
+        this.address2 = address2;
         this.phone = phone;
         this.icstatus = icstatus;
         this.dlstatus = dlstatus;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
     }
 
     public void setUserID(@NonNull String userID) {
@@ -70,6 +84,7 @@ public class User implements Serializable {
     public String getAddress() {
         return address;
     }
+
 
     public String getPhone() {
         return phone;

@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.vroom.R;
@@ -29,7 +28,6 @@ import com.squareup.picasso.Target;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -40,7 +38,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
     private static final int PICK_IMAGE = 1;
     private UserViewModel userViewModel;
     Button btn_eimage;
-    ImageButton btn_back,btn_efullname,btn_eemail,btn_eaddress,btn_ephone,btn_epassword,btn_eic,btn_eadddriving;
+    ImageButton btn_back,btn_efullname,btn_eemail,btn_eaddress1,btn_eaddress2,btn_ephone,btn_epassword,btn_eic,btn_eadddriving;
     TextView tv_fullname,tv_email,tv_address,tv_phone,tv_addic,tv_adddriving;
     private static final int GALLERY_CODE = 103;
     CircleImageView user_image;
@@ -66,7 +64,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
             user_image.setImageResource(R.drawable.profile_image);
         }
 
-        tv_fullname=findViewById(R.id.tv_fullname);
+        tv_fullname=findViewById(R.id.tv_address1);
         tv_email=findViewById(R.id.tv_email);
         tv_address=findViewById(R.id.tv_address);
         tv_phone=findViewById(R.id.tv_phone);
@@ -78,8 +76,21 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         btn_efullname=findViewById(R.id.btn_efullname);
         btn_efullname.setOnClickListener(this);
 
-        btn_eaddress=findViewById(R.id.btn_eaddress);
-        btn_eaddress.setOnClickListener(this);
+        btn_eaddress1=findViewById(R.id.btn_eaddress1);
+        btn_eaddress1.setOnClickListener(v -> {
+            Intent intentadd=new Intent(MyDetails.this,LocationPicker.class);
+            intentadd.putExtra("TITLE","Address 1");
+            intentadd.putExtra("DATA",  currentUser);
+            startActivity(intentadd);
+        });
+
+        btn_eaddress2=findViewById(R.id.btn_eaddress2);
+        btn_eaddress2.setOnClickListener(v -> {
+            Intent intentadd=new Intent(MyDetails.this,LocationPicker.class);
+            intentadd.putExtra("TITLE","Address 2");
+            intentadd.putExtra("DATA",  currentUser);
+            startActivity(intentadd);
+        });
 
         btn_ephone=findViewById(R.id.btn_ephone);
         btn_ephone.setOnClickListener(this);
@@ -110,34 +121,35 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
     }
 
     public void getData(){
-        userViewModel.getGetAllUser().observe(this, new Observer<List<User>>() {
-            @Override
-            public void onChanged(List<User> users) {
-                currentUser=users.get(0);
-                tv_fullname.setText(currentUser.getName());
-                tv_email.setText(currentUser.getEmail());
-                tv_address.setText(currentUser.getAddress());
-                tv_phone.setText(currentUser.getPhone());
+        userViewModel.getGetAllUser().observe(this, users -> {
+            currentUser=users.get(0);
+            tv_fullname.setText(currentUser.getName());
+            tv_email.setText(currentUser.getEmail());
+            tv_phone.setText(currentUser.getPhone());
 
-                if (currentUser.getIcstatus().equals("missing")){
-                    tv_addic.setText("Add Identification Card");
-                }else if (currentUser.getIcstatus().equals("review")){
-                    btn_eic.setVisibility(View.GONE);
-                    tv_addic.setText("Identification Card Under Review");
-                }else {
-                    btn_eic.setVisibility(View.GONE);
-                    tv_addic.setText("Identification Card Verified");
-                }
+//            if(currentUser.getAddress().equals("null")){
+//                tv_address.setText("Address 1");
+//            }
+            tv_address.setText(currentUser.getAddress());
 
-                if (currentUser.getDlstatus().equals("missing")){
-                    tv_adddriving.setText("Add Driving License");
-                }else if (currentUser.getDlstatus().equals("review")){
-                    btn_eadddriving.setVisibility(View.GONE);
-                    tv_adddriving.setText("Driving License Under Review");
-                }else {
-                    btn_eadddriving.setVisibility(View.GONE);
-                    tv_adddriving.setText("Driving License Verified");
-                }
+            if (currentUser.getIcstatus().equals("missing")){
+                tv_addic.setText("Add Identification Card");
+            }else if (currentUser.getIcstatus().equals("review")){
+//                    btn_eic.setVisibility(View.GONE);
+                tv_addic.setText("Identification Card Under Review");
+            }else {
+                btn_eic.setVisibility(View.GONE);
+                tv_addic.setText("Identification Card Verified");
+            }
+
+            if (currentUser.getDlstatus().equals("missing")){
+                tv_adddriving.setText("Add Driving License");
+            }else if (currentUser.getDlstatus().equals("review")){
+                btn_eadddriving.setVisibility(View.GONE);
+                tv_adddriving.setText("Driving License Under Review");
+            }else {
+                btn_eadddriving.setVisibility(View.GONE);
+                tv_adddriving.setText("Driving License Verified");
             }
         });
     }
@@ -150,10 +162,6 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
             case R.id.btn_efullname:
                 intent.putExtra("TITLE","Name");
                 intent.putExtra("CURRENT",currentUser.getName());
-                break;
-            case R.id.btn_eaddress:
-                intent.putExtra("TITLE","Address");
-                intent.putExtra("CURRENT",currentUser.getAddress());
                 break;
             case R.id.btn_ephone:
                 intent.putExtra("TITLE","Phone");
@@ -171,10 +179,10 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 intent.putExtra("TITLE","Driving License");
                 intent.putExtra("DRIVING","");
                 break;
+
         }
         intent.putExtra("DATA",  currentUser);
         startActivity(intent);
-        finishAndRemoveTask();
     }
 
     @Override

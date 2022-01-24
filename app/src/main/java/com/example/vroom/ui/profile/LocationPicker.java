@@ -1,6 +1,7 @@
 package com.example.vroom.ui.profile;
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vroom.database.User.User;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Marker;
@@ -44,6 +46,7 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.material.button.MaterialButton;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -61,15 +64,30 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
+    MaterialButton saveLocation;
     private GoogleApiClient mGoogleApiClient;
+    String current;
     String[] clicked = {"no"};
+    final String[] longlat = {"",""};
+    String Address="";
+    User currentuser;
+    Intent intent;
+    String data;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_location_picker);
         mSearchText = findViewById(R.id.input_search);
+        saveLocation=findViewById(R.id.saveLocation);
         mGps = findViewById(R.id.ic_gps);
         getLocationPermission();
+        current= getIntent().getStringExtra("TITLE");
+        saveLocation.setOnClickListener(v -> {
+            //TODO save address line, lat and long dari sini
+//            Address
+//            longlat[] dalam bentuk String
+        });
 
     }
 
@@ -84,10 +102,9 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
+        eventsetup();
 
         if (mLocationPermissionsGranted) {
-            getDeviceLocation();
-
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -95,8 +112,6 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             }
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
-            init();
         }
     }
 
@@ -133,9 +148,36 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         hideSoftKeyboard();
     }
 
+    public void eventsetup(){
+        intent=getIntent();
+        currentuser = (User) intent.getSerializableExtra("DATA");
+        data = intent.getStringExtra("TITLE");
+        if(data.equals("Address 1")) {
+            Toast.makeText(this,"Event Setup",Toast.LENGTH_SHORT).show();
+            if(currentuser.getAddress().equals(null)){
+
+//                  init();
+                Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
+                getDeviceLocation();
+                init();
+            }
+            else{
+                geoLocate(currentuser.getAddress());
+            }
+        }
+        else{
+            if(currentuser.getAddress2().equals(null)){
+                Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
+                getDeviceLocation();
+                init();
+            }
+            else{
+                geoLocate(currentuser.getAddress2());
+            }
+        }
+    }
     private void geoLocate(String searchString){
         Log.d(TAG, "geoLocate: geolocating");
-        StringBuilder sb = new StringBuilder();
         String result = null;
         Geocoder geocoder = new Geocoder(LocationPicker.this);
         List<Address> list = new ArrayList<>();
@@ -158,7 +200,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             mSearchText.setHint(result);
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,address.getAddressLine(0));
         }
-        else{
+        else if(list.size() == 0){
             Toast.makeText(this, "Location does not Exist\n"+"Please Input a Real Location", Toast.LENGTH_SHORT).show();
         }
 
@@ -203,12 +245,62 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
 
             mMap.clear();
             mMap.addMarker(options);
+
+            mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+
+                @Override
+                public void onMarkerDragStart(Marker marker) {
+
+                }
+
+                @Override
+                public void onMarkerDragEnd(Marker marker) {
+                LatLng pos = marker.getPosition();
+                marker.getTitle();
+//                marker.setTitle(pos);
+                longlat[0] = String.valueOf(pos.latitude);
+                longlat[1] = String.valueOf(pos.longitude);
+                String result = null;
+                Geocoder geocoder = new Geocoder(LocationPicker.this);
+                List<Address> list = new ArrayList<>();
+                try{
+                    list = geocoder.getFromLocation(pos.latitude,pos.longitude, 1);
+                }catch (IOException e){
+                    Log.e(TAG, "geoLocate: IOException: " + e.getMessage() );
+                }
+                if(list.size() > 0){
+                    Address address = list.get(0);
+                    Log.d(TAG, "geoLocate: found a location: " + address.toString());
+
+                    result=address.getAddressLine(0)+" "+
+                            address.getLocality()+" "+
+                            address.getAdminArea()+" "+
+                            address.getPostalCode()+" "
+                    ;
+                    mSearchText.getText().clear();
+                    mSearchText.setHint(result);
+                    Address=address.getAddressLine(0);
+                    marker.setTitle(address.getAddressLine(0));
+            Toast.makeText(LocationPicker.this, address.getAddressLine(0), Toast.LENGTH_SHORT).show();
+
+            }
+                }
+
+                @Override
+                public void onMarkerDrag(Marker marker) {
+
+                }
+            });
             mMap.setOnMarkerClickListener(marker -> {
                 if(clicked[0] =="no"){
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                Toast.makeText(LocationPicker.this, "Marker Clicked", Toast.LENGTH_SHORT).show();
+                marker.setDraggable(false);
+                    saveLocation.setVisibility(View.VISIBLE);
                     clicked[0] ="click";}
-                else{ marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                else{
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    saveLocation.setVisibility(View.INVISIBLE);
+                    marker.setDraggable(true);
                     clicked[0] ="no";
                 }
                 return false;

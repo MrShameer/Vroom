@@ -33,14 +33,14 @@
 
         <AutoCompleteTextView
             android:id="@+id/input_search"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:layout_marginHorizontal="20dp"
             android:layout_toRightOf="@+id/ic_magnify"
             android:background="@null"
             android:hint="Enter Address, City or Zip Code"
             android:imeOptions="actionSearch"
-            android:layout_marginStart="10dp"
             android:singleLine="true"
             android:textColor="#fff"
             android:textSize="15sp" />
@@ -64,11 +64,12 @@
         android:id="@+id/saveLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_button"
         android:gravity="center|center_horizontal"
         android:text="Save Location"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:visibility="invisible" />
 </RelativeLayout>

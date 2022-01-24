@@ -9,6 +9,8 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,12 +38,14 @@ import java.io.IOException;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
+import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class Login extends AppCompatActivity {
     Request request = new Request();
     Button btn_login, btn_signup;
     ExtendedEditText ETemail, ETpasword;
     String email, password, fcmtoken;
+    TextFieldBoxes textInputLayout2;
     Intent intent;
     private UserViewModel userViewModel;
     public static Boolean RunIntent = false;
@@ -53,9 +57,18 @@ public class Login extends AppCompatActivity {
         btn_signup = findViewById(R.id.btn_signup);
         ETemail=findViewById(R.id.email);
         ETpasword=findViewById(R.id.password);
-
+        textInputLayout2=findViewById(R.id.textInputLayout2);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
 
+        textInputLayout2.getEndIconImageButton().setOnClickListener(view1 -> {
+            if(ETpasword.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                ETpasword.setInputType( InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }else {
+                ETpasword.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
+            }
+            ETpasword.setSelection(ETpasword.getText().length());
+        });
         btn_login.setOnClickListener(view -> {
             email = ETemail.getEditableText().toString();
             password = ETpasword.getEditableText().toString();
@@ -65,16 +78,14 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Please put in your password", Toast.LENGTH_LONG).show();
             }
             else {
-                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            return;
-                        }
-                        TokenHandler.init(getApplicationContext());
-                        fcmtoken=task.getResult();
-                        new mytask().execute();
+                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(getBaseContext(), "Username or Password is Invalid", Toast.LENGTH_LONG).show();
+                        return;
                     }
+                    TokenHandler.init(getApplicationContext());
+                    fcmtoken=task.getResult();
+                    new mytask().execute();
                 });
             }
         });
@@ -86,7 +97,7 @@ public class Login extends AppCompatActivity {
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
-        String respond,id,name,role,address,phone,icstatus,dlstatus;
+        String respond,id,name,role,address,address2,phone,icstatus,dlstatus;
         JSONObject jsonObject = null;
         private User user;
 
@@ -111,6 +122,12 @@ public class Login extends AppCompatActivity {
                     phone=(info.getString("phone").equals("null")) ? "" : info.getString("phone");
                     icstatus=info.getString("icverified");
                     dlstatus=info.getString("dlverified");
+
+                    //get 2 address
+//                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
+//                    address2=(info.getString("address").equals("null")) ? "" : info.getString("address");
+
+
                     TokenHandler.write("USER_ID",id);
                     TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));
                     intent = new Intent(Login.this, MainActivity.class);
@@ -155,7 +172,7 @@ public class Login extends AppCompatActivity {
                     public void onPrepareLoad(Drawable placeHolderDrawable) { }
                 });
 
-                user=new User(id,name,email,role,address,phone,icstatus,dlstatus);
+                user=new User(id,name,email,role,address,address2,phone,icstatus,dlstatus);
                 user.setUserID(id);
                 userViewModel.deleteAll(user);
                 userViewModel.insert(user);

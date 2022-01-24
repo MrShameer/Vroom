@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
+import com.example.vroom.database.User.User;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
 import com.example.vroom.ui.vehicledetails.SetReqDetails;
 import com.example.vroom.ui.vehicledetails.VehicleInfo;
@@ -30,6 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.DesignViewHolder> {
     private List<VehicleDetails> vehicleDetails=new ArrayList<>();
+
 
     @NonNull
     @Override
@@ -69,22 +71,16 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
         holder.btn_door.setText(currentVehicle.getVehicledoor());
         holder.btn_luggage.setText(currentVehicle.getVehicleluggage());
         holder.btn_tank.setText(currentVehicle.getVehicletank());
-        holder.btn_wishlist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), Wishlist.class);
-                intent.putExtra("ADD",currentVehicle.getVehicleplat());
-                v.getContext().startActivity(intent);
-            }
+        holder.btn_wishlist.setOnClickListener(v -> {
+            Intent intent=new Intent(v.getContext(), Wishlist.class);
+            intent.putExtra("ADD",currentVehicle.getVehicleplat());
+            v.getContext().startActivity(intent);
         });
 
-        holder.btn_booknow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), SetReqDetails.class);
-                intent.putExtra("PLAT",currentVehicle.getVehicleplat());
-                v.getContext().startActivity(intent);
-            }
+        holder.btn_booknow.setOnClickListener(v -> {
+            Intent intent=new Intent(v.getContext(), SetReqDetails.class);
+            intent.putExtra("PLAT",currentVehicle.getVehicleplat());
+            v.getContext().startActivity(intent);
         });
     }
 
