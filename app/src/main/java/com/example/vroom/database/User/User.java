@@ -1,16 +1,11 @@
 package com.example.vroom.database.User;
 
-import android.graphics.Bitmap;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.vroom.ui.chat.viewModal.ChatViewModel;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 @Entity(tableName = "user_table")
 public class User implements Serializable {

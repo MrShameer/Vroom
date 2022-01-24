@@ -8,27 +8,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
-import com.example.vroom.database.VehicleDetails.VehicleDetails;
+import com.example.vroom.database.Chat.ChatCard;
 import com.example.vroom.ui.chat.MessageActivity;
-import com.example.vroom.ui.chat.modal.ChatCard;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
-    public ArrayList<ChatCard> chatCards= new ArrayList<ChatCard>();
+    private List<ChatCard>chatCards=new ArrayList<>();
+
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setChatCards(ArrayList<ChatCard> chatArrayList){
-        this.chatCards=chatArrayList;
+    public void setChatCards(List<ChatCard> chatCards){
+        this.chatCards=chatCards;
         notifyDataSetChanged();
     }
 
@@ -83,6 +87,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
                     intent.putExtra("CHAT_ID",chatCard.getChatid());
                     intent.putExtra("ID",chatCard.getId());
                     intent.putExtra("CHAT_NAME", chatCard.getName());
+
                     context.startActivity(intent);
                 }
             });

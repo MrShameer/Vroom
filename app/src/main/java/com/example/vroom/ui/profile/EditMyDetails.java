@@ -55,6 +55,7 @@ public class EditMyDetails extends AppCompatActivity {
     User currentuser;
     File file;
     String data;
+    int current=0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editdetails);
@@ -139,7 +140,7 @@ public class EditMyDetails extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-            int current=0;
+
             if(current==0){
 //            file=new File(request.getPath(getApplicationContext(),data.getData()));
             iv_card.setImageBitmap(selectedImage);

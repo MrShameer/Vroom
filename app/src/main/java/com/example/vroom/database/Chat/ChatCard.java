@@ -1,18 +1,35 @@
-package com.example.vroom.ui.chat.modal;
+package com.example.vroom.database.Chat;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity(tableName = "Chat_table")
+
 public class ChatCard implements Serializable {
+    @PrimaryKey
+    @NonNull
+    String chatid;
     String name;
     String message;
     String id;
-    String chatid;
 
-    public ChatCard(String name, String message, String chatid, String id) {
+    public ChatCard(@NonNull String chatid, String name, String message, String id) {
+        this.chatid = chatid;
         this.name = name;
         this.message = message;
+        this.id = id;
+    }
+
+    @NonNull
+    public String getChatid() {
+        return id;
+    }
+
+    public void setChatid(@NonNull String chatid) {
         this.chatid = chatid;
-        this.id=id;
     }
 
     public String getName() {
@@ -32,18 +49,10 @@ public class ChatCard implements Serializable {
     }
 
     public String getId() {
-        return id;
+        return chatid;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getChatid() {
-        return chatid;
-    }
-
-    public void setChatid(String phone) {
-        this.chatid = chatid;
     }
 }

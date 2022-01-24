@@ -8,13 +8,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.ui.chat.adapter.MessageAdapter;
 import com.example.vroom.ui.chat.modal.MessageCard;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,11 +34,13 @@ public class MessageActivity extends AppCompatActivity {
     String chatid,to,idother;
     TextView name, send_message;
     Button send_btn;
-
+    ImageButton btn_back;
+    ImageView lessorPic;
     Request request = new Request();
     ArrayList<MessageCard> messageCards = new ArrayList<>();
     RecyclerView recyclerView;
     MessageAdapter messageAdapter;
+    int last;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,22 +51,31 @@ public class MessageActivity extends AppCompatActivity {
         name.setText(getIntent().getStringExtra("CHAT_NAME"));
         send_message = findViewById(R.id.send_message);
         send_btn = findViewById(R.id.send_btn);
-
-        recyclerView = findViewById(R.id.message_recv);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(llm);
-
-        messageAdapter = new MessageAdapter(messageCards);
-        recyclerView.setAdapter(messageAdapter);
-        new fetch().execute();
-
-        send_btn.setOnClickListener(new View.OnClickListener() {
+        lessorPic=findViewById(R.id.lessorPic);
+        btn_back=findViewById(R.id.btn_back);
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+idother+".jpg").into(lessorPic, new Callback() {
             @Override
-            public void onClick(View view) {
-                new send().execute();
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                Picasso.get().load(R.drawable.profile_image).into(lessorPic);
             }
         });
+        recyclerView = findViewById(R.id.message_recv);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        btn_back.setOnClickListener(v -> finish());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        llm.setReverseLayout(false);// Scroll to bottom
+        recyclerView.setLayoutManager(llm);
+        llm.setStackFromEnd(true);
+        llm.setReverseLayout(false);
+        messageAdapter = new MessageAdapter(messageCards);
+        recyclerView.setAdapter(messageAdapter);
+
+        new fetch().execute();
+
+        send_btn.setOnClickListener(view -> new send().execute());
     }
 
     private class fetch extends AsyncTask<Void,Void,Void> {
@@ -77,7 +93,9 @@ public class MessageActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray(respond);
                 for (int i=0; i<jsonArray.length(); i++){
                     jsonObject = jsonArray.getJSONObject(i);
-                    messageCards.add(new MessageCard(jsonObject.getString("id"),jsonObject.getString("message"),jsonObject.getString("sender"),jsonObject.getString("created_at")));
+                    messageCards.add(new MessageCard(jsonObject.getString("id"),
+                            jsonObject.getString("message"),jsonObject.getString("sender"),
+                            jsonObject.getString("created_at")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -54,7 +54,8 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.Design
             }
         });
 
-        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getVehicleplat()+".png").into(holder.iv_vehicle, new Callback() {
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getVehicleplat()+".png").
+                into(holder.iv_vehicle, new Callback() {
             @Override
             public void onSuccess() {
             }

@@ -1,43 +1,37 @@
 package com.example.vroom.ui.chat;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vroom.R;
-import com.example.vroom.api.Request;
 
-import com.example.vroom.database.VehicleDetails.VehicleViewModel;
+import com.example.vroom.database.Chat.ChatCard;
+import com.example.vroom.database.Chat.ChatViewModel;
 import com.example.vroom.ui.chat.adapter.ChatAdapter;
-import com.example.vroom.ui.chat.modal.ChatCard;
-import com.example.vroom.ui.chat.viewModal.ChatViewModel;
 
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+import java.util.EventListener;
+import java.util.List;
 
 public class ChatFragment extends Fragment implements LifecycleOwner {
     RecyclerView recyclerView;
-    ChatViewModel viewModel;
+    ChatViewModel chatViewModel;
     ChatAdapter chatAdapter;
-    ArrayList<ChatCard> chatCards = new ArrayList<>();
+    ChatCard chatCard;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_chat, container, false);
         recyclerView = root.findViewById(R.id.chat_recv);
@@ -47,17 +41,30 @@ public class ChatFragment extends Fragment implements LifecycleOwner {
         chatAdapter = new ChatAdapter();
         recyclerView.setAdapter(chatAdapter);
 
-        viewModel = ViewModelProviders.of(requireActivity()).get(ChatViewModel.class);
-        viewModel.getUserMutableLiveData().observe(getViewLifecycleOwner(), chatListUpdateObserver);
+        chatViewModel = new ViewModelProvider(requireActivity()).get(ChatViewModel.class);
+        chatViewModel.getGetAllChatCard().observe(getViewLifecycleOwner(), chatCards -> {
+//            chatCard=arrayList.get(0);
+            chatAdapter.setChatCards(chatCards);
+        });
+
         return root;
     }
 
-    Observer<ArrayList<ChatCard>> chatListUpdateObserver = new Observer<ArrayList<ChatCard>>() {
-        @Override
-        public void onChanged(ArrayList<ChatCard> userArrayList) {
-            chatAdapter.updateChatList(userArrayList);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    public void updatemessage(){
+        Toast.makeText(getActivity(),"Message",Toast.LENGTH_SHORT).show();
+
+        try{
+        chatCard=new ChatCard("Anwar","Hello2","10","2");
+        chatCard.setId("10");
+        chatViewModel.insert(chatCard);
         }
-    };
-
-
+        catch (Exception e){
+            Toast.makeText(getContext(),"Taknak Masuk",Toast.LENGTH_SHORT).show();
+        }
+    }
 }

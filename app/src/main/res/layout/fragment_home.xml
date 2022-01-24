@@ -57,51 +57,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_wallet"
-            android:layout_width="130dp"
-            android:layout_height="40dp"
-            android:layout_marginVertical="10dp"
-            android:background="@drawable/rounded_corner"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_baseline_account_balance_wallet_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="34dp"
-                android:layout_height="19dp"
-                android:layout_marginEnd="10dp"
-                android:text="Wallet"
-                android:textColor="@color/black"
-                android:textSize="12dp"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-            <TextView
-                android:id="@+id/tv_balance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RM 20031"
-                android:textColor="@color/black"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

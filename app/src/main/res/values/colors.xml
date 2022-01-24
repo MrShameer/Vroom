@@ -19,6 +19,7 @@
     <color name="pending">#FFDC5D</color>
     <color name="acceptedButton">#275800</color>
     <color name="rejectedButton">#720000</color>
+    <color name="loading">#80191c25</color>
 
 
 

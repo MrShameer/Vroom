@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.database.VehicleDetails.VehicleDetails;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,17 @@ public class topvehicle_adapter extends RecyclerView.Adapter<topvehicle_adapter.
         //pass down the position
         VehicleDetails currentVehicle= vehicleDetails.get(position);
         //set the image
-        holder.iv_vehicle.setImageResource(R.drawable.perodua_bezza);
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getVehicleplat()+".png").
+                into(holder.iv_vehicle, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+                    @Override
+                    public void onError(Exception e) {
+                        Picasso.get().load(R.drawable.perodua_bezza).into(holder.iv_vehicle);
+                    }
+                });
+
         holder.tv_names.setText(currentVehicle.getLessorname());
         holder.btn_passenger.setText(currentVehicle.getVehiclepassanger());
         holder.btn_door.setText(currentVehicle.getVehicledoor());

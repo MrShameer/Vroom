@@ -23,6 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -193,12 +195,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
 
         sv_search=(SearchView) root.findViewById(R.id.sv_search);
-        sv_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getContext(), LocationPicker.class);
-                startActivity(intent);
-            }
+        sv_search.setOnClickListener(v -> {
+
+
         });
 
         return root;
