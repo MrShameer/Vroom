@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.printservice.CustomPrinterIconCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,8 @@ public class ProfileFragment extends Fragment {
 
         file = new File(dir, mImageName);
         if(file.exists()){
-            Picasso.get().load(file).into(user_image);
+            Picasso.get()
+                    .load(file).into(user_image);
         }else{
             Picasso.get().load(R.drawable.profile_image).into(user_image);
         }
@@ -98,6 +100,6 @@ public class ProfileFragment extends Fragment {
         }else{
             user_image.setImageResource(R.drawable.profile_image);
         }        //TODO
-        // GMBR TKNK UBAH BILA BACK, HANYA UBAH BILA REFRESH
+        // GMBR TKNK UBAH BILA BACK, HANYA UBAH BILA RE FRESH
     }
 }
