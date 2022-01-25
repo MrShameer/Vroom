@@ -25,11 +25,13 @@ import com.example.vroom.database.User.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.JsonArray;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -128,9 +130,16 @@ public class Login extends AppCompatActivity {
                     dlstatus=info.getString("dlverified");
 
                     //get 2 address
-//                    address=(info.getString("address").equals("null")) ? "" : info.getString("address");
-//                    address2=(info.getString("address").equals("null")) ? "" : info.getString("address");
-
+                    JSONArray location = jsonObject.getJSONArray("location");
+                    if (location.length()>0){
+                        address=location.getJSONObject(0).getString("address");
+                        if (location.length()>1){
+                            address2=location.getJSONObject(1).getString("address");
+                        }
+                    }else{
+                        address="null";
+                        address2="null";
+                    }
 
                     TokenHandler.write("USER_ID",id);
                     TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));

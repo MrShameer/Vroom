@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,7 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
+import com.example.vroom.ui.wishlist.Wishlist;
+import com.example.vroom.ui.wishlist.model.WishlistData;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Marker;
@@ -49,15 +54,21 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.button.MaterialButton;
 
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LocationPicker extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleApiClient.OnConnectionFailedListener{
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
+public class LocationPicker extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener{
     //widgets
+    Request request = new Request();
     private AutoCompleteTextView mSearchText;
     private ImageView mGps;
     //vars
@@ -85,10 +96,39 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         current= getIntent().getStringExtra("TITLE");
         saveLocation.setOnClickListener(v -> {
             //TODO save address line, lat and long dari sini
+            new mytask().execute();
 //            Address
 //            longlat[] dalam bentuk String
         });
 
+    }
+
+    private class mytask extends AsyncTask<Void,Void,Void> {
+        String message;
+        JSONArray jsonArray = null;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Intent intent = getIntent();
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+            RequestBody setlocation = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("latitude", longlat[0])
+                    .addFormDataPart("longitude", longlat[1])
+                    .addFormDataPart("address", Address)
+                    .build();
+            message = request.PostHeader(setlocation,getString(R.string.setlocation),token);
+            try {
+                message = new JSONObject(message).getString("message");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -155,9 +195,8 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         if(data.equals("Address 1")) {
             Toast.makeText(this,"Event Setup",Toast.LENGTH_SHORT).show();
 //            if(currentuser.getAddress().equals(null)){
-
-            if(true){
-//                  init();
+            Toast.makeText(this,currentuser.getAddress(),Toast.LENGTH_SHORT).show();
+            if(currentuser.getAddress().equals("null")){
                 Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
                 getDeviceLocation();
                 init();
@@ -167,7 +206,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             }
         }
         else{
-            if(currentuser.getAddress2().equals(null)){
+            if(currentuser.getAddress2().equals("null")){
                 Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
                 getDeviceLocation();
                 init();

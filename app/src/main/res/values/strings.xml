@@ -44,11 +44,13 @@
     <string name="lessorrequest">https://vroom.lepak.xyz/api/lessorrequest</string>
     <string name="lessorlist">https://vroom.lepak.xyz/api/lessorlist</string>
 
+    <string name="setlocation">https://vroom.lepak.xyz/api/setlocation</string>
+
     <string name="send">https://vroom.lepak.xyz/api/send</string>
     <string name="chatroom">https://vroom.lepak.xyz/api/chatroom</string>
     <string name="chatexists">https://vroom.lepak.xyz/api/chatexists</string>
     <string name="message">https://vroom.lepak.xyz/api/message</string>
 
-    <!--    <string name="profilepic">http://192.168.1.112/vroom-api/public/storage/picture/profile/</string>-->
-    <!--    <string name="status">http://192.168.1.112/vroom-api/public/api/status</string>-->
+    <!--    <string name="profilepic">http://192.168.1.103/vroom-api/public/storage/picture/profile/</string>-->
+    <!--    <string name="status">http://192.168.1.103/vroom-api/public/api/status</string>-->
 </resources>

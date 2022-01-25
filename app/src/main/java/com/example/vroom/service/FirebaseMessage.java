@@ -60,7 +60,6 @@ public class FirebaseMessage extends FirebaseMessagingService {
                 Log.d(TAG, "Message data payload: " + remoteMessage.getData()+"\n"+remoteMessage.getData().get("title"));
             }
 
-
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
 //            chatFragment.updatemessage();
