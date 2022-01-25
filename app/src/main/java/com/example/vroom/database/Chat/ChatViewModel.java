@@ -31,7 +31,7 @@ public class ChatViewModel extends AndroidViewModel {
     public void delete (ChatCard chatCard){
         chatRepository.delete(chatCard);
     }
-    public void deleteAll (ChatCard chatCard){
+    public void deleteAll (){
         chatRepository.deleteAllChatCard();
     }
     public LiveData<List<ChatCard>> getGetAllChatCard() {

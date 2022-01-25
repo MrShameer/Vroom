@@ -1,10 +1,15 @@
 package com.example.vroom.service;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
+import com.example.vroom.MainActivity;
 import com.example.vroom.database.Chat.ChatCard;
 import com.example.vroom.database.Chat.ChatCardDAO;
 import com.example.vroom.database.Chat.ChatViewModel;
@@ -20,19 +25,22 @@ import java.util.ArrayList;
 
 public class FirebaseMessage extends FirebaseMessagingService {
     private static final String TAG = "";
-    ChatFragment chatFragment=new ChatFragment();
+    ChatViewModel chatViewModel=new ChatViewModel(getApplication());
+
+    public FirebaseMessage() {
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
     }
 
 
+    @SuppressLint("WrongThread")
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-
-
-        ChatCard chatCard;
         super.onMessageReceived(remoteMessage);
+        chatViewModel.insert(new ChatCard("Anwar","Hello2","10","2"));
 
         JSONObject message = new JSONObject(remoteMessage.getData());
 
@@ -43,7 +51,7 @@ public class FirebaseMessage extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
-            chatFragment.updatemessage();
+//            chatFragment.updatemessage();
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody()+" "+remoteMessage.getNotification().getTitle());
 
         }

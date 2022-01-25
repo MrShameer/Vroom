@@ -25,7 +25,7 @@ public class ChatCard implements Serializable {
 
     @NonNull
     public String getChatid() {
-        return id;
+        return chatid;
     }
 
     public void setChatid(@NonNull String chatid) {
@@ -49,7 +49,7 @@ public class ChatCard implements Serializable {
     }
 
     public String getId() {
-        return chatid;
+        return id;
     }
 
     public void setId(String id) {

@@ -130,6 +130,7 @@ public class Login extends AppCompatActivity {
 
                     TokenHandler.write("USER_ID",id);
                     TokenHandler.write("USER_TOKEN",jsonObject.getString("access_token"));
+                    Log.d("token",jsonObject.getString("access_token"));
                     intent = new Intent(Login.this, MainActivity.class);
                     RunIntent = true;
                 }
