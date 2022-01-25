@@ -17,7 +17,7 @@ public class TabVehicleDetails extends Fragment  {
     private VehicleViewModel vehicleViewModel;
     VehicleDetails vehicleDetails;
 
-    TextView tv_brand, tv_color, tv_age, tv_insurance, tv_fuel;
+    TextView tv_brand, tv_age, tv_insurance, tv_fuel;
     public TabVehicleDetails(VehicleDetails vehicleDetails) {
         this.vehicleDetails = vehicleDetails;
     }
@@ -32,8 +32,6 @@ public class TabVehicleDetails extends Fragment  {
         View root =inflater.inflate(R.layout.fragment_vehicle_details, container, false);
         tv_brand=root.findViewById(R.id.tv_brand);
         tv_brand.setText(vehicleDetails.getVehiclebrand()+" "+vehicleDetails.getVehiclemodel());
-        tv_color=root.findViewById(R.id.tv_color);
-        tv_color.setText(vehicleDetails.getVehiclecolor());
         tv_age=root.findViewById(R.id.tv_age);
         tv_age.setText(vehicleDetails.getVehicleage());
         tv_insurance=root.findViewById(R.id.tv_insurance);

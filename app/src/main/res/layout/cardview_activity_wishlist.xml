@@ -96,7 +96,7 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="8dp"
                 android:background="@color/white"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -142,10 +142,10 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
+                android:minWidth="200dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/lessorPic3"
                 app:layout_constraintTop_toBottomOf="@+id/tv_totaldays">
 

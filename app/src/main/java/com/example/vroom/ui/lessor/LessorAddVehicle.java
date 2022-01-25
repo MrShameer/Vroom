@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class LessorAddVehicle extends AppCompatActivity {
-    TextView tv_type,tv_brand,tv_color,tv_age,tv_platno,tv_condition,tv_insurance,tv_rate,tv_available,tv_location;
+    TextView tv_type,tv_brand,tv_age,tv_platno,tv_condition,tv_insurance,tv_rate,tv_available,tv_location;
     Button btn_type,btn_brand,btn_color,btn_age,btn_platno,btn_condition,btn_insurance,btn_rate,btn_available,btn_location,btn_submit;
     ImageButton btn_back;
     List<String> typelist = new ArrayList<>();
@@ -46,7 +46,6 @@ public class LessorAddVehicle extends AppCompatActivity {
         //Declaration
         tv_type=findViewById(R.id.tv_type);
         tv_brand=findViewById(R.id.tv_brand);
-        tv_color=findViewById(R.id.tv_color);
         tv_age=findViewById(R.id.tv_age);
         tv_platno=findViewById(R.id.tv_platno);
         tv_condition=findViewById(R.id.tv_condition);
@@ -56,7 +55,6 @@ public class LessorAddVehicle extends AppCompatActivity {
         tv_location=findViewById(R.id.tv_location);
         btn_type=findViewById(R.id.btn_type);
         btn_brand=findViewById(R.id.btn_brand);
-        btn_color=findViewById(R.id.btn_color);
         btn_age=findViewById(R.id.btn_age);
         btn_platno=findViewById(R.id.btn_platno);
         btn_condition=findViewById(R.id.btn_condition);
@@ -103,7 +101,6 @@ public class LessorAddVehicle extends AppCompatActivity {
 
         btn_type.setOnClickListener(v -> showAlertDialogButtonClicked(v,"type"));
         btn_brand.setOnClickListener(v -> showAlertDialogButtonClicked(v,"brand"));
-        btn_color.setOnClickListener(v -> showAlertDialogButtonClicked(v,"color"));
         btn_age.setOnClickListener(v -> showAlertDialogButtonClicked(v,"age"));
         btn_platno.setOnClickListener(v -> showAlertDialogButtonClicked(v,"platno"));
         btn_insurance.setOnClickListener(v -> showAlertDialogButtonClicked(v,"insurance"));
@@ -198,23 +195,6 @@ public class LessorAddVehicle extends AppCompatActivity {
                     selectedItem2=brand+" "+model;
                     tv_brand.setText(selectedItem2);
                     tv_brand.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
-
-                });
-                break;
-            case "color":
-                customLayout=getLayoutInflater().inflate(R.layout.layout_dialog_color,null);
-                builder.setTitle("Vehicle Colour");
-                builder.setView(customLayout);
-
-                RadioGroup radiogroup1 = (RadioGroup) customLayout.findViewById(R.id.radiogroup);
-                radiogroup1.setOnCheckedChangeListener((RadioGroup group, int checkedId) -> {
-                    RadioButton radioButton = (RadioButton) customLayout.findViewById(checkedId);
-                    color=radioButton.getText().toString();
-                });
-
-                builder.setPositiveButton("OK", (dialog, which) -> {
-                    tv_color.setText(color);
-                    tv_color.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
 
                 });
                 break;

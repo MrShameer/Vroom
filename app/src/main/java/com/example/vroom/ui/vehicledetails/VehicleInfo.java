@@ -39,7 +39,7 @@ public class VehicleInfo extends AppCompatActivity {
     Request request = new Request();
     ImageButton btn_back, chat_btn;
     Button btn_book,btn_wishlist, btn_passanger, btn_door, btn_luggage, btn_gas;
-    TextView tv_price, tv_lessorname;
+    TextView tv_price, tv_lessorname,tv_rating,tv_carbrand;
     VehicleDetails vehicleDetails;
     CircleImageView iv_lessor;
     ImageView iv_vehicle;
@@ -80,6 +80,10 @@ public class VehicleInfo extends AppCompatActivity {
             }
         });
 
+        tv_carbrand=findViewById(R.id.tv_carbrand);
+        tv_carbrand.setText(vehicleDetails.getVehiclebrand()+" "+vehicleDetails.getVehiclemodel());
+        tv_rating=findViewById(R.id.tv_rating);
+        tv_rating.setText(vehicleDetails.getVehiclerating());
         tv_lessorname=findViewById(R.id.tv_lessorname2);
         tv_lessorname.setText(vehicleDetails.getLessorname());
         tv_price=findViewById(R.id.tv_price4);

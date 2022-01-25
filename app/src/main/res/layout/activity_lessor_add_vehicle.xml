@@ -151,59 +151,6 @@
             >
 
             <TextView
-                android:id="@+id/tv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Colour"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/abel"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Required"
-                android:textSize="14dp"
-                android:textColor="@color/design_default_color_error"
-                android:fontFamily="@font/abel"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv2" />
-
-            <Button
-                android:id="@+id/btn_color"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@android:color/transparent"
-                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-                android:text="Colour"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:enabled="false" />
-
-            <ImageView
-                android:layout_width="408dp"
-                android:layout_height="1dp"
-                android:src="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            >
-
-            <TextView
                 android:id="@+id/tv5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
