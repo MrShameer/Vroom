@@ -118,6 +118,9 @@ public class LessorAddVehicle extends AppCompatActivity {
         btn_submit.setOnClickListener(view -> {
 
         });
+        btn_back.setOnClickListener(v -> {
+            finishAndRemoveTask();
+        });
     }
 
 
