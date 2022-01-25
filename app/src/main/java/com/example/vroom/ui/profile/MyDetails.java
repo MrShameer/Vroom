@@ -130,7 +130,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
 //            if(currentUser.getAddress().equals("null")){
 //                tv_address.setText("Address 1");
 //            }
-            tv_address.setText(currentUser.getAddress());
+//            tv_address.setText(currentUser.getAddress());
 
             if (currentUser.getIcstatus().equals("missing")){
                 tv_addic.setText("Add Identification Card");
