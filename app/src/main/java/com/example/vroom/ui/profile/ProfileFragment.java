@@ -1,6 +1,9 @@
 package com.example.vroom.ui.profile;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -36,6 +40,7 @@ public class ProfileFragment extends Fragment {
     CircleImageView user_image;
     Button btn_lessor;
     File file,dir;
+    String mImageName;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
@@ -44,7 +49,7 @@ public class ProfileFragment extends Fragment {
                 + "/Android/data/"
                 + getActivity().getApplicationContext().getPackageName()
                 + "/Picture/");
-        String mImageName= TokenHandler.read(TokenHandler.USER_ID, null)+".jpg";
+         mImageName= TokenHandler.read(TokenHandler.USER_ID, null)+".jpg";
 
         file = new File(dir, mImageName);
         if(file.exists()){
@@ -80,12 +85,19 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
         return root;
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //TODO
+        if(file.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            user_image.setImageBitmap(myBitmap);
+
+        }else{
+            user_image.setImageResource(R.drawable.profile_image);
+        }        //TODO
         // GMBR TKNK UBAH BILA BACK, HANYA UBAH BILA REFRESH
     }
 }

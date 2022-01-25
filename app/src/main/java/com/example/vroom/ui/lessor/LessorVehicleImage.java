@@ -75,9 +75,12 @@ public class LessorVehicleImage extends AppCompatActivity {
             finishAndRemoveTask();
         });
         btn_submit.setOnClickListener(v -> {
-           Intent intent=new Intent(LessorVehicleImage.this,LessorAddVehicle.class);
-           intent.putExtra("statusimage","done");
-           startActivity(intent);
+//           Intent intent=new Intent(LessorVehicleImage.this,LessorAddVehicle.class);
+//           intent.putExtra("statusimage","done");
+//           startActivity(intent);
+
+            //Todo save gambar dalam serve, ada 4 gambar
+            finishAndRemoveTask();
 
         });
 

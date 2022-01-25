@@ -111,23 +111,15 @@ public class LessorAddVehicle extends AppCompatActivity {
         btn_condition.setOnClickListener(v -> {
             Intent intent= new Intent(LessorAddVehicle.this,LessorVehicleImage.class);
             startActivity(intent);
+            tv_condition.setText("Evaluating");
+            tv_condition.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
         });
-        String newString;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                newString= null;
-            } else {
-                newString= extras.getString("statusimage");
-                tv_condition.setText("Evaluating");
-                tv_condition.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
-            }
-        } else {
-            newString= (String) savedInstanceState.getSerializable("statusimage");
-        }
 
         btn_submit.setOnClickListener(view -> {
 
+        });
+        btn_back.setOnClickListener(v -> {
+            finishAndRemoveTask();
         });
     }
 
@@ -156,7 +148,6 @@ public class LessorAddVehicle extends AppCompatActivity {
                     tv_type.setText(selectedItem);
                     tv_type.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
                     btn_brand.setEnabled(true);
-                    btn_color.setEnabled(true);
                     btn_age.setEnabled(true);
                     btn_platno.setEnabled(true);
                     btn_condition.setEnabled(true);

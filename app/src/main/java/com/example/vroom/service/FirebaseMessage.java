@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class FirebaseMessage extends FirebaseMessagingService {
     private static final String TAG = "";
     ChatViewModel chatViewModel=new ChatViewModel(getApplication());
+    ChatCard chatCard;
 
     public FirebaseMessage() {
     }
@@ -40,18 +41,35 @@ public class FirebaseMessage extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        chatViewModel.insert(new ChatCard("Anwar","Hello2","10","2"));
+        chatCard=new ChatCard(
+                remoteMessage.getData().get("title")
+                ,remoteMessage.getNotification().getTitle()
+                ,remoteMessage.getNotification().getBody()
+                ,remoteMessage.getData().get("body"));
 
-        JSONObject message = new JSONObject(remoteMessage.getData());
+        chatCard.setChatid(remoteMessage.getData().get("title"));
+        try{
+            chatViewModel.update(chatCard);
+        }
+        catch(Exception e){
+            chatViewModel.insert(chatCard);
+        }
 
-            if (remoteMessage.getData().size() > 0) {
-                Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+
+        if (remoteMessage.getData().size() > 0) {
+                Log.d(TAG, "Message data payload: " + remoteMessage.getData()+"\n"+remoteMessage.getData().get("title"));
             }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
 //            chatFragment.updatemessage();
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody()+" "+remoteMessage.getNotification().getTitle());
+            Log.d(TAG, "Message Notification Body: " +
+                    remoteMessage.getNotification().getBody()+" "
+                    +remoteMessage.getNotification().getTitle()
+                    +" "+remoteMessage.getMessageId()+" "
+                    +remoteMessage.getNotification().getTitle());
+
+
 
         }
     }

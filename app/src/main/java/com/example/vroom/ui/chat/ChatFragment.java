@@ -74,8 +74,6 @@ public class ChatFragment extends Fragment implements LifecycleOwner {
         chatViewModel.getGetAllChatCard().observe(getViewLifecycleOwner(), chatCards -> {
 //            chatCard=arrayList.get(0);
             chatAdapter.setChatCards(chatCards);
-            Toast.makeText(getActivity(),chatCards.toString(),Toast.LENGTH_SHORT).show();
-
         });
 
         return root;
@@ -93,16 +91,15 @@ public class ChatFragment extends Fragment implements LifecycleOwner {
 
         @Override
         protected Void doInBackground(Void... voids) {
-
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody requestBody = RequestBody.create(null, new byte[0]);
             respond = request.PostHeader(requestBody, "https://vroom.lepak.xyz/api/chatroom",token);
             try {
+                chatViewModel.deleteAll();
                 jsonArray=new JSONArray(respond);
                 System.out.println(respond);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    chatViewModel.deleteAll();
                     chatViewModel.insert(new ChatCard(jsonObject.getString("chatid")
                             ,jsonObject.getString("name")
                             ,jsonObject.getString("message")
