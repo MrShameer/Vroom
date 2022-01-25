@@ -200,9 +200,9 @@ public class EditMyDetails extends AppCompatActivity {
                     case "Name":
                         currentuser.setName(et_newdetails.getText().toString());
                         break;
-                    case "Address":
-                        currentuser.setAddress(et_newdetails.getText().toString());
-                        break;
+//                    case "Address":
+//                        currentuser.setAddress(et_newdetails.getText().toString());
+//                        break;
                     case "Phone":
                         currentuser.setPhone(et_newdetails.getText().toString());
                         break;

@@ -154,7 +154,9 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         data = intent.getStringExtra("TITLE");
         if(data.equals("Address 1")) {
             Toast.makeText(this,"Event Setup",Toast.LENGTH_SHORT).show();
-            if(currentuser.getAddress().equals(null)){
+//            if(currentuser.getAddress().equals(null)){
+
+            if(true){
 
 //                  init();
                 Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
