@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.vroom.MainActivity;
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
@@ -112,7 +113,11 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         });
 
         btn_back=findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(view -> finishAndRemoveTask());
+        btn_back.setOnClickListener(view ->{
+
+            finishAndRemoveTask();}
+
+                );
     }
 
     @Override

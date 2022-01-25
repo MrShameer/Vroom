@@ -9,8 +9,8 @@ import java.io.Serializable;
 @Entity(tableName = "Chat_table")
 
 public class ChatCard implements Serializable {
-    @PrimaryKey
     @NonNull
+    @PrimaryKey
     String chatid;
     String name;
     String message;

@@ -157,7 +157,6 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
 //            if(currentuser.getAddress().equals(null)){
 
             if(true){
-
 //                  init();
                 Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
                 getDeviceLocation();

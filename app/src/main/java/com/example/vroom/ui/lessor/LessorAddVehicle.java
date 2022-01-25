@@ -156,7 +156,6 @@ public class LessorAddVehicle extends AppCompatActivity {
                     tv_type.setText(selectedItem);
                     tv_type.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
                     btn_brand.setEnabled(true);
-                    btn_color.setEnabled(true);
                     btn_age.setEnabled(true);
                     btn_platno.setEnabled(true);
                     btn_condition.setEnabled(true);
