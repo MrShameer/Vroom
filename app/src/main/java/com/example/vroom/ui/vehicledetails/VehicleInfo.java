@@ -119,6 +119,8 @@ public class VehicleInfo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(VehicleInfo.this,SetReqDetails.class);
                 intent.putExtra("PLAT",vehicleDetails.getVehicleplat());
+                intent.putExtra("NAME",vehicleDetails.getLessorname());
+                intent.putExtra("PRICE",vehicleDetails.getVehicleprice());
                 startActivity(intent);
             }
         });

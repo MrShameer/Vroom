@@ -89,7 +89,9 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.Design
         holder.btn_booknow.setOnClickListener(v -> {
             if(proceed){
             Intent intent=new Intent(v.getContext(), SetReqDetails.class);
-            intent.putExtra("PLAT",currentVehicle.getVehicleplat());
+                intent.putExtra("PLAT",currentVehicle.getVehicleplat());
+                intent.putExtra("NAME",currentVehicle.getLessorname());
+                intent.putExtra("PRICE",currentVehicle.getVehicleprice());
             v.getContext().startActivity(intent);
             }
             else{
