@@ -108,7 +108,6 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         JSONArray jsonArray = null;
         @Override
         protected Void doInBackground(Void... voids) {
-            Intent intent = getIntent();
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
             RequestBody setlocation = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
