@@ -202,8 +202,8 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
                     .addFormDataPart("plat", intent.getStringExtra("PLAT"))
                     .addFormDataPart("total",totalcost)
                     .addFormDataPart("payment_type","Online Banking")
-                    .addFormDataPart("payment","2021-12-31")
-                    .addFormDataPart("pickup","2021-12-31")
+                    .addFormDataPart("payment","Pending")
+                    .addFormDataPart("pickup",tv_pickupdate.getText().toString())
                     .addFormDataPart("return","2021-12-31")
                     .addFormDataPart("location","kajang")
                     .build();

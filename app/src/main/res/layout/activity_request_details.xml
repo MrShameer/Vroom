@@ -364,13 +364,13 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/abel"
             android:text="Cost: "
-            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/dark_purple"
             android:textSize="16dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -379,12 +379,12 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abel"
-            android:text="RM 150 X 22 Days= RM 3140"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:textSize="18dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_req"
             app:layout_constraintStart_toEndOf="@+id/textView31"
-            app:layout_constraintTop_toTopOf="@+id/textView31" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/btn_req"
