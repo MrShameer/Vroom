@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
+import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.ui.wishlist.Wishlist;
 import com.example.vroom.ui.wishlist.model.WishlistData;
 import com.google.android.gms.common.api.Status;
@@ -52,6 +53,7 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.button.MaterialButton;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
@@ -76,6 +78,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     MaterialButton saveLocation;
+    private UserViewModel userViewModel;
     private GoogleApiClient mGoogleApiClient;
     String current;
     String[] clicked = {"no"};
@@ -91,6 +94,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         setContentView(R.layout.layout_location_picker);
         mSearchText = findViewById(R.id.input_search);
         saveLocation=findViewById(R.id.saveLocation);
+        userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
         mGps = findViewById(R.id.ic_gps);
         ic_magnify= findViewById(R.id.ic_magnify);
         getLocationPermission();
@@ -128,7 +132,12 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Log.d("Locatiob",message);
+            if (data.equals("Address 1")){
+                currentuser.setAddress(Address);
+            }else {
+                currentuser.setAddress2(Address);
+            }
+            userViewModel.update(currentuser);
         }
     }
 
