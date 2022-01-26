@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class LessorAddVehicle extends AppCompatActivity {
     TextView tv_type,tv_brand,tv_age,tv_platno,tv_condition,tv_insurance,tv_rate,tv_available,tv_location;
-    Button btn_type,btn_brand,btn_color,btn_age,btn_platno,btn_condition,btn_insurance,btn_rate,btn_available,btn_location,btn_submit;
+    Button btn_type,btn_brand,btn_age,btn_platno,btn_condition,btn_insurance,btn_rate,btn_available,btn_location,btn_submit;
     ImageButton btn_back;
     List<String> typelist = new ArrayList<>();
     List<String> brandlist = new ArrayList<>();
@@ -41,7 +41,8 @@ public class LessorAddVehicle extends AppCompatActivity {
     List<String> dayslist = new ArrayList<>();
     List<String> insurancelist = new ArrayList<>();
     List<String> locationlist = new ArrayList<>();
-    String selectedItem,selectedItem2,brand,model,color,age,platno,startday,endday,insurance,rate,location;
+    //TODO Masukkan semua ni dalam server yang bawah ni
+    String selectedItem,selectedItem2,brand,model,age,platno,startday,endday,insurance,rate,location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +155,7 @@ public class LessorAddVehicle extends AppCompatActivity {
         String select=data.getStringExtra("select");
         Toast.makeText(this, select,Toast.LENGTH_SHORT).show();
         if (resultCode != RESULT_CANCELED) {
+            //TODO ni gambar case 0 pilih gambar, case 1 amik gambar
             switch (requestCode) {
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {

@@ -106,7 +106,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
 //            Address
 //            longlat[] dalam bentuk String
         });
-
+        init();
     }
 
     private class mytask extends AsyncTask<Void,Void,Void> {
@@ -180,9 +180,9 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             if(actionId == EditorInfo.IME_ACTION_SEARCH
                     || actionId == EditorInfo.IME_ACTION_DONE
                     || keyEvent.getAction() == KeyEvent.ACTION_DOWN
-                    || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
+                    || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER)
+            {
                 geoLocate(mSearchText.getText().toString());
-
                 //execute our method for searching
             }
             return false;
