@@ -1,23 +1,29 @@
 package com.example.vroom.ui.chat;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Message;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.vroom.R;
 import com.example.vroom.api.Request;
+import com.example.vroom.database.Message.MessageCard;
+import com.example.vroom.database.Message.MessageViewModel;
 import com.example.vroom.database.TokenHandler;
 import com.example.vroom.ui.chat.adapter.MessageAdapter;
-import com.example.vroom.ui.chat.modal.MessageCard;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -25,7 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -37,7 +43,8 @@ public class MessageActivity extends AppCompatActivity {
     ImageButton btn_back;
     ImageView lessorPic;
     Request request = new Request();
-    ArrayList<MessageCard> messageCards = new ArrayList<>();
+//    ArrayList<Message> Messages = new ArrayList<>();
+    MessageViewModel messageViewModel;
     RecyclerView recyclerView;
     MessageAdapter messageAdapter;
     int last;
@@ -62,6 +69,7 @@ public class MessageActivity extends AppCompatActivity {
                 Picasso.get().load(R.drawable.profile_image).into(lessorPic);
             }
         });
+        new fetch().execute();
         recyclerView = findViewById(R.id.message_recv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         btn_back.setOnClickListener(v -> finish());
@@ -70,10 +78,24 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(llm);
         llm.setStackFromEnd(true);
         llm.setReverseLayout(false);
-        messageAdapter = new MessageAdapter(messageCards);
+
+        messageViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
+
+        messageViewModel.getAllMessagelist(chatid).observe(this,
+
+//
+//        messageViewModel.getGetallMessage().observe(this,
+        new Observer<List<MessageCard>>() {
+
+            @Override
+            public void onChanged(List<MessageCard> messages) {
+
+                messageAdapter.setMessageCards(messages);
+            }
+        });
+//        messageAdapter = new MessageAdapter(Messages);
         recyclerView.setAdapter(messageAdapter);
 
-        new fetch().execute();
 
         send_btn.setOnClickListener(view -> new send().execute());
     }
@@ -81,6 +103,7 @@ public class MessageActivity extends AppCompatActivity {
     private class fetch extends AsyncTask<Void,Void,Void> {
         String respond;
         JSONObject jsonObject = null;
+        MessageCard messageCard;
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
@@ -90,12 +113,21 @@ public class MessageActivity extends AppCompatActivity {
                     .build();
             respond = request.PostHeader(requestBody,getString(R.string.message),token);
             try {
+                messageViewModel.deleteAll();
                 JSONArray jsonArray = new JSONArray(respond);
                 for (int i=0; i<jsonArray.length(); i++){
                     jsonObject = jsonArray.getJSONObject(i);
-                    messageCards.add(new MessageCard(jsonObject.getString("id"),
-                            jsonObject.getString("message"),jsonObject.getString("sender"),
-                            jsonObject.getString("created_at")));
+                    messageCard=new MessageCard(jsonObject.getString("id"),
+                            jsonObject.getString("message")
+                            ,jsonObject.getString("sender"),
+                            jsonObject.getString("created_at"));
+
+                     messageViewModel.insert(messageCard);
+                    Log.d("message masuk",messageViewModel.getGetallMessage().toString());
+
+//                    messageViewModel.insert(new Message(jsonObject.getString("id"),
+//                            jsonObject.getString("message"),jsonObject.getString("sender"),
+//                            jsonObject.getString("created_at")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -106,7 +138,7 @@ public class MessageActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            messageAdapter.notifyDataSetChanged();
+//            messageAdapter.notifyDataSetChanged();
         }
     }
 
@@ -124,14 +156,15 @@ public class MessageActivity extends AppCompatActivity {
                     .build();
 
             respond = request.PostHeader(requestBody,getString(R.string.send),token);
-            messageCards.add(new MessageCard(null,send_message.getText().toString(),id,null));
+            messageViewModel.insert(new MessageCard(null,send_message.getText().toString(),id,null));
+//            Messages.add(new Message(null,send_message.getText().toString(),id,null));
             send_message.setText("");
             return null;
         }
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            messageAdapter.notifyDataSetChanged();
+//            messageAdapter.notifyDataSetChanged();
         }
     }
 }

@@ -33,4 +33,5 @@ public class UserViewModel extends AndroidViewModel {
     public LiveData<List<User>> getGetAllUser() {
         return getAllUser;
     }
+
 }

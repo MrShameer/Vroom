@@ -14,6 +14,8 @@ import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import com.example.vroom.api.Request;
 import com.example.vroom.database.TokenHandler;
+import com.example.vroom.database.User.UserDAO;
+import com.example.vroom.database.User.UserDatabase;
 import com.example.vroom.database.VehicleDetails.VehicleDetailsDAO;
 import com.example.vroom.database.VehicleDetails.VehicleDetailsDatabase;
 
@@ -51,7 +53,26 @@ public abstract class ChatCardDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
+            new PopulateDbAsyncTask(instance).execute();
+
         }
     };
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ChatCardDAO chatCardDAO;
+
+        private PopulateDbAsyncTask(ChatCardDatabase db) {
+            chatCardDAO = db.chatCardDAO();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //table user (username, full name, email, current address, phone number, password)
+//            userDAO.insert(new User("U01", "Anwar Chong", "Mohamad Anwar", "anwarbinbujang@gmail.com",
+//                    "No.19 Jalan Surada 2", "+60113735411", "anwarb", "No Document Submitted", "No Document Submitted"));
+//            userDAO.insert(new User("U01","Anwar Chong","Mohamad Anwar","anwarbinbujang@gmail.com",
+//                    "No.19 Jalan Surada 2","+60113735411","anwarb"));
+            return null;
+        }
+    }
 
 }
