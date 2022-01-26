@@ -81,11 +81,12 @@ public class Lessorhome extends AppCompatActivity {
         rc_vehicle.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
 
 
+        //TODO
         ArrayList<VehicleListData> vehicleListData=new ArrayList<VehicleListData>();
-        vehicleListData.add(new VehicleListData("Myvi","10","130","15000","BND6731"));
-        vehicleListData.add(new VehicleListData("Myvi","10","130","15000","BND6731"));
-        vehicleListData.add(new VehicleListData("Myvi","10","130","15000","BND6731"));
-        vehicleListData.add(new VehicleListData("Myvi","10","130","15000","BND6731"));
+        vehicleListData.add(new VehicleListData("Audi","10","130","15000","HAJ234"));
+        vehicleListData.add(new VehicleListData("Audi","10","130","15000","JMK453"));
+//        vehicleListData.add(new VehicleListData("Myvi","10","130","15000","BND6731"));
+//        vehicleListData.add(new VehicleListData("Myvi","10","130","15000","BND6731"));
         adapter=new VehicleListAdapter(vehicleListData);
         rc_vehicle.setAdapter(adapter);
 

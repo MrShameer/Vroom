@@ -23,8 +23,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.vroom.R;
+import com.example.vroom.database.User.User;
+import com.example.vroom.database.User.UserViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,6 +38,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class LessorAddVehicle extends AppCompatActivity {
     TextView tv_type,tv_brand,tv_age,tv_platno,tv_condition,tv_insurance,tv_rate,tv_available,tv_location;
     Button btn_type,btn_brand,btn_age,btn_platno,btn_condition,btn_insurance,btn_rate,btn_available,btn_location,btn_submit;
+    UserViewModel userViewModel;
     ImageButton btn_back;
     List<String> typelist = new ArrayList<>();
     List<String> brandlist = new ArrayList<>();
@@ -101,8 +106,16 @@ public class LessorAddVehicle extends AppCompatActivity {
         insurancelist.add("Tokyo Marine");
         insurancelist.add("Axa Arifin");
 
-        locationlist.add("location 1");
-        locationlist.add("location 2");
+        userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.getGetAllUser().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                User currentUser=users.get(0);
+                locationlist.add(currentUser.getAddress());
+                locationlist.add(currentUser.getAddress2());
+            }
+        });
+
 
         btn_type.setOnClickListener(v -> showAlertDialogButtonClicked(v,"type"));
         btn_brand.setOnClickListener(v -> showAlertDialogButtonClicked(v,"brand"));
@@ -119,7 +132,9 @@ public class LessorAddVehicle extends AppCompatActivity {
             tv_condition.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
         });
 
+        //TODO
         btn_submit.setOnClickListener(view -> {
+            Toast.makeText(this, "Successfully Added Please Wait For Us To Review", Toast.LENGTH_SHORT).show();
 
         });
         btn_back.setOnClickListener(v -> {

@@ -200,10 +200,10 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("plat", intent.getStringExtra("PLAT"))
-                    .addFormDataPart("total",totalcost)
+                    .addFormDataPart("total","21211")
                     .addFormDataPart("payment_type","Online Banking")
-                    .addFormDataPart("payment","Pending")
-                    .addFormDataPart("pickup",tv_pickupdate.getText().toString())
+                    .addFormDataPart("payment","2022-1-27")
+                    .addFormDataPart("pickup","2022-1-27")
                     .addFormDataPart("return","2021-12-31")
                     .addFormDataPart("location","kajang")
                     .build();

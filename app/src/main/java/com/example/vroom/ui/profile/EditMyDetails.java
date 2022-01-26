@@ -142,7 +142,7 @@ public class EditMyDetails extends AppCompatActivity {
             Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
 
             if(current==0){
-//            file=new File(request.getPath(getApplicationContext(),data.getData()));
+            file=new File(request.getPath(getApplicationContext(),data.getData()));
             iv_card.setImageBitmap(selectedImage);
             current++;
             }
@@ -161,30 +161,30 @@ public class EditMyDetails extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
-            if (data.equals("I/C")){
-                RequestBody requestBody = new MultipartBody.Builder()
-                        .setType(MultipartBody.FORM)
-                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
-                        .addFormDataPart("path", "identification")
-                        .build();
-                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
-            }
-            else if (data.equals("Driving License")){
-                RequestBody requestBody = new MultipartBody.Builder()
-                        .setType(MultipartBody.FORM)
-                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
-                        .addFormDataPart("path", "license")
-                        .build();
-                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
-            }
-            else{
+//            if (data.equals("I/C")){
+//                RequestBody requestBody = new MultipartBody.Builder()
+//                        .setType(MultipartBody.FORM)
+//                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
+//                        .addFormDataPart("path", "identification")
+//                        .build();
+//                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
+//            }
+//            else if (data.equals("Driving License")){
+//                RequestBody requestBody = new MultipartBody.Builder()
+//                        .setType(MultipartBody.FORM)
+//                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
+//                        .addFormDataPart("path", "license")
+//                        .build();
+//                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
+//            }
+//            else{
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("column", data.toLowerCase())
                         .addFormDataPart("data", et_newdetails.getText().toString())
                         .build();
                 respond = request.PostHeader(requestBody,getString(R.string.updateinfo),token);
-            }
+//            }
 
             if (respond.contains("success")){
                 sucess=true;

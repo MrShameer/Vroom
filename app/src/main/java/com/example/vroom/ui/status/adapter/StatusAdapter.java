@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vroom.R;
 import com.example.vroom.ui.status.model.StatusCard;
 import com.example.vroom.ui.status.model.StatusName;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusViewHolder>  {
@@ -48,6 +52,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
         Button btnstatusgreen;
         Button btnstatusred;
 
+        ImageView vehiclePic;
         View glowbar;
 
         final int StatusName=0, StatusCard=1;
@@ -65,6 +70,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                     glowbar=itemView.findViewById(R.id.glowbar);
                     btnstatusgreen=itemView.findViewById(R.id.BtnStatus1);
                     btnstatusred=itemView.findViewById(R.id.BtsnStatus2);
+                    vehiclePic=itemView.findViewById(R.id.vehiclePic);
             }
         }
     }
@@ -99,15 +105,15 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 holder.lessorTextView.setText(card.getlessorName());
                 holder.modelTextView.setText(card.getModel());
 
-//                Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+currentVehicle.getVehicleplat()+".png").into(holder.iv_vehicle, new Callback() {
-//                    @Override
-//                    public void onSuccess() {
-//                    }
-//                    @Override
-//                    public void onError(Exception e) {
-//                        Picasso.get().load(R.drawable.perodua_bezza).into(holder.iv_vehicle);
-//                    }
-//                });
+                Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+card.getPlat()+".png").into(holder.vehiclePic, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+                    @Override
+                    public void onError(Exception e) {
+                        Picasso.get().load(R.drawable.perodua_bezza).into(holder.vehiclePic);
+                    }
+                });
 
                 if (title.equals("accepted")){
                     holder.requestTextView.setText(R.string.AcceptedText);
