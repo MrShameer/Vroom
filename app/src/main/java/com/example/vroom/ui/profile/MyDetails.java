@@ -40,7 +40,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
     private UserViewModel userViewModel;
     Button btn_eimage;
     ImageButton btn_back,btn_efullname,btn_eemail,btn_eaddress1,btn_eaddress2,btn_ephone,btn_epassword,btn_eic,btn_eadddriving;
-    TextView tv_fullname,tv_email,tv_address,tv_phone,tv_addic,tv_adddriving;
+    TextView tv_fullname,tv_email,tv_address,tv_address2,tv_phone,tv_addic,tv_adddriving;
     private static final int GALLERY_CODE = 103;
     CircleImageView user_image;
     User currentUser;
@@ -68,6 +68,7 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
         tv_fullname=findViewById(R.id.tv_address1);
         tv_email=findViewById(R.id.tv_email);
         tv_address=findViewById(R.id.tv_address);
+        tv_address2=findViewById(R.id.tv_address2);
         tv_phone=findViewById(R.id.tv_phone);
         tv_addic=findViewById(R.id.tv_addic);
         tv_adddriving=findViewById(R.id.tv_adddriving);
@@ -131,7 +132,8 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
             tv_fullname.setText(currentUser.getName());
             tv_email.setText(currentUser.getEmail());
             tv_phone.setText(currentUser.getPhone());
-
+            tv_address.setText(currentUser.getAddress());
+            tv_address2.setText(currentUser.getAddress2());
 //            if(currentUser.getAddress().equals("null")){
 //                tv_address.setText("Address 1");
 //            }

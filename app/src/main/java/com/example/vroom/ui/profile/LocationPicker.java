@@ -70,7 +70,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     //widgets
     Request request = new Request();
     private AutoCompleteTextView mSearchText;
-    private ImageView mGps;
+    private ImageView mGps,ic_magnify;
     //vars
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
@@ -80,7 +80,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     String current;
     String[] clicked = {"no"};
     final String[] longlat = {"",""};
-    String Address="";
+    String Address;
     User currentuser;
     Intent intent;
     String data;
@@ -92,11 +92,13 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         mSearchText = findViewById(R.id.input_search);
         saveLocation=findViewById(R.id.saveLocation);
         mGps = findViewById(R.id.ic_gps);
+        ic_magnify= findViewById(R.id.ic_magnify);
         getLocationPermission();
         current= getIntent().getStringExtra("TITLE");
         saveLocation.setOnClickListener(v -> {
             //TODO save address line, lat and long dari sini
             new mytask().execute();
+            finish();
 //            Address
 //            longlat[] dalam bentuk String
         });
@@ -126,7 +128,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+            Log.d("Locatiob",message);
         }
     }
 
@@ -138,7 +140,6 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
         eventsetup();
@@ -166,19 +167,23 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
 
     private void init(){
         Log.d(TAG, "init: initializing");
-
-        mSearchText.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            mSearchText.setOnEditorActionListener((textView, actionId, keyEvent) -> {
             if(actionId == EditorInfo.IME_ACTION_SEARCH
                     || actionId == EditorInfo.IME_ACTION_DONE
                     || keyEvent.getAction() == KeyEvent.ACTION_DOWN
                     || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
-                String searchString = mSearchText.getText().toString();
+                geoLocate(mSearchText.getText().toString());
+
                 //execute our method for searching
-                geoLocate(searchString);
             }
             return false;
         });
-
+        ic_magnify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            geoLocate(mSearchText.getText().toString());
+            }
+        });
         mGps.setOnClickListener(view -> {
             Log.d(TAG, "onClick: clicked gps icon");
             getDeviceLocation();
@@ -192,11 +197,8 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         currentuser = (User) intent.getSerializableExtra("DATA");
         data = intent.getStringExtra("TITLE");
         if(data.equals("Address 1")) {
-            Toast.makeText(this,"Event Setup",Toast.LENGTH_SHORT).show();
 //            if(currentuser.getAddress().equals(null)){
-            Toast.makeText(this,currentuser.getAddress(),Toast.LENGTH_SHORT).show();
             if(currentuser.getAddress().equals("null")){
-                Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
                 getDeviceLocation();
                 init();
             }
@@ -206,7 +208,6 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
         }
         else{
             if(currentuser.getAddress2().equals("null")){
-                Toast.makeText(this,"No Location",Toast.LENGTH_SHORT).show();
                 getDeviceLocation();
                 init();
             }
@@ -224,6 +225,8 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             list = geocoder.getFromLocationName(searchString, 1);
         }catch (IOException e){
             Log.e(TAG, "geoLocate: IOException: " + e.getMessage() );
+            Toast.makeText(this, "Location does not Exist\n"+"Please Input a Real Location", Toast.LENGTH_SHORT).show();
+
         }
         if(list.size() > 0){
             Address address = list.get(0);
@@ -237,10 +240,12 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
                     ;
             mSearchText.getText().clear();
             mSearchText.setHint(result);
+            Address=result;
+
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,address.getAddressLine(0));
-        }
-        else if(list.size() == 0){
-            Toast.makeText(this, "Location does not Exist\n"+"Please Input a Real Location", Toast.LENGTH_SHORT).show();
+//                marker.setTitle(pos);
+            longlat[0] = String.valueOf(address.getLatitude());
+            longlat[1] = String.valueOf(address.getLongitude());
         }
 
     }
@@ -318,9 +323,8 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
                     ;
                     mSearchText.getText().clear();
                     mSearchText.setHint(result);
-                    Address=address.getAddressLine(0);
+                    Address=result;
                     marker.setTitle(address.getAddressLine(0));
-            Toast.makeText(LocationPicker.this, address.getAddressLine(0), Toast.LENGTH_SHORT).show();
 
             }
                 }
@@ -332,6 +336,7 @@ public class LocationPicker extends AppCompatActivity implements OnMapReadyCallb
             });
             mMap.setOnMarkerClickListener(marker -> {
                 if(clicked[0] =="no"){
+
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                 marker.setDraggable(false);
                     saveLocation.setVisibility(View.VISIBLE);

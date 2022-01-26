@@ -5,12 +5,14 @@ public class WishlistData {
     String lessorname;
     String rating;
     String image;
+    String platno;
 
-    public WishlistData(String car, String lessorname, String rating, String image) {
+    public WishlistData(String car, String lessorname, String rating, String image,String platno) {
         this.car = car;
         this.lessorname = lessorname;
         this.rating = rating;
         this.image = image;
+        this.platno=platno;
     }
 
     public String getCar() {
@@ -27,6 +29,10 @@ public class WishlistData {
 
     public String getImage() {
         return image;
+    }
+
+    public String getPlatno() {
+        return platno;
     }
 }
 

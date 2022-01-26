@@ -15,6 +15,7 @@ import com.example.vroom.database.Chat.ChatCardDAO;
 import com.example.vroom.database.Chat.ChatViewModel;
 import com.example.vroom.database.User.UserViewModel;
 import com.example.vroom.ui.chat.ChatFragment;
+import com.example.vroom.ui.chat.MessageActivity;
 import com.example.vroom.ui.chat.adapter.ChatAdapter;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -27,6 +28,7 @@ public class FirebaseMessage extends FirebaseMessagingService {
     private static final String TAG = "";
     ChatViewModel chatViewModel=new ChatViewModel(getApplication());
     ChatCard chatCard;
+    MessageActivity messageActivity=new MessageActivity();
 
     public FirebaseMessage() {
     }

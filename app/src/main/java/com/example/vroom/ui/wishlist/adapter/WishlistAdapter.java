@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroom.R;
 import com.example.vroom.ui.wishlist.model.WishlistData;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,17 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
         holder.tv_lessorname.setText(wishlistDatas.getLessorname());
         holder.tv_car.setText(wishlistDatas.getCar());
         holder.tv_rating.setText(wishlistDatas.getRating());
-        holder.vehiclePic.setImageResource(R.drawable.perodua_bezza);
+
+
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+wishlistDatas.getPlatno()+".png").into(holder.vehiclePic, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                Picasso.get().load(R.drawable.perodua_bezza).into(holder.vehiclePic);
+            }
+        });
     }
 
     @Override

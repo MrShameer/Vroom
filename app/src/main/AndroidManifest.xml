@@ -100,12 +100,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCEtLtoQJZrHxVZy0rb7uobFHWZZu-qNtI" />
 
-        <activity
-            android:name=".service.FirebaseMessage"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
-
-
         <service
             android:name=".service.FirebaseMessage"
             android:exported="false"
