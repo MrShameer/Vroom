@@ -279,7 +279,7 @@ public class SetReqDetails extends AppCompatActivity implements DatePickerDialog
             }
             tv1.setText(selectedDate);
 
-            if(counter==2){
+            if(counter>=2){
                 long diff = dates[1].getTime() - dates[0].getTime();
                 Log.d("TOTAL DATS", String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)));
                 totaldays=(int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);

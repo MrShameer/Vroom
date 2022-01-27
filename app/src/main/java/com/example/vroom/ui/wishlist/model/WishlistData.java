@@ -6,13 +6,15 @@ public class WishlistData {
     String rating;
     String image;
     String platno;
+    String lessorid;
 
-    public WishlistData(String car, String lessorname, String rating, String image,String platno) {
+    public WishlistData(String car, String lessorname, String rating, String image,String platno,String lessorid) {
         this.car = car;
         this.lessorname = lessorname;
         this.rating = rating;
         this.image = image;
         this.platno=platno;
+        this.lessorid=lessorid;
     }
 
     public String getCar() {
@@ -33,6 +35,14 @@ public class WishlistData {
 
     public String getPlatno() {
         return platno;
+    }
+
+    public String getLessorid() {
+        return lessorid;
+    }
+
+    public void setLessorid(String lessorid) {
+        this.lessorid = lessorid;
     }
 }
 

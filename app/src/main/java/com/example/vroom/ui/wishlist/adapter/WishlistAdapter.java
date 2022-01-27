@@ -38,8 +38,15 @@ public class WishlistAdapter  extends RecyclerView.Adapter<WishlistAdapter.Desig
         holder.tv_lessorname.setText(wishlistDatas.getLessorname());
         holder.tv_car.setText(wishlistDatas.getCar());
         holder.tv_rating.setText(wishlistDatas.getRating());
-
-
+        Picasso.get().load("https://vroom.lepak.xyz/storage/picture/profile/"+wishlistDatas.getLessorid()+".jpg").into(holder.lessorPic3, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                Picasso.get().load(R.drawable.profile_image).into(holder.lessorPic3);
+            }
+        });
         Picasso.get().load("https://vroom.lepak.xyz/storage/picture/vehicle/"+wishlistDatas.getPlatno()+".png").into(holder.vehiclePic, new Callback() {
             @Override
             public void onSuccess() {

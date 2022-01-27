@@ -142,7 +142,7 @@ public class EditMyDetails extends AppCompatActivity {
             Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
 
             if(current==0){
-            file=new File(request.getPath(getApplicationContext(),data.getData()));
+//            file=new File(request.getPath(getApplicationContext(),data.getData()));
             iv_card.setImageBitmap(selectedImage);
             current++;
             }
@@ -216,7 +216,7 @@ public class EditMyDetails extends AppCompatActivity {
                 userViewModel.update(currentuser);
                 Toast.makeText(getBaseContext(),"Your Information Has Been Updated", Toast.LENGTH_LONG).show();
             }else{
-                Toast.makeText(getBaseContext(),"Sorry, A Problem Occur While Updating Your Information ", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(),"Sorry, A Problem Occur While Updating Your Information ", Toast.LENGTH_LONG).show();
             }
             finish();
         }
