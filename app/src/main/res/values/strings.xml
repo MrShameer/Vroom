@@ -34,6 +34,8 @@
     <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
     <string name="vehiclepic">https://vroom.lepak.xyz/storage/picture/vehicle/</string>
 
+    <string name="insertvehicle">https://vroom.lepak.xyz/api/insertvehicle/</string>
+
     <string name="vehiclelist">https://vroom.lepak.xyz/api/vehiclelist</string>
     <string name="wishlist">https://vroom.lepak.xyz/api/wishlist</string>
     <string name="addwishlist">https://vroom.lepak.xyz/api/addwishlist</string>

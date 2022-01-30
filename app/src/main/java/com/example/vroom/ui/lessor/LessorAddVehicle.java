@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -23,22 +24,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.vroom.R;
-import com.example.vroom.database.User.User;
-import com.example.vroom.database.User.UserViewModel;
+import com.example.vroom.api.Request;
+import com.example.vroom.database.TokenHandler;
+import com.example.vroom.ui.vehicledetails.SetReqDetails;
+import com.example.vroom.ui.vehicledetails.VehicleSucessfull;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 public class LessorAddVehicle extends AppCompatActivity {
     TextView tv_type,tv_brand,tv_age,tv_platno,tv_condition,tv_insurance,tv_rate,tv_available,tv_location;
     Button btn_type,btn_brand,btn_age,btn_platno,btn_condition,btn_insurance,btn_rate,btn_available,btn_location,btn_submit;
-    UserViewModel userViewModel;
     ImageButton btn_back;
     List<String> typelist = new ArrayList<>();
     List<String> brandlist = new ArrayList<>();
@@ -46,6 +52,7 @@ public class LessorAddVehicle extends AppCompatActivity {
     List<String> dayslist = new ArrayList<>();
     List<String> insurancelist = new ArrayList<>();
     List<String> locationlist = new ArrayList<>();
+    Request request = new Request();
     //TODO Masukkan semua ni dalam server yang bawah ni
     String selectedItem,selectedItem2,brand,model,age,platno,startday,endday,insurance,rate,location;
     @Override
@@ -106,16 +113,8 @@ public class LessorAddVehicle extends AppCompatActivity {
         insurancelist.add("Tokyo Marine");
         insurancelist.add("Axa Arifin");
 
-        userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.getGetAllUser().observe(this, new Observer<List<User>>() {
-            @Override
-            public void onChanged(List<User> users) {
-                User currentUser=users.get(0);
-                locationlist.add(currentUser.getAddress());
-                locationlist.add(currentUser.getAddress2());
-            }
-        });
-
+        locationlist.add("location 1");
+        locationlist.add("location 2");
 
         btn_type.setOnClickListener(v -> showAlertDialogButtonClicked(v,"type"));
         btn_brand.setOnClickListener(v -> showAlertDialogButtonClicked(v,"brand"));
@@ -132,15 +131,53 @@ public class LessorAddVehicle extends AppCompatActivity {
             tv_condition.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.accepted));
         });
 
-        //TODO
         btn_submit.setOnClickListener(view -> {
-            Toast.makeText(this, "Successfully Added Please Wait For Us To Review", Toast.LENGTH_SHORT).show();
-
+            new mytask().execute();
         });
         btn_back.setOnClickListener(v -> {
             finishAndRemoveTask();
         });
     }
+
+    private class mytask extends AsyncTask<Void,Void,Void> {
+        String respond;
+        JSONObject jsonObject = null;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
+            //ToDO : betulkan parameter
+            RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("plat", platno)
+                    .addFormDataPart("type","car")
+                    .addFormDataPart("brand",brand)
+                    .addFormDataPart("model",model)
+                    .addFormDataPart("insurance",insurance)
+                    .addFormDataPart("age",age)
+                    .addFormDataPart("passenger","4")
+                    .addFormDataPart("door","4")
+                    .addFormDataPart("luggage","4")
+                    .addFormDataPart("gallon","4")
+                    .addFormDataPart("rent","4")
+                    .build();
+            respond = request.PostHeader(requestBody,getString(R.string.insertvehicle),token);
+            //TODO : HANTAR GAMBAR
+            try {
+                jsonObject=new JSONObject(respond);
+                respond=jsonObject.getString("message");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getApplicationContext(),respond,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     private void selectImage(Context context) {
         final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
