@@ -62,7 +62,7 @@ public class EditMyDetails extends AppCompatActivity {
     ImageView iv_camera, iv_card,iv_profile;
     User currentuser;
     File file;
-    String data;
+    String data,document;
     int current=0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,13 +81,13 @@ public class EditMyDetails extends AppCompatActivity {
         iv_profile=findViewById(R.id.iv_profile);
         ll_details=findViewById(R.id.ll_details);
         intent=getIntent();
+        document=intent.getStringExtra("TITLE");
 
         AlertDialog.Builder builder= new AlertDialog.Builder(EditMyDetails.this);
         builder.setMessage("Empty");
         builder.setTitle("Please Fill in Details !");
         builder.setPositiveButton("Okay", (dialog, which) -> dialog.cancel());
         eventsetup();
-
         btn_done.setOnClickListener(view -> {
             if(TextUtils.isEmpty(et_newdetails.getText().toString())){
                 AlertDialog alertDialog = builder.create();
@@ -124,7 +124,7 @@ public class EditMyDetails extends AppCompatActivity {
         else if (intent.hasExtra("PASSWORD")){
             iv_camera.setVisibility(View.GONE);
         }
-        else if (intent.hasExtra("I/C")){
+        else if (intent.hasExtra("IC")){
             cl_hide.setVisibility(View.GONE);
         }
         else if (intent.hasExtra("DRIVING")){
@@ -149,8 +149,9 @@ public class EditMyDetails extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK && data != null) {
             Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
             String filepathh = Environment.getExternalStorageDirectory() + "/Android/data/" + getApplicationContext().getPackageName()+"/Picture/";
+
             if(current==0){
-                file = new File(filepathh+"/"+"IC.jpg");
+                file = new File(filepathh+"/"+document+".jpg");
                 if (file.exists()) file.delete();
                 try {
                     FileOutputStream out = new FileOutputStream(file);
@@ -165,7 +166,7 @@ public class EditMyDetails extends AppCompatActivity {
             }
             else
             {
-                file = new File(filepathh+"/"+"Profile.jpg");
+                file = new File(filepathh+"/"+document+"_profile.jpg");
                 if (file.exists()) file.delete();
                 try {
                     FileOutputStream out = new FileOutputStream(file);
@@ -190,7 +191,7 @@ public class EditMyDetails extends AppCompatActivity {
             if (data.equals("I/C")){
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("image","IC.jpg", RequestBody.create(MediaType.parse("image/*"),file))
+                        .addFormDataPart("image",intent.getStringExtra("TITLE")+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
                         .addFormDataPart("path", "identification")
                         .build();
                 respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
@@ -198,7 +199,7 @@ public class EditMyDetails extends AppCompatActivity {
             else if (data.equals("Driving License")){
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("image","Profile.jpg", RequestBody.create(MediaType.parse("image/*"),file))
+                        .addFormDataPart("image",intent.getStringExtra("TITLE")+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
                         .addFormDataPart("path", "license")
                         .build();
                 respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
