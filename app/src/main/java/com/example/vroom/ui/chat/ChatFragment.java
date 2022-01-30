@@ -1,5 +1,6 @@
 package com.example.vroom.ui.chat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -138,4 +139,15 @@ public class ChatFragment extends Fragment implements LifecycleOwner {
 //
 //    }
 
+    @SuppressLint("WrongThread")
+    public void updatemessage(ChatCard chatCard) {
+    ChatViewModel chatViewModel=new ChatViewModel(getActivity().getApplication());
+        Toast.makeText(getActivity(), "Hello", Toast.LENGTH_SHORT).show();
+        try{
+            chatViewModel.update(chatCard);
+        }
+        catch(Exception e){
+            chatViewModel.insert(chatCard);
+        }
+    }
 }

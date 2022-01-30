@@ -7,10 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +29,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -34,8 +39,11 @@ import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -140,18 +148,36 @@ public class EditMyDetails extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-
+            String filepathh = Environment.getExternalStorageDirectory() + "/Android/data/" + getApplicationContext().getPackageName()+"/Picture/";
             if(current==0){
-//            file=new File(request.getPath(getApplicationContext(),data.getData()));
-            iv_card.setImageBitmap(selectedImage);
-            current++;
+                file = new File(filepathh+"/"+"IC.jpg");
+                if (file.exists()) file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                iv_card.setImageBitmap(selectedImage);
+                current++;
             }
             else
             {
-                iv_profile.setImageBitmap(selectedImage);
+                file = new File(filepathh+"/"+"Profile.jpg");
+                if (file.exists()) file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            iv_profile.setImageBitmap(selectedImage);
             }
 
-//            Picasso.get().load(data.getData()).into(iv_card);
         }
     }
 
@@ -161,30 +187,30 @@ public class EditMyDetails extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             String token = TokenHandler.read(TokenHandler.USER_TOKEN, null);
-//            if (data.equals("I/C")){
-//                RequestBody requestBody = new MultipartBody.Builder()
-//                        .setType(MultipartBody.FORM)
-//                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
-//                        .addFormDataPart("path", "identification")
-//                        .build();
-//                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
-//            }
-//            else if (data.equals("Driving License")){
-//                RequestBody requestBody = new MultipartBody.Builder()
-//                        .setType(MultipartBody.FORM)
-//                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
-//                        .addFormDataPart("path", "license")
-//                        .build();
-//                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
-//            }
-//            else{
+            if (data.equals("I/C")){
+                RequestBody requestBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("image","IC.jpg", RequestBody.create(MediaType.parse("image/*"),file))
+                        .addFormDataPart("path", "identification")
+                        .build();
+                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
+            }
+            else if (data.equals("Driving License")){
+                RequestBody requestBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("image","Profile.jpg", RequestBody.create(MediaType.parse("image/*"),file))
+                        .addFormDataPart("path", "license")
+                        .build();
+                respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
+            }
+            else{
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("column", data.toLowerCase())
                         .addFormDataPart("data", et_newdetails.getText().toString())
                         .build();
                 respond = request.PostHeader(requestBody,getString(R.string.updateinfo),token);
-//            }
+            }
 
             if (respond.contains("success")){
                 sucess=true;
@@ -216,7 +242,7 @@ public class EditMyDetails extends AppCompatActivity {
                 userViewModel.update(currentuser);
                 Toast.makeText(getBaseContext(),"Your Information Has Been Updated", Toast.LENGTH_LONG).show();
             }else{
-//                Toast.makeText(getBaseContext(),"Sorry, A Problem Occur While Updating Your Information ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"Sorry, A Problem Occur While Updating Your Information ", Toast.LENGTH_LONG).show();
             }
             finish();
         }

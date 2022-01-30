@@ -28,7 +28,6 @@ public class FirebaseMessage extends FirebaseMessagingService {
     private static final String TAG = "";
     ChatViewModel chatViewModel=new ChatViewModel(getApplication());
     ChatCard chatCard;
-    MessageActivity messageActivity=new MessageActivity();
 
     public FirebaseMessage() {
     }
@@ -59,8 +58,9 @@ public class FirebaseMessage extends FirebaseMessagingService {
 
 
         if (remoteMessage.getData().size() > 0) {
-                Log.d(TAG, "Message data payload: " + remoteMessage.getData()+"\n"+remoteMessage.getData().get("title"));
-            }
+            Log.d(TAG, "Message data payload: " + remoteMessage.getData()+"\n"+remoteMessage.getData().get("title"));
+            System.out.println("hello");
+        }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
