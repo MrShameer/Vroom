@@ -26,32 +26,32 @@
     <string name="RejectedText">Your Request has Been Rejected</string>
     <string name="PendingText">The Lessor have not responded yet</string>
 
-    <string name="login">https://vroom.lepak.xyz/api/login</string>
-    <string name="register">https://vroom.lepak.xyz/api/register</string>
-    <string name="validate">https://vroom.lepak.xyz/api/validate</string>
-    <string name="updateinfo">https://vroom.lepak.xyz/api/updateinfo</string>
-    <string name="uploadimage">https://vroom.lepak.xyz/api/uploadimage</string>
-    <string name="profilepic">https://vroom.lepak.xyz/storage/picture/profile/</string>
-    <string name="vehiclepic">https://vroom.lepak.xyz/storage/picture/vehicle/</string>
+    <string name="login">http://192.168.1.103/vroom-api/public/api/login</string>
+    <string name="register">http://192.168.1.103/vroom-api/public/api/register</string>
+    <string name="validate">http://192.168.1.103/vroom-api/public/api/validate</string>
+    <string name="updateinfo">http://192.168.1.103/vroom-api/public/api/updateinfo</string>
+    <string name="uploadimage">http://192.168.1.103/vroom-api/public/api/uploadimage</string>
+    <string name="profilepic">http://192.168.1.103/vroom-api/public/storage/picture/profile/</string>
+    <string name="vehiclepic">http://192.168.1.103/vroom-api/public/storage/picture/vehicle/</string>
 
-    <string name="insertvehicle">https://vroom.lepak.xyz/api/insertvehicle/</string>
+    <string name="insertvehicle">http://192.168.1.103/vroom-api/public/api/insertvehicle/</string>
 
-    <string name="vehiclelist">https://vroom.lepak.xyz/api/vehiclelist</string>
-    <string name="wishlist">https://vroom.lepak.xyz/api/wishlist</string>
-    <string name="addwishlist">https://vroom.lepak.xyz/api/addwishlist</string>
-    <string name="ratinglist">https://vroom.lepak.xyz/api/ratinglist</string>
+    <string name="vehiclelist">http://192.168.1.103/vroom-api/public/api/vehiclelist</string>
+    <string name="wishlist">http://192.168.1.103/vroom-api/public/api/wishlist</string>
+    <string name="addwishlist">http://192.168.1.103/vroom-api/public/api/addwishlist</string>
+    <string name="ratinglist">http://192.168.1.103/vroom-api/public/api/ratinglist</string>
 
-    <string name="requestvehicle">https://vroom.lepak.xyz/api/request</string>
-    <string name="status">https://vroom.lepak.xyz/api/status</string>
-    <string name="lessorrequest">https://vroom.lepak.xyz/api/lessorrequest</string>
-    <string name="lessorlist">https://vroom.lepak.xyz/api/lessorlist</string>
+    <string name="requestvehicle">http://192.168.1.103/vroom-api/public/api/request</string>
+    <string name="status">http://192.168.1.103/vroom-api/public/api/status</string>
+    <string name="lessorrequest">http://192.168.1.103/vroom-api/public/api/lessorrequest</string>
+    <string name="lessorlist">http://192.168.1.103/vroom-api/public/api/lessorlist</string>
 
-    <string name="setlocation">https://vroom.lepak.xyz/api/setlocation</string>
+    <string name="setlocation">http://192.168.1.103/vroom-api/public/api/setlocation</string>
 
-    <string name="send">https://vroom.lepak.xyz/api/send</string>
-    <string name="chatroom">https://vroom.lepak.xyz/api/chatroom</string>
-    <string name="chatexists">https://vroom.lepak.xyz/api/chatexists</string>
-    <string name="message">https://vroom.lepak.xyz/api/message</string>
+    <string name="send">http://192.168.1.103/vroom-api/public/api/send</string>
+    <string name="chatroom">http://192.168.1.103/vroom-api/public/api/chatroom</string>
+    <string name="chatexists">http://192.168.1.103/vroom-api/public/api/chatexists</string>
+    <string name="message">http://192.168.1.103/vroom-api/public/api/message</string>
 
     <!--    <string name="profilepic">http://192.168.1.103/vroom-api/public/storage/picture/profile/</string>-->
     <!--    <string name="status">http://192.168.1.103/vroom-api/public/api/status</string>-->
