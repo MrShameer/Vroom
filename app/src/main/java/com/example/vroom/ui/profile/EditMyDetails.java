@@ -7,10 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +29,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -34,8 +39,11 @@ import com.example.vroom.database.TokenHandler;
 import com.example.vroom.database.User.User;
 import com.example.vroom.database.User.UserViewModel;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -54,7 +62,7 @@ public class EditMyDetails extends AppCompatActivity {
     ImageView iv_camera, iv_card,iv_profile;
     User currentuser;
     File file;
-    String data;
+    String data,document;
     int current=0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,13 +81,13 @@ public class EditMyDetails extends AppCompatActivity {
         iv_profile=findViewById(R.id.iv_profile);
         ll_details=findViewById(R.id.ll_details);
         intent=getIntent();
+        document=intent.getStringExtra("TITLE");
 
         AlertDialog.Builder builder= new AlertDialog.Builder(EditMyDetails.this);
         builder.setMessage("Empty");
         builder.setTitle("Please Fill in Details !");
         builder.setPositiveButton("Okay", (dialog, which) -> dialog.cancel());
         eventsetup();
-
         btn_done.setOnClickListener(view -> {
             if(TextUtils.isEmpty(et_newdetails.getText().toString())){
                 AlertDialog alertDialog = builder.create();
@@ -116,7 +124,7 @@ public class EditMyDetails extends AppCompatActivity {
         else if (intent.hasExtra("PASSWORD")){
             iv_camera.setVisibility(View.GONE);
         }
-        else if (intent.hasExtra("I/C")){
+        else if (intent.hasExtra("IC")){
             cl_hide.setVisibility(View.GONE);
         }
         else if (intent.hasExtra("DRIVING")){
@@ -140,18 +148,37 @@ public class EditMyDetails extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+            String filepathh = Environment.getExternalStorageDirectory() + "/Android/data/" + getApplicationContext().getPackageName()+"/Picture/";
 
             if(current==0){
-//            file=new File(request.getPath(getApplicationContext(),data.getData()));
-            iv_card.setImageBitmap(selectedImage);
-            current++;
+                file = new File(filepathh+"/"+document+".jpg");
+                if (file.exists()) file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                iv_card.setImageBitmap(selectedImage);
+                current++;
             }
             else
             {
-                iv_profile.setImageBitmap(selectedImage);
+                file = new File(filepathh+"/"+document+"_profile.jpg");
+                if (file.exists()) file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            iv_profile.setImageBitmap(selectedImage);
             }
 
-//            Picasso.get().load(data.getData()).into(iv_card);
         }
     }
 
@@ -164,7 +191,7 @@ public class EditMyDetails extends AppCompatActivity {
             if (data.equals("I/C")){
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
+                        .addFormDataPart("image",intent.getStringExtra("TITLE")+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
                         .addFormDataPart("path", "identification")
                         .build();
                 respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);
@@ -172,7 +199,7 @@ public class EditMyDetails extends AppCompatActivity {
             else if (data.equals("Driving License")){
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("image",currentuser.getUserID()+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
+                        .addFormDataPart("image",intent.getStringExtra("TITLE")+".jpg", RequestBody.create(MediaType.parse("image/*"),file))
                         .addFormDataPart("path", "license")
                         .build();
                 respond = request.PostHeader(requestBody,getString(R.string.uploadimage),token);

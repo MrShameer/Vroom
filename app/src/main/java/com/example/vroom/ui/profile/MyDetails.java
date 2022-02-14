@@ -179,8 +179,8 @@ public class MyDetails extends AppCompatActivity implements View.OnClickListener
                 intent.putExtra("PASSWORD","");
                 break;
             case R.id.btn_eic:
-                intent.putExtra("TITLE","I/C");
-                intent.putExtra("I/C","");
+                intent.putExtra("TITLE","IC");
+                intent.putExtra("IC","");
                 break;
             case R.id.btn_eadddriving:
                 intent.putExtra("TITLE","Driving License");

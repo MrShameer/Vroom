@@ -87,7 +87,7 @@ public class Wishlist extends AppCompatActivity {
                                 jsonObject.getJSONObject("vehicle").getJSONObject("owner").getString("name"),
                             "10.0",
                             "No Image",
-                            jsonObject.getJSONObject("vehicle").getString("plat")));
+                            jsonObject.getJSONObject("vehicle").getString("plat"),jsonObject.getJSONObject("vehicle").getJSONObject("owner").getString("id")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

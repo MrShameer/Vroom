@@ -73,7 +73,7 @@ public class StatusFragment extends Fragment {
                     for (int i = 0; i< arrlist.length(); i++){
                         JSONObject list = (JSONObject) arrlist.get(i);
                         JSONObject vehicle = list.getJSONObject("vehicle");
-                        items.add(new StatusCard(vehicle.getJSONObject("owner").getString("name"),vehicle.getString("model")+", "+vehicle.getString("brand")));
+                        items.add(new StatusCard(vehicle.getJSONObject("owner").getString("name"),vehicle.getString("model")+", "+vehicle.getString("brand"),vehicle.getString("plat")));
                     }
                 }
             } catch (JSONException e) {

@@ -51,7 +51,6 @@ public class Login extends AppCompatActivity {
     String email, password, fcmtoken;
     TextFieldBoxes textInputLayout2;
     Intent intent;
-    ChatViewModel chatViewModel;
     private UserViewModel userViewModel;
     public static Boolean RunIntent = false;
     @Override
@@ -64,8 +63,6 @@ public class Login extends AppCompatActivity {
         ETpasword=findViewById(R.id.password);
         textInputLayout2=findViewById(R.id.textInputLayout2);
         userViewModel=new ViewModelProvider(this).get(UserViewModel.class);
-        chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
-        chatViewModel.insert(new ChatCard("100","dummy","dummy","100"));
         textInputLayout2.getEndIconImageButton().setOnClickListener(view1 -> {
             if(ETpasword.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
                 ETpasword.setInputType( InputType.TYPE_CLASS_TEXT |
